@@ -1,3 +1,4 @@
+import 'package:cards_app/src/core/consts/app_constants.dart';
 import 'package:cards_app/src/core/resources/theme/theme_manager.dart';
 import 'package:cards_app/src/screens/home/view/main_screen.dart';
 import 'package:cards_app/src/screens/shared/multi_provider/multi_provider.dart';
@@ -16,6 +17,9 @@ class MyApp extends StatelessWidget {
         return MaterialApp(
           debugShowCheckedModeBanner: false,
           theme: AppTheme.lightTheme(context),
+          locale: AppConsts.locale,
+          supportedLocales: AppConsts.supportedLocales,
+          localizationsDelegates: AppConsts.localizationsDelegates,
           home: MainScreen(),
         );
       }),

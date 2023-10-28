@@ -1,4 +1,3 @@
-import 'package:cards_app/src/core/resources/theme/theme.dart';
 import 'package:flutter/material.dart';
 
 import '../shared_widgets.dart';
@@ -14,7 +13,7 @@ class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
     super.key,
     this.actionWidget,
     this.isLeading = true,
-    this.isBackButton = false,
+    this.isBackButton = true,
     this.title,
     this.onBackPressed,
   });
@@ -27,12 +26,7 @@ class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
       elevation: 0,
       bottomOpacity: 0,
       shadowColor: Colors.black,
-      leading: isBackButton
-          ? BackButtonWidget(onPressed: onBackPressed)
-          : IconButton(
-              onPressed: () => Scaffold.of(context).openDrawer(),
-              icon: Icon(Icons.sort, color: ColorManager.black),
-            ),
+      leading: isBackButton ? BackButtonWidget(onPressed: onBackPressed) : null,
       title: title == null
           ? null
           : Text(

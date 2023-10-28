@@ -80,7 +80,7 @@ class AppTheme {
         drawerTheme: const DrawerThemeData(
             backgroundColor: ColorManager.backgroundColor),
         dividerColor: ColorManager.darkGrey.withOpacity(0.2),
-        fontFamily: GoogleFonts.tajawal().fontFamily,
+        fontFamily: GoogleFonts.cairo().fontFamily,
         primaryColor: ColorManager.primaryColor,
         cardColor: ColorManager.white,
         textButtonTheme: textButtonStyle,

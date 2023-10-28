@@ -1,9 +1,11 @@
-part of 'theme.dart';
+import 'package:cards_app/src/core/resources/theme/theme.dart';
+import 'package:flutter/material.dart';
 
 TextTheme textTheme(context) => Theme.of(context).textTheme;
 
 //! Headline & SubHeadLine Styles
-TextStyle headLineStyle(context, {bool isWhiteText = false}) => textTheme(
+TextStyle headLineStyle(BuildContext context, {bool isWhiteText = false}) =>
+    textTheme(
       context,
     ).titleLarge!.copyWith(
           color: isWhiteText ? Colors.white : ColorManager.black,
@@ -11,7 +13,8 @@ TextStyle headLineStyle(context, {bool isWhiteText = false}) => textTheme(
           fontSize: 24,
         );
 
-TextStyle subHeadLineStyle(context, {bool isWhiteText = false}) => textTheme(
+TextStyle subHeadLineStyle(BuildContext context, {bool isWhiteText = false}) =>
+    textTheme(
       context,
     ).titleLarge!.copyWith(
           fontSize: 20,
@@ -22,47 +25,51 @@ TextStyle subHeadLineStyle(context, {bool isWhiteText = false}) => textTheme(
 //!----------------------------------------------------------------------------
 
 //! Title & Subtitle Styles
-TextStyle titleStyle(context, {bool isWhiteText = false}) => textTheme(
+TextStyle titleStyle(BuildContext context, {bool isWhiteText = false}) =>
+    textTheme(
       context,
     ).titleMedium!.copyWith(
         color: isWhiteText ? Colors.white : ColorManager.black,
         fontWeight: FontWeight.bold,
         fontSize: 20);
 
-TextStyle subTitleStyle(context, {bool isWhiteText = false}) => textTheme(
+TextStyle subTitleStyle(BuildContext context, {bool isWhiteText = false}) =>
+    textTheme(
       context,
     ).titleSmall!.copyWith(
         color: isWhiteText ? Colors.white : ColorManager.black, fontSize: 18);
 
 //! Label Styles
-TextStyle labelLargeStyle(context, {bool isWhiteText = false}) => textTheme(
+TextStyle labelLargeStyle(BuildContext context, {bool isWhiteText = false}) =>
+    textTheme(
       context,
     ).labelLarge!.copyWith(
           color: isWhiteText ? Colors.white : ColorManager.black,
           fontSize: 16,
         );
 
-TextStyle labelMediumStyle(context, {bool isWhiteText = false}) => textTheme(
+TextStyle labelMediumStyle(BuildContext context, {bool isWhiteText = false}) =>
+    textTheme(
       context,
     ).labelMedium!.copyWith(
           color: isWhiteText ? Colors.white : ColorManager.black,
           fontSize: 14,
         );
 
-TextStyle labelSmallStyle(context, {bool isWhiteText = false}) => textTheme(
+TextStyle labelSmallStyle(BuildContext context, {bool isWhiteText = false}) =>
+    textTheme(
       context,
     ).labelSmall!.copyWith(
           color: isWhiteText ? Colors.white : ColorManager.black,
         );
 
 //! Body Styles
-TextStyle bodyStyle(context, {bool isWhiteText = false}) =>
+TextStyle bodyStyle(BuildContext context, {bool isWhiteText = false}) =>
     textTheme(context).bodyLarge!.copyWith(
           color: isWhiteText ? Colors.white : ColorManager.black,
         );
 
-TextStyle hintStyle(context, {bool isWhiteText = false}) =>
+TextStyle hintStyle(BuildContext context, {bool isWhiteText = false}) =>
     textTheme(context).bodySmall!.copyWith(
           color: isWhiteText ? Colors.white : ColorManager.black,
-          fontSize: 16,
         );

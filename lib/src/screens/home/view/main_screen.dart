@@ -1,31 +1,42 @@
+import 'package:cards_app/src/core/extensions/extensions.dart';
 import 'package:cards_app/src/screens/cart/view/cart_screen.dart';
 import 'package:cards_app/src/screens/history/view/history_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_slider_drawer/flutter_slider_drawer.dart';
 import 'package:provider/provider.dart';
 
-import '../../../core/shared_widgets/appbar/main_appbar.dart';
 import '../../../core/shared_widgets/home_navigations/bottom_nav_bar_widget.dart';
 import '../../drawer/home_drawer.dart';
 import '../view_model/bottom_nav_provider.dart';
 import 'home_page.dart';
 
-class MainScreen extends StatelessWidget {
+class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
 
   @override
+  State<MainScreen> createState() => _MainScreenState();
+}
+
+class _MainScreenState extends State<MainScreen> {
+  @override
   Widget build(BuildContext context) {
+    GlobalKey<SliderDrawerState> _key = GlobalKey<SliderDrawerState>();
     return Selector<BottomNavbarVM, int>(
       selector: (context, provider) => provider.currentIndex,
       builder: (context, currentIndex, child) {
         return Scaffold(
-          appBar: MainAppBar(
-            title: selectedTitle(currentIndex, context),
-          ),
-          body: _SelectedScreen(
-            currentIndex: currentIndex,
+          body: SliderDrawer(
+            slideDirection: SlideDirection.RIGHT_TO_LEFT,
+            key: _key,
+            appBar: SliderAppBar(
+              title: Text(selectedTitle(currentIndex, context)),
+            ),
+            slider: const HomeDrawer(),
+            child: _SelectedScreen(
+              currentIndex: currentIndex,
+            ),
           ),
           bottomNavigationBar: const BottomNavBarWidget(),
-          drawer: const HomeDrawer(),
         );
       },
     );
@@ -35,13 +46,13 @@ class MainScreen extends StatelessWidget {
 String selectedTitle(int currentIndex, BuildContext context) {
   switch (currentIndex) {
     case 0:
-      return 'Home';
+      return context.tr.home;
     case 1:
-      return 'Cart';
+      return context.tr.cart;
     case 2:
-      return 'History';
+      return context.tr.history;
   }
-  return 'Home';
+  return context.tr.home;
 }
 
 class _SelectedScreen extends StatelessWidget {

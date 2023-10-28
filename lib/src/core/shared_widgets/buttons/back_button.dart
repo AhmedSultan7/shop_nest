@@ -11,10 +11,10 @@ class BackButtonWidget extends StatelessWidget {
     return IconButton(
         padding: EdgeInsets.zero,
         onPressed: onPressed ?? context.back,
-        color: isWhite ? ColorManager.white : ColorManager.black,
+        color: !isWhite ? ColorManager.white : ColorManager.black,
         icon: const Icon(
           size: 25,
-          Icons.arrow_back_ios_new,
+          Icons.arrow_back_ios,
         ));
   }
 }
