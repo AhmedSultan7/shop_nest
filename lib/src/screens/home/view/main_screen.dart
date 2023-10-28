@@ -1,4 +1,3 @@
-import 'package:cards_app/src/core/extensions/extensions.dart';
 import 'package:cards_app/src/screens/cart/view/cart_screen.dart';
 import 'package:cards_app/src/screens/history/view/history_screen.dart';
 import 'package:flutter/material.dart';
@@ -29,8 +28,8 @@ class _MainScreenState extends State<MainScreen> {
             slideDirection: SlideDirection.RIGHT_TO_LEFT,
             key: _key,
             appBar: SliderAppBar(
-              title: Text(selectedTitle(currentIndex, context)),
-            ),
+                // title: Text(selectedTitle(currentIndex, context)),
+                ),
             slider: const HomeDrawer(),
             child: _SelectedScreen(
               currentIndex: currentIndex,
@@ -43,17 +42,17 @@ class _MainScreenState extends State<MainScreen> {
   }
 }
 
-String selectedTitle(int currentIndex, BuildContext context) {
-  switch (currentIndex) {
-    case 0:
-      return context.tr.home;
-    case 1:
-      return context.tr.cart;
-    case 2:
-      return context.tr.history;
-  }
-  return context.tr.home;
-}
+// String selectedTitle(int currentIndex, BuildContext context) {
+//   switch (currentIndex) {
+//     case 0:
+//       return context.tr.home;
+//     case 1:
+//       return context.tr.cart;
+//     case 2:
+//       return context.tr.history;
+//   }
+//   return context.tr.home;
+// }
 
 class _SelectedScreen extends StatelessWidget {
   final int currentIndex;

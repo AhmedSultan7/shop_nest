@@ -52,7 +52,7 @@ extension ThemeExtensions on BuildContext {
 
 extension Localization on BuildContext {
   //? Localization shortcuts
-  S get tr => S.of(this);
+  // S get tr => S.of(this);
 }
 
 extension NavigationExtensions on BuildContext {
