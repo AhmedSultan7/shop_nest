@@ -1,7 +1,9 @@
+import 'package:cards_app/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 
 import '../resources/app_spaces.dart';
+import '../resources/theme/font_styles.dart';
 import '../resources/theme/theme.dart';
 import '../utils/flush_bar.dart';
 

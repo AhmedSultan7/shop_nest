@@ -50,6 +50,11 @@ extension ThemeExtensions on BuildContext {
   TextStyle get whiteHint => hintStyle(this, isWhiteText: true);
 }
 
+extension Localization on BuildContext {
+  //? Localization shortcuts
+  S get tr => S.of(this);
+}
+
 extension NavigationExtensions on BuildContext {
   void to(Widget widget) => Navigator.of(this).push(
         MaterialPageRoute(builder: (_) => widget),
