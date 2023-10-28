@@ -16,10 +16,12 @@ class MyApp extends StatelessWidget {
         ScreenUtil.init(context);
         return MaterialApp(
           debugShowCheckedModeBanner: false,
+          debugShowMaterialGrid: false,
           theme: AppTheme.lightTheme(context),
           locale: AppConsts.locale,
           supportedLocales: AppConsts.supportedLocales,
           localizationsDelegates: AppConsts.localizationsDelegates,
+          title: AppConsts.appName,
           home: MainScreen(),
         );
       }),
