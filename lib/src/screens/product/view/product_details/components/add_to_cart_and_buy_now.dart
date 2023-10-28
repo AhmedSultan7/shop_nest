@@ -23,8 +23,8 @@ class AddToCartAndBuyNow extends StatelessWidget {
         Button(
           isPrefixIcon: true,
           onPressed: () {},
-          color: ColorManager.black,
-          label: 'Buy Now',
+          color: ColorManager.primaryColor,
+          label: context.tr.buyNow,
           isWhiteText: true,
         ),
       ],
@@ -44,7 +44,6 @@ class _ProductQuantityButtons extends StatelessWidget {
         Row(
           children: [
             BaseFloatingButton(
-              hero: '1',
               onTap: () {},
               child: const Icon(
                 Icons.remove,
@@ -54,13 +53,11 @@ class _ProductQuantityButtons extends StatelessWidget {
             context.mediumGap,
             Text(
               '${quantity.value}',
-              style:
-                  context.subTitle.copyWith(color: ColorManager.primaryColor),
+              style: context.title.copyWith(color: ColorManager.primaryColor),
             ),
             context.mediumGap,
             BaseFloatingButton(
               onTap: () {},
-              hero: '0',
               child: const Icon(
                 Icons.add,
                 color: Colors.white,
@@ -78,7 +75,7 @@ class _ProductQuantityButtons extends StatelessWidget {
               isPrefixIcon: true,
               onPressed: () {},
               color: ColorManager.black,
-              label: 'Add to cart',
+              label: context.tr.addToCart,
               isWhiteText: true,
             ),
           ),

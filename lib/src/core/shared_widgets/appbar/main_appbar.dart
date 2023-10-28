@@ -1,3 +1,4 @@
+import 'package:cards_app/src/core/extensions/extensions.dart';
 import 'package:flutter/material.dart';
 
 import '../shared_widgets.dart';
@@ -31,6 +32,7 @@ class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
           ? null
           : Text(
               title!,
+              style: context.title,
             ),
     );
   }

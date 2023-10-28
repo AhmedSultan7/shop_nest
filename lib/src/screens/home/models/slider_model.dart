@@ -1,16 +1,19 @@
-import 'package:cards_app/generated/assets.dart';
-
 class SliderModel {
-  final String? title;
   final String? image;
   final String? url;
 
-  SliderModel({this.title, this.image, this.url});
+  SliderModel({this.image, this.url});
 
   static List<SliderModel> slider = [
-    SliderModel(title: 'Slider 1', image: Assets.imagesApex),
-    SliderModel(title: 'Slider 2', image: Assets.imagesApex),
-    SliderModel(title: 'Slider 3', image: Assets.imagesApex),
+    SliderModel(
+        image:
+            'https://i.pinimg.com/originals/86/cb/28/86cb28eb9d01628e1ebf187a9c53f11a.jpg'),
+    SliderModel(
+        image:
+            'https://i.pinimg.com/originals/86/cb/28/86cb28eb9d01628e1ebf187a9c53f11a.jpg'),
+    SliderModel(
+        image:
+            'https://img.freepik.com/free-vector/realistic-black-friday-sale-with-3d-elements_1361-3698.jpg?size=626&ext=jpg&ga=GA1.1.386372595.1698278400&semt=ais'),
   ];
 
   // factory SliderModel.fromJson(Map<String, dynamic> json) {

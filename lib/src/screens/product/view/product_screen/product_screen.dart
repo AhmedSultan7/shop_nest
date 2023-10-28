@@ -18,7 +18,7 @@ class ProductByCatScreen extends StatelessWidget {
       appBar: MainAppBar(
         title: subCategory.title,
       ),
-      body: ProductGridViewWidget(products: ProductModel.productList)
+      body: ProductGridViewWidget(products: ProductModel.productListSub)
           .paddingAll(AppSpaces.defaultPadding)
           .scroll(),
     );

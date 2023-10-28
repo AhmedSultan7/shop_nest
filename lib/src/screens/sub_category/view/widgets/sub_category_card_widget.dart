@@ -1,10 +1,10 @@
 import 'package:cards_app/src/core/extensions/extensions.dart';
 import 'package:cards_app/src/core/resources/app_radius.dart';
+import 'package:cards_app/src/core/resources/app_spaces.dart';
 import 'package:cards_app/src/core/resources/theme/theme.dart';
 import 'package:cards_app/src/screens/product/view/product_screen/product_screen.dart';
 import 'package:cards_app/src/screens/sub_category/model/sub_category_model.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class SubCategoryCardWidget extends StatelessWidget {
   final SubCategoryModel subCategory;
@@ -19,24 +19,40 @@ class SubCategoryCardWidget extends StatelessWidget {
     return InkWell(
       onTap: () => context.to(ProductByCatScreen(subCategory: subCategory)),
       child: Container(
+        height: context.height * .15,
+        margin: EdgeInsets.only(bottom: AppSpaces.smallPadding),
         decoration: BoxDecoration(
             color: ColorManager.black,
             borderRadius: BorderRadius.circular(AppRadius.baseRadius)),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+        child: Stack(
           children: [
-            SizedBox(
-              height: 50.h,
-              child: Image.asset(
+            ClipRRect(
+              borderRadius: BorderRadius.circular(15),
+              child: Image.network(
+                height: context.height * .15,
                 subCategory.image,
                 fit: BoxFit.cover,
+                width: double.infinity,
               ),
             ),
-            context.mediumGap,
-            Text(
-              subCategory.title,
-              style: context.whiteSubTitle,
-            )
+            Positioned.fill(
+              child: Container(
+                padding: const EdgeInsets.all(8),
+                decoration: BoxDecoration(
+                  color: Colors.black.withOpacity(.3),
+                  borderRadius: BorderRadius.circular(AppRadius.baseRadius),
+                ),
+                child: Center(
+                  child: Text(
+                    subCategory.title,
+                    style: context.headLine.copyWith(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+              ),
+            ),
           ],
         ),
       ),

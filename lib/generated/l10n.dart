@@ -70,10 +70,10 @@ class S {
     );
   }
 
-  /// `المتجات`
+  /// `المنتجات`
   String get products {
     return Intl.message(
-      'المتجات',
+      'المنتجات',
       name: 'products',
       desc: '',
       args: [],
@@ -115,6 +115,106 @@ class S {
     return Intl.message(
       'الطلبات السابقة',
       name: 'history',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `إضافة إلي السلة`
+  String get addToCart {
+    return Intl.message(
+      'إضافة إلي السلة',
+      name: 'addToCart',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `اشتري الآن`
+  String get buyNow {
+    return Intl.message(
+      'اشتري الآن',
+      name: 'buyNow',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `سياسة الخصوصية`
+  String get policy {
+    return Intl.message(
+      'سياسة الخصوصية',
+      name: 'policy',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `من نحن`
+  String get aboutUs {
+    return Intl.message(
+      'من نحن',
+      name: 'aboutUs',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `الشروط والأحكام`
+  String get terms {
+    return Intl.message(
+      'الشروط والأحكام',
+      name: 'terms',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `الإعدادات`
+  String get settings {
+    return Intl.message(
+      'الإعدادات',
+      name: 'settings',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `تواصل معنا`
+  String get contactUs {
+    return Intl.message(
+      'تواصل معنا',
+      name: 'contactUs',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `السعر :`
+  String get price {
+    return Intl.message(
+      'السعر :',
+      name: 'price',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `عربة فارغة حاول إضافة بعض المنتجات`
+  String get emptyCart {
+    return Intl.message(
+      'عربة فارغة حاول إضافة بعض المنتجات',
+      name: 'emptyCart',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `لا يوجد طلبات سابقة`
+  String get noHistory {
+    return Intl.message(
+      'لا يوجد طلبات سابقة',
+      name: 'noHistory',
       desc: '',
       args: [],
     );

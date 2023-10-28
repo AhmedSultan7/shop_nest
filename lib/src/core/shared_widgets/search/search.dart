@@ -18,7 +18,7 @@ class SearchWidget extends StatelessWidget {
         borderRadius: BorderRadius.circular(AppRadius.baseRadius),
         child: BaseTextField(
           initialValue: initialValue,
-          hint: 'search',
+          hint: context.tr.search,
           suffixIcon: const IconWidget(icon: Assets.iconsSearch)
               .paddingAll(AppSpaces.defaultPadding),
           onSubmitted: onSubmitted,

@@ -3,7 +3,7 @@ part of 'theme.dart';
 class ColorManager {
   static const backgroundColor = Color(0xFFfafafa);
   static const darkBackgroundColor = Color(0xFF2F2F2F);
-  static const primaryColor = Color(0xFF25D366);
+  static const primaryColor = Color(0xFFFF6000);
   static const accentColor = Color(0xff8c98a8);
   static const secondaryColor = Color(0XFF25534B);
 

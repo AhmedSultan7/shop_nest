@@ -37,16 +37,18 @@ class ProductsDetailsScreen extends HookWidget {
                 child: SizedBox(
                   height: context.height * 0.5,
                   width: double.infinity,
-                  child: Image.asset(
+                  child: Image.network(
                     product.image,
-                    fit: BoxFit.fill,
+                    fit: BoxFit.cover,
                   ),
                 ),
               ),
               CircleAvatar(
                 backgroundColor: ColorManager.grey.withOpacity(0.6),
-                radius: 22,
-                child: const BackButtonWidget(),
+                radius: 25,
+                child: const BackButtonWidget(
+                  isWhite: false,
+                ),
               ).paddingSymmetric(vertical: 25.h, horizontal: 10.w),
             ],
           ),

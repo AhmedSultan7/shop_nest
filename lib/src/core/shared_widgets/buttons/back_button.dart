@@ -14,7 +14,7 @@ class BackButtonWidget extends StatelessWidget {
         color: !isWhite ? ColorManager.white : ColorManager.black,
         icon: const Icon(
           size: 25,
-          Icons.arrow_back_ios,
+          Icons.arrow_back_ios_rounded,
         ));
   }
 }

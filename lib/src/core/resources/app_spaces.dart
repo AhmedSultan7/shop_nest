@@ -1,5 +1,5 @@
 class AppSpaces {
-  static const double xSmallPadding = 5;
+  static const double xSmallPadding = 4.0;
   static const double smallPadding = 8.0;
   static const double defaultPadding = 16.0;
   static const double largePadding = 24.0;

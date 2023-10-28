@@ -22,12 +22,24 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "aboutUs": MessageLookupByLibrary.simpleMessage("من نحن"),
+        "addToCart": MessageLookupByLibrary.simpleMessage("إضافة إلي السلة"),
+        "buyNow": MessageLookupByLibrary.simpleMessage("اشتري الآن"),
         "cart": MessageLookupByLibrary.simpleMessage("سلة المنتجات"),
         "category": MessageLookupByLibrary.simpleMessage("الأقسام"),
+        "contactUs": MessageLookupByLibrary.simpleMessage("تواصل معنا"),
+        "emptyCart": MessageLookupByLibrary.simpleMessage(
+            "عربة فارغة حاول إضافة بعض المنتجات"),
         "history": MessageLookupByLibrary.simpleMessage("الطلبات السابقة"),
         "home": MessageLookupByLibrary.simpleMessage("الصفحة الرئيسية"),
-        "products": MessageLookupByLibrary.simpleMessage("المتجات"),
+        "noHistory":
+            MessageLookupByLibrary.simpleMessage("لا يوجد طلبات سابقة"),
+        "policy": MessageLookupByLibrary.simpleMessage("سياسة الخصوصية"),
+        "price": MessageLookupByLibrary.simpleMessage("السعر :"),
+        "products": MessageLookupByLibrary.simpleMessage("المنتجات"),
         "search": MessageLookupByLibrary.simpleMessage("بحث"),
-        "subCategory": MessageLookupByLibrary.simpleMessage("أقسام فرعية")
+        "settings": MessageLookupByLibrary.simpleMessage("الإعدادات"),
+        "subCategory": MessageLookupByLibrary.simpleMessage("أقسام فرعية"),
+        "terms": MessageLookupByLibrary.simpleMessage("الشروط والأحكام")
       };
 }

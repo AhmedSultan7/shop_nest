@@ -4,7 +4,6 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../../../../core/resources/app_radius.dart';
 import '../../../../../core/resources/theme/theme.dart';
 import '../../../models/slider_model.dart';
 
@@ -22,37 +21,14 @@ class HomeSlider extends StatelessWidget {
                   .map(
                     (slider) => GestureDetector(
                       onTap: () {},
-                      child: Stack(
-                        children: [
-                          ClipRRect(
-                            borderRadius: BorderRadius.circular(15),
-                            child: Image.asset(
-                              height: context.height * .20,
-                              slider.image!,
-                              fit: BoxFit.cover,
-                              width: double.infinity,
-                            ),
-                          ),
-                          Positioned.fill(
-                            child: Container(
-                              padding: const EdgeInsets.all(8),
-                              decoration: BoxDecoration(
-                                color: Colors.black.withOpacity(.5),
-                                borderRadius:
-                                    BorderRadius.circular(AppRadius.baseRadius),
-                              ),
-                              child: Center(
-                                child: Text(
-                                  slider.title!,
-                                  style: context.headLine.copyWith(
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(15),
+                        child: Image.network(
+                          height: context.height * .20,
+                          slider.image!,
+                          fit: BoxFit.cover,
+                          width: double.infinity,
+                        ),
                       ),
                     ).paddingSymmetric(horizontal: 5),
                   )

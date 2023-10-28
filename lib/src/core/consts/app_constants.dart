@@ -8,6 +8,7 @@ class AppConsts {
   static const String appName = 'Vendor App';
   static const int vendorId = 1;
   static const String appFont = 'ProductSans';
+  static const String currency = 'ر . سـ';
   static const Locale locale = Locale('ar');
   static const enLocale = Locale('en');
 

@@ -1,5 +1,3 @@
-import 'package:cards_app/generated/assets.dart';
-
 class SubCategoryModel {
   final String image;
   final String title;
@@ -10,10 +8,25 @@ class SubCategoryModel {
   });
 
   static List<SubCategoryModel> subCategoryList = [
-    SubCategoryModel(image: Assets.imagesApex, title: 'PathFinder'),
-    SubCategoryModel(image: Assets.imagesApex, title: 'Mirage'),
-    SubCategoryModel(image: Assets.imagesApex, title: 'Giby'),
-    SubCategoryModel(image: Assets.imagesApex, title: 'Seer'),
-    SubCategoryModel(image: Assets.imagesApex, title: 'PathFinder'),
+    SubCategoryModel(
+        image:
+            'https://seagm-media.seagmcdn.com/item_og/playstation-network-card-code.jpg',
+        title: 'بطاقات بلاي ستيشن سعودي'),
+    SubCategoryModel(
+        image:
+            'https://seagm-media.seagmcdn.com/item_og/playstation-network-card-code.jpg',
+        title: 'بطاقات بلاي ستيشن كويتي'),
+    SubCategoryModel(
+        image:
+            'https://seagm-media.seagmcdn.com/item_og/playstation-network-card-code.jpg',
+        title: 'بطاقات بلاي ستيشن إماراتي'),
+    SubCategoryModel(
+        image:
+            'https://seagm-media.seagmcdn.com/item_og/playstation-network-card-code.jpg',
+        title: 'بطاقات بلاي ستيشن لبناني'),
+    SubCategoryModel(
+        image:
+            'https://seagm-media.seagmcdn.com/item_og/playstation-network-card-code.jpg',
+        title: 'بطاقات بلاي ستيشن عمان'),
   ];
 }

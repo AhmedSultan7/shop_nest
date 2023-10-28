@@ -21,26 +21,24 @@ class HomePage extends HookWidget {
     //   return () {};
     // }, []);
     // ignore: prefer_const_constructors
-    return Scaffold(
-      body: ListView(
-        children: [
-          const HomeSearch().paddingOnly(
-              right: AppSpaces.defaultPadding,
-              left: AppSpaces.defaultPadding,
-              top: AppSpaces.defaultPadding),
-          context.largeGap,
-          const HomeSlider(),
-          context.mediumGap,
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const HomeCategoriesList(),
-              context.largeGap,
-              const ProductsGridView(),
-            ],
-          ).paddingSymmetric(horizontal: AppSpaces.defaultPadding)
-        ],
-      ),
+    return ListView(
+      children: [
+        const HomeSearch().paddingOnly(
+            right: AppSpaces.defaultPadding,
+            left: AppSpaces.defaultPadding,
+            top: AppSpaces.defaultPadding),
+        context.largeGap,
+        const HomeSlider(),
+        context.mediumGap,
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const HomeCategoriesList(),
+            context.largeGap,
+            const ProductsGridView(),
+          ],
+        ).paddingSymmetric(horizontal: AppSpaces.defaultPadding)
+      ],
     );
   }
 }

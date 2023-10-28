@@ -1,4 +1,5 @@
 import 'package:cards_app/src/core/extensions/extensions.dart';
+import 'package:cards_app/src/core/resources/theme/theme.dart';
 import 'package:cards_app/src/core/shared_widgets/box_shadow.dart';
 import 'package:cards_app/src/screens/category/models/category_model.dart';
 import 'package:cards_app/src/screens/sub_category/view/sub_category_screen.dart';
@@ -17,12 +18,12 @@ class HomeCategoriesList extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'Categories',
+          context.tr.category,
           style: context.headLine,
         ),
         context.mediumGap,
         SizedBox(
-          height: 150.h,
+          height: 120.h,
           child: ListView.builder(
               padding: const EdgeInsets.only(bottom: AppSpaces.xSmallPadding),
               scrollDirection: Axis.horizontal,
@@ -38,6 +39,7 @@ class HomeCategoriesList extends StatelessWidget {
 
 class _CategoryCardWidget extends StatelessWidget {
   final CategoryModel category;
+
   const _CategoryCardWidget({required this.category});
 
   @override
@@ -45,7 +47,7 @@ class _CategoryCardWidget extends StatelessWidget {
     return InkWell(
       onTap: () => context.to(const SubCategoryScreen()),
       child: Container(
-        width: 200.w,
+        width: 250.w,
         margin: const EdgeInsets.only(left: AppSpaces.smallPadding),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(AppRadius.baseContainerRadius),
@@ -53,44 +55,41 @@ class _CategoryCardWidget extends StatelessWidget {
           color: Colors.white,
         ),
         child: Stack(
+          alignment: Alignment.bottomCenter,
           children: [
-            //! image & details
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                //! Product image
-                SizedBox(
-                  width: double.infinity,
-                  height: 100.h,
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(
-                      AppRadius.baseRadius,
-                    ),
-                    child: Image.asset(
-                      category.image,
-                      fit: BoxFit.cover,
-                    ),
-                  ),
+            //! Product image
+            SizedBox(
+              width: double.infinity,
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(
+                  AppRadius.baseContainerRadius,
                 ),
-
-                context.mediumGap,
-
-                //! product title & price & sale price
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      category.title,
-                      style: context.subTitle,
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                  ],
-                ).paddingOnly(
-                    left: AppSpaces.smallPadding,
-                    right: AppSpaces.smallPadding),
-              ],
+                child: Image.network(
+                  category.image,
+                  height: 120.h,
+                  fit: BoxFit.cover,
+                ),
+              ),
             ),
+            Container(
+                padding: const EdgeInsets.symmetric(
+                    vertical: AppSpaces.xSmallPadding),
+                width: double.infinity,
+                decoration: BoxDecoration(
+                  borderRadius: const BorderRadius.only(
+                    bottomLeft: Radius.circular(AppRadius.baseContainerRadius),
+                    bottomRight: Radius.circular(AppRadius.baseContainerRadius),
+                  ),
+                  color: ColorManager.black.withOpacity(0.5),
+                ),
+                child: Text(
+                  category.title,
+                  style:
+                      context.whiteTitle.copyWith(fontWeight: FontWeight.bold),
+                  maxLines: 1,
+                  textAlign: TextAlign.center,
+                  overflow: TextOverflow.ellipsis,
+                )),
           ],
         ),
       ),

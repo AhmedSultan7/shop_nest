@@ -1,4 +1,5 @@
 import 'package:cards_app/generated/assets.dart';
+import 'package:cards_app/src/core/extensions/extensions.dart';
 import 'package:cards_app/src/core/resources/theme/theme.dart';
 import 'package:cards_app/src/core/shared_widgets/icon_widget/icon_widget.dart';
 import 'package:flutter/material.dart';
@@ -25,7 +26,7 @@ class BottomNavBarWidget extends StatelessWidget {
           selectedItemColor: ColorManager.primaryColor,
 
           elevation: 0,
-          backgroundColor: Colors.transparent,
+          backgroundColor: ColorManager.backgroundColor,
           unselectedItemColor: Theme.of(context).focusColor.withOpacity(1),
           currentIndex: bottomNavbarVM.currentIndex,
           // widget.currentTab,
@@ -40,7 +41,7 @@ class BottomNavBarWidget extends StatelessWidget {
                       ? ColorManager.primaryColor
                       : ColorManager.black,
                   icon: Assets.iconsHome),
-              label: 'Home',
+              label: context.tr.home,
             ),
             BottomNavigationBarItem(
               icon: IconWidget(
@@ -48,7 +49,7 @@ class BottomNavBarWidget extends StatelessWidget {
                       ? ColorManager.primaryColor
                       : ColorManager.black,
                   icon: Assets.iconsCart),
-              label: 'Cart',
+              label: context.tr.cart,
             ),
             BottomNavigationBarItem(
               icon: IconWidget(
@@ -56,7 +57,7 @@ class BottomNavBarWidget extends StatelessWidget {
                       ? ColorManager.primaryColor
                       : ColorManager.black,
                   icon: Assets.iconsHistory),
-              label: 'History',
+              label: context.tr.history,
             ),
           ],
         );

@@ -1,9 +1,10 @@
 import 'package:cards_app/src/core/extensions/extensions.dart';
 import 'package:cards_app/src/core/resources/app_spaces.dart';
 import 'package:cards_app/src/core/shared_widgets/appbar/main_appbar.dart';
+import 'package:cards_app/src/screens/sub_category/view/widgets/sub_category_card_widget.dart';
 import 'package:flutter/material.dart';
 
-import 'widgets/sub_category_grid_view.dart';
+import '../model/sub_category_model.dart';
 
 class SubCategoryScreen extends StatelessWidget {
   const SubCategoryScreen({super.key});
@@ -12,11 +13,15 @@ class SubCategoryScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: MainAppBar(
-        title: 'sub',
+        title: context.tr.subCategory,
       ),
-      body: ListView(
-        children: [SubCategoryGridView()],
-      ).paddingAll(AppSpaces.defaultPadding),
+      body: ListView.builder(
+          padding: EdgeInsets.all(AppSpaces.smallPadding),
+          itemCount: SubCategoryModel.subCategoryList.length,
+          itemBuilder: (BuildContext context, int index) =>
+              SubCategoryCardWidget(
+                subCategory: SubCategoryModel.subCategoryList[index],
+              )),
     );
   }
 }

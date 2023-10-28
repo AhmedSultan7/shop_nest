@@ -1,4 +1,8 @@
+import 'package:cards_app/src/core/consts/app_constants.dart';
 import 'package:cards_app/src/core/extensions/extensions.dart';
+import 'package:cards_app/src/core/resources/theme/theme.dart';
+import 'package:cards_app/src/core/shared_widgets/box_shadow.dart';
+import 'package:cards_app/src/core/shared_widgets/shared_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -20,9 +24,9 @@ class ProductCardWidget extends StatelessWidget {
       },
       child: Container(
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(AppRadius.imageContainerRadius),
-          color: Theme.of(context).cardColor,
-        ),
+            borderRadius: BorderRadius.circular(AppRadius.imageContainerRadius),
+            color: Theme.of(context).cardColor,
+            boxShadow: ConstantsWidgets.boxShadow),
         child: Stack(
           children: [
             //! image & details
@@ -36,10 +40,10 @@ class ProductCardWidget extends StatelessWidget {
                     borderRadius: BorderRadius.circular(
                       AppRadius.imageContainerRadius,
                     ),
-                    child: Image.asset(
+                    child: Image.network(
                       product.image ?? '',
                       width: double.infinity,
-                      fit: BoxFit.fill,
+                      fit: BoxFit.cover,
                     ),
                   ),
                 ),
@@ -48,24 +52,45 @@ class ProductCardWidget extends StatelessWidget {
 
                 //! product title & price & sale price
                 Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
+                    //! Product Title
                     Text(
                       product.title,
-                      style: context.title.copyWith(
+                      style: context.labelLarge.copyWith(
                           overflow: TextOverflow.ellipsis,
                           fontWeight: FontWeight.bold),
-                      maxLines: 1,
+                      maxLines: 2,
+                      textAlign: TextAlign.center,
                       overflow: TextOverflow.ellipsis,
                     ),
                     context.smallGap,
-                    //! price and sale price
+                    //! price and currency
                     Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        Text('\$${product.price} ', style: context.labelLarge),
+                        //! Price Text
+                        Text(context.tr.price,
+                            style: context.subTitle
+                                .copyWith(fontWeight: FontWeight.bold)),
+                        context.smallGap,
+
+                        //! Price
+                        Text('${product.price} ',
+                            style: context.title
+                                .copyWith(color: ColorManager.primaryColor)),
+
+                        //! Currency
+                        Text(AppConsts.currency,
+                            style: context.subTitle
+                                .copyWith(fontWeight: FontWeight.bold)),
                       ],
                     ),
+                    context.smallGap,
+                    SizedBox(
+                        height: 30.h,
+                        child:
+                            Button(label: context.tr.buyNow, onPressed: () {})),
                   ],
                 ).paddingOnly(
                     left: AppSpaces.smallPadding,

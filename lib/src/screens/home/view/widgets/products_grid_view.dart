@@ -1,8 +1,8 @@
 import 'package:cards_app/src/core/extensions/extensions.dart';
+import 'package:cards_app/src/screens/product/view/product_screen/widgets/products_grid_view_widget.dart';
 import 'package:flutter/material.dart';
 
 import '../../../product/models/product_model.dart';
-import '../../../product/view/product_screen/widgets/product_card.dart';
 
 class ProductsGridView extends StatelessWidget {
   const ProductsGridView({super.key});
@@ -13,25 +13,11 @@ class ProductsGridView extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'Products',
+          context.tr.products,
           style: context.headLine,
         ),
         context.mediumGap,
-        GridView.builder(
-            shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
-            itemCount: 5,
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisSpacing: 10,
-              crossAxisCount: 2,
-              mainAxisSpacing: 20,
-              childAspectRatio: 7 / 12,
-            ),
-            itemBuilder: (BuildContext context, int index) {
-              return ProductCardWidget(
-                product: ProductModel.productList[index],
-              );
-            }),
+        ProductGridViewWidget(products: ProductModel.productList),
       ],
     );
   }
