@@ -1,3 +1,6 @@
+import 'package:cards_app/src/core/data/local/hive_helper.dart';
+import 'package:cards_app/src/screens/cart/repository/local/cart_local_repo.dart';
+import 'package:cards_app/src/screens/cart/view_model/cart_view_model.dart';
 import 'package:cards_app/src/screens/home/view_model/slider_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -18,6 +21,11 @@ class BaseMultiProvider extends StatelessWidget {
         ),
         ChangeNotifierProvider(
           create: (context) => SliderVM(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => CartVM(
+              cartLocalRepository:
+                  CartLocalRepository(hiveHelper: HiveHelper())),
         ),
       ],
       child: child,

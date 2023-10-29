@@ -7,7 +7,7 @@ class SliderModel {
   static List<SliderModel> slider = [
     SliderModel(
         image:
-            'https://i.pinimg.com/originals/86/cb/28/86cb28eb9d01628e1ebf187a9c53f11a.jpg'),
+            'https://punktid.ee/blog/wp-content/uploads/2021/09/kinkekaardid-blogipilt-ET39.jpg'),
     SliderModel(
         image:
             'https://i.pinimg.com/originals/86/cb/28/86cb28eb9d01628e1ebf187a9c53f11a.jpg'),
