@@ -30,10 +30,10 @@ dependencies:
   flutter_hooks:
   another_flushbar:
   blur: ^3.1.0
-
   #? Hive
   hive: ^2.2.3
   hive_flutter:
+  url_launcher: ^6.1.14
 
   #? Drawer
   flutter_slider_drawer: ^2.1.3

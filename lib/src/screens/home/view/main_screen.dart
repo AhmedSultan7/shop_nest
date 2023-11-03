@@ -10,7 +10,7 @@ import '../../../core/shared_widgets/home_navigations/bottom_nav_bar_widget.dart
 import '../view_model/bottom_nav_provider.dart';
 import 'home_page.dart';
 
-GlobalKey<SliderDrawerState> _key = GlobalKey<SliderDrawerState>();
+GlobalKey<SliderDrawerState> drawerKey = GlobalKey<SliderDrawerState>();
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -29,7 +29,7 @@ class _MainScreenState extends State<MainScreen> {
           body: SliderDrawer(
             isDraggable: true,
             slideDirection: SlideDirection.TOP_TO_BOTTOM,
-            key: _key,
+            key: drawerKey,
             appBar: SliderAppBar(
               title: Text(
                 selectedTitle(currentIndex, context),

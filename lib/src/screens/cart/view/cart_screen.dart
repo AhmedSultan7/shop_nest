@@ -43,7 +43,7 @@ class CartScreen extends HookWidget {
         return ListView.separated(
             shrinkWrap: true,
             itemBuilder: (context, index) =>
-                BuildCartWidget(cart: cartData[index]),
+                BuildCartWidget(cart: cartData[index], index: index),
             separatorBuilder: (context, index) => context.mediumGap,
             itemCount: cartData.length);
       },
@@ -53,8 +53,9 @@ class CartScreen extends HookWidget {
 
 class BuildCartWidget extends StatelessWidget {
   final CartModel cart;
+  final int index;
 
-  const BuildCartWidget({super.key, required this.cart});
+  const BuildCartWidget({super.key, required this.cart, required this.index});
 
   @override
   Widget build(BuildContext context) {
@@ -73,11 +74,11 @@ class BuildCartWidget extends StatelessWidget {
             children: [
               //! product image
               Image.network(
-                product.image,
+                product.image!.url,
                 width: 100,
                 height: 100,
                 errorBuilder: (context, error, stackTrace) {
-                  return Icon(Icons.abc);
+                  return const Icon(Icons.abc);
                 },
               ),
               10.horizontalSpace,
@@ -89,7 +90,7 @@ class BuildCartWidget extends StatelessWidget {
                 children: [
                   //! product name
                   Text(
-                    product.title,
+                    product.name ?? '',
                     style: context.labelLarge,
                   ),
                   5.verticalSpace,
@@ -140,7 +141,9 @@ class BuildCartWidget extends StatelessWidget {
               ),
               //! delete button
               IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  context.read<CartVM>().deleteFromCart(index: index);
+                },
                 icon: const Icon(Icons.delete_rounded),
               ),
             ],

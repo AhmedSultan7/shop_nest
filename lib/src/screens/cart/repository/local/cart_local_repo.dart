@@ -30,4 +30,12 @@ class CartLocalRepository {
       return [];
     }
   }
+
+  Future<void> deleteFromCart({required int index}) async {
+    try {
+      await hiveHelper.delete(_cartHiveKey, index: index);
+    } catch (e) {
+      Log.e(' Cart repo delete error${e.toString()}');
+    }
+  }
 }

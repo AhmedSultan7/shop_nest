@@ -16,7 +16,7 @@ class CartModel {
     return CartModel(
       id: json['id'],
       quantity: json['quantity'],
-      product: ProductModel.fromLocal(json['product']),
+      product: ProductModel.fromLocalJson(json['product']),
     );
   }
 

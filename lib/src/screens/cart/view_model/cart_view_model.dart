@@ -20,5 +20,11 @@ class CartVM extends ChangeNotifier {
     cart = await cartLocalRepository.getCart();
 
     notifyListeners();
+  } //! delete Cart  ======================================
+
+  Future<void> deleteFromCart({required int index}) async {
+    await cartLocalRepository.deleteFromCart(index: index);
+    getCart();
+    notifyListeners();
   }
 }

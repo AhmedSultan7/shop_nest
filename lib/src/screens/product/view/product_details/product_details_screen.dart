@@ -39,7 +39,7 @@ class ProductsDetailsScreen extends HookWidget {
                   height: context.height * 0.5,
                   width: double.infinity,
                   child: Image.network(
-                    product.image,
+                    product.image?.url ?? '',
                     fit: BoxFit.cover,
                   ),
                 ),

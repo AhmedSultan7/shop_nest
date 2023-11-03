@@ -32,7 +32,14 @@ class HiveHelper {
       data = box.toMap();
       Log.f(' Get =============== ${data}');
     }
-
     return data;
+  }
+
+  Future<void> delete(String boxName, {required int index}) async {
+    if (Hive.isBoxOpen(boxName)) {
+      await Hive.box(boxName).deleteAt(index);
+    } else {
+      await Hive.openBox(boxName).then((box) => box.deleteAt(index));
+    }
   }
 }

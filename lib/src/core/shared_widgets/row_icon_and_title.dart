@@ -15,15 +15,20 @@ class RowIconAndTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        IconWidget(height: 30, width: 30, color: Colors.white, icon: iconPath),
-        context.smallGap,
-        Text(
-          title,
-          style: context.whiteLabelMedium.copyWith(fontWeight: FontWeight.bold),
-        )
-      ],
+    return InkWell(
+      onTap: onTap,
+      child: Row(
+        children: [
+          IconWidget(
+              height: 30, width: 30, color: Colors.white, icon: iconPath),
+          context.smallGap,
+          Text(
+            title,
+            style:
+                context.whiteLabelMedium.copyWith(fontWeight: FontWeight.bold),
+          )
+        ],
+      ),
     );
   }
 }

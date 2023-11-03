@@ -1,7 +1,11 @@
 import 'package:cards_app/src/core/data/local/hive_helper.dart';
+import 'package:cards_app/src/core/data/remote/network/network_api_service.dart';
 import 'package:cards_app/src/screens/cart/repository/local/cart_local_repo.dart';
 import 'package:cards_app/src/screens/cart/view_model/cart_view_model.dart';
+import 'package:cards_app/src/screens/home/repositories/slider_repo.dart';
 import 'package:cards_app/src/screens/home/view_model/slider_view_model.dart';
+import 'package:cards_app/src/screens/product/models/repository/product_repo.dart';
+import 'package:cards_app/src/screens/product/view_model/product_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -20,12 +24,16 @@ class BaseMultiProvider extends StatelessWidget {
           create: (context) => BottomNavbarVM(),
         ),
         ChangeNotifierProvider(
-          create: (context) => SliderVM(),
+          create: (context) =>
+              SliderVM(SlidersRepo(networkApiServices: NetworkApiService())),
         ),
         ChangeNotifierProvider(
           create: (context) => CartVM(
               cartLocalRepository:
                   CartLocalRepository(hiveHelper: HiveHelper())),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => ProductVM(ProductRepo(NetworkApiService())),
         ),
       ],
       child: child,

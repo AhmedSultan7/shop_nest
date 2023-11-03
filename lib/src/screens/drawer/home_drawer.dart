@@ -2,6 +2,7 @@ import 'package:blur/blur.dart';
 import 'package:cards_app/generated/assets.dart';
 import 'package:cards_app/src/core/extensions/extensions.dart';
 import 'package:cards_app/src/core/shared_widgets/row_icon_and_title.dart';
+import 'package:cards_app/src/screens/home/view/main_screen.dart';
 import 'package:flutter/material.dart';
 
 import '../../core/resources/app_spaces.dart';
@@ -91,7 +92,9 @@ class _DrawerList extends StatelessWidget {
             RowIconAndTitle(
               iconPath: Assets.iconsHome,
               title: context.tr.home,
-              onTap: () {},
+              onTap: () {
+                drawerKey.currentState!.closeSlider();
+              },
             ),
             context.largeGap,
 
