@@ -10,5 +10,5 @@ class ApiEndPoints {
   static const String populate = "?populate=*";
   static const String products = "/products$populate";
   static const String sliders = "/sliders$populate";
-  static const String orders = "/orders";
+  static const String setting = "/setting$populate";
 }

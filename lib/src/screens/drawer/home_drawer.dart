@@ -3,15 +3,30 @@ import 'package:cards_app/generated/assets.dart';
 import 'package:cards_app/src/core/extensions/extensions.dart';
 import 'package:cards_app/src/core/shared_widgets/row_icon_and_title.dart';
 import 'package:cards_app/src/screens/home/view/main_screen.dart';
+import 'package:cards_app/src/screens/settings/model/settings_model.dart';
+import 'package:cards_app/src/screens/settings/view/policy_screen.dart';
+import 'package:cards_app/src/screens/settings/view/terms_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:provider/provider.dart';
 
 import '../../core/resources/app_spaces.dart';
+import '../settings/view/about_us_screen.dart';
+import '../settings/view/contact_us_screen.dart';
+import '../settings/view_model/setting_view_model.dart';
 
-class HomeDrawer extends StatelessWidget {
+class HomeDrawer extends HookWidget {
   const HomeDrawer({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final settingsVM = context.read<SettingsVM>();
+    useEffect(() {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        settingsVM.getSettings();
+      });
+      return () {};
+    }, []);
     return Stack(
       children: [
         Blur(
@@ -24,7 +39,9 @@ class HomeDrawer extends StatelessWidget {
         Column(
           children: [
             const _HeaderDrawer(),
-            const _DrawerList().paddingAll(AppSpaces.defaultPadding),
+            _DrawerList(
+              settings: settingsVM.settings,
+            ).paddingAll(AppSpaces.defaultPadding),
           ],
         ),
       ],
@@ -77,7 +94,8 @@ class _HeaderDrawer extends StatelessWidget {
 }
 
 class _DrawerList extends StatelessWidget {
-  const _DrawerList();
+  final SettingsModel settings;
+  const _DrawerList({required this.settings});
 
   @override
   Widget build(BuildContext context) {
@@ -102,7 +120,7 @@ class _DrawerList extends StatelessWidget {
             RowIconAndTitle(
               iconPath: Assets.iconsTerms,
               title: context.tr.terms,
-              onTap: () {},
+              onTap: () => context.to(TermsScreen()),
             ),
             context.largeGap,
 
@@ -110,13 +128,13 @@ class _DrawerList extends StatelessWidget {
             RowIconAndTitle(
               iconPath: Assets.iconsContact,
               title: context.tr.contactUs,
-              onTap: () {},
+              onTap: () => context.to(ContactUsScreen()),
             ),
           ],
         ),
 
         context.largeGap,
-        //! Policy & About Us & Settings
+        //! Terms & About Us & Settings
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -124,7 +142,7 @@ class _DrawerList extends StatelessWidget {
             RowIconAndTitle(
               iconPath: Assets.iconsTerms,
               title: context.tr.policy,
-              onTap: () {},
+              onTap: () => context.to(PolicyScreen()),
             ),
             context.largeGap,
 
@@ -132,7 +150,7 @@ class _DrawerList extends StatelessWidget {
             RowIconAndTitle(
               iconPath: Assets.iconsAboutUs,
               title: context.tr.aboutUs,
-              onTap: () {},
+              onTap: () => context.to(AboutUsScreen()),
             ),
             context.largeGap,
 

@@ -65,33 +65,31 @@ class BuildCartWidget extends StatelessWidget {
       padding: const EdgeInsets.all(8.0),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.end,
-        crossAxisAlignment: CrossAxisAlignment.end,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           //! product name & price & image
           Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.end,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               //! product image
               Image.network(
                 product.image!.url,
-                width: 100,
-                height: 100,
+                width: 150,
                 errorBuilder: (context, error, stackTrace) {
                   return const Icon(Icons.abc);
                 },
               ),
               10.horizontalSpace,
               //! product name & price
-              Expanded(
-                  child: Column(
+              Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   //! product name
                   Text(
-                    product.name ?? '',
-                    style: context.labelLarge,
+                    'بطاقة شحن'.toString() ?? '',
+                    style: context.subTitle,
                   ),
                   5.verticalSpace,
                   Text(
@@ -100,53 +98,54 @@ class BuildCartWidget extends StatelessWidget {
                         .copyWith(color: ColorManager.primaryColor),
                   ),
                 ],
-              ))
+              ),
+              context.largeGap,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  //! add & remove buttons & quantity
+                  Container(
+                    height: 35.h,
+                    width: 100.w,
+                    decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(7),
+                        boxShadow: ConstantsWidgets.boxShadow),
+                    child: Row(
+                      children: [
+                        //! increase  quantity
+                        Expanded(
+                            child: IconButton(
+                          onPressed: () {},
+                          icon: const Icon(
+                            Icons.add,
+                          ),
+                        )),
+                        //! quantity
+                        Text('${cart.quantity}',
+                            style: context.labelLarge
+                                .copyWith(fontWeight: FontWeight.bold)),
+                        //! uncreased  quantity
+                        Expanded(
+                            child: IconButton(
+                          onPressed: () {},
+                          icon: const Icon(
+                            Icons.remove,
+                          ),
+                        )),
+                        //! delete button
+                      ],
+                    ),
+                  ),
+                ],
+              ),
             ],
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              //! add & remove buttons & quantity
-              Container(
-                height: 35.h,
-                width: 100.w,
-                decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(7),
-                    boxShadow: ConstantsWidgets.boxShadow),
-                child: Row(
-                  children: [
-                    //! increase  quantity
-                    Expanded(
-                        child: IconButton(
-                      onPressed: () {},
-                      icon: const Icon(
-                        Icons.add,
-                      ),
-                    )),
-                    //! quantity
-                    Text('${cart.quantity}',
-                        style: context.labelLarge
-                            .copyWith(fontWeight: FontWeight.bold)),
-                    //! uncreased  quantity
-                    Expanded(
-                        child: IconButton(
-                      onPressed: () {},
-                      icon: const Icon(
-                        Icons.remove,
-                      ),
-                    )),
-                  ],
-                ),
-              ),
-              //! delete button
-              IconButton(
-                onPressed: () {
-                  context.read<CartVM>().deleteFromCart(index: index);
-                },
-                icon: const Icon(Icons.delete_rounded),
-              ),
-            ],
+          IconButton(
+            onPressed: () {
+              context.read<CartVM>().deleteFromCart(index: index);
+            },
+            icon: const Icon(Icons.delete_rounded),
           ),
         ],
       ),

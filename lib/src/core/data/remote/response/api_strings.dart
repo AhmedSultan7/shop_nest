@@ -38,4 +38,8 @@ class ApiStrings {
   static const String shipping = 'shipping';
   static const String status = 'status';
   static const String pending = 'Pending';
+  static const String termsAndConditions = 'terms_and_conditions';
+  static const String privacyPolicy = 'privacy_policy';
+  static const String aboutUs = 'about_us';
+  static const String contactUs = 'contact_us';
 }
