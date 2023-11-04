@@ -219,6 +219,26 @@ class S {
       args: [],
     );
   }
+
+  /// `الشروط و الأحكام`
+  String get termsAndCondition {
+    return Intl.message(
+      'الشروط و الأحكام',
+      name: 'termsAndCondition',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `من نحن`
+  String get aboutUS {
+    return Intl.message(
+      'من نحن',
+      name: 'aboutUS',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

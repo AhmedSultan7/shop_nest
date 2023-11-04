@@ -5,8 +5,7 @@ class ApiEndPoints {
     'Accept': 'application/json',
   };
 
-  static const String baseUrl =
-      "https://strapi-production-5c35.up.railway.app/api";
+  static const String baseUrl = "https://sim-app.up.railway.app/api";
   static const String populate = "?populate=*";
   static const String products = "/products$populate";
   static const String sliders = "/sliders$populate";

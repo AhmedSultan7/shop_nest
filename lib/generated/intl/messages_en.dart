@@ -22,6 +22,7 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "aboutUS": MessageLookupByLibrary.simpleMessage("من نحن"),
         "aboutUs": MessageLookupByLibrary.simpleMessage("من نحن"),
         "addToCart": MessageLookupByLibrary.simpleMessage("إضافة إلي السلة"),
         "buyNow": MessageLookupByLibrary.simpleMessage("اشتري الآن"),
@@ -40,6 +41,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "search": MessageLookupByLibrary.simpleMessage("بحث"),
         "settings": MessageLookupByLibrary.simpleMessage("الإعدادات"),
         "subCategory": MessageLookupByLibrary.simpleMessage("أقسام فرعية"),
-        "terms": MessageLookupByLibrary.simpleMessage("الشروط والأحكام")
+        "terms": MessageLookupByLibrary.simpleMessage("الشروط والأحكام"),
+        "termsAndCondition":
+            MessageLookupByLibrary.simpleMessage("الشروط و الأحكام")
       };
 }

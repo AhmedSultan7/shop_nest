@@ -2,7 +2,6 @@ import 'package:blur/blur.dart';
 import 'package:cards_app/generated/assets.dart';
 import 'package:cards_app/src/core/extensions/extensions.dart';
 import 'package:cards_app/src/core/shared_widgets/row_icon_and_title.dart';
-import 'package:cards_app/src/screens/home/view/main_screen.dart';
 import 'package:cards_app/src/screens/settings/model/settings_model.dart';
 import 'package:cards_app/src/screens/settings/view/policy_screen.dart';
 import 'package:cards_app/src/screens/settings/view/terms_screen.dart';
@@ -11,6 +10,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:provider/provider.dart';
 
 import '../../core/resources/app_spaces.dart';
+import '../../core/shared_widgets/slider_drawer_widget/slider_drawer_widget.dart';
 import '../settings/view/about_us_screen.dart';
 import '../settings/view/contact_us_screen.dart';
 import '../settings/view_model/setting_view_model.dart';
@@ -95,6 +95,7 @@ class _HeaderDrawer extends StatelessWidget {
 
 class _DrawerList extends StatelessWidget {
   final SettingsModel settings;
+
   const _DrawerList({required this.settings});
 
   @override
@@ -120,7 +121,9 @@ class _DrawerList extends StatelessWidget {
             RowIconAndTitle(
               iconPath: Assets.iconsTerms,
               title: context.tr.terms,
-              onTap: () => context.to(TermsScreen()),
+              onTap: () {
+                context.to(const TermsScreen());
+              },
             ),
             context.largeGap,
 
@@ -128,7 +131,7 @@ class _DrawerList extends StatelessWidget {
             RowIconAndTitle(
               iconPath: Assets.iconsContact,
               title: context.tr.contactUs,
-              onTap: () => context.to(ContactUsScreen()),
+              onTap: () => context.to(const ContactUsScreen()),
             ),
           ],
         ),
@@ -142,7 +145,7 @@ class _DrawerList extends StatelessWidget {
             RowIconAndTitle(
               iconPath: Assets.iconsTerms,
               title: context.tr.policy,
-              onTap: () => context.to(PolicyScreen()),
+              onTap: () => context.to(const PolicyScreen()),
             ),
             context.largeGap,
 
@@ -150,7 +153,9 @@ class _DrawerList extends StatelessWidget {
             RowIconAndTitle(
               iconPath: Assets.iconsAboutUs,
               title: context.tr.aboutUs,
-              onTap: () => context.to(AboutUsScreen()),
+              onTap: () {
+                context.to(const AboutUsScreen());
+              },
             ),
             context.largeGap,
 
