@@ -3,11 +3,13 @@ class ApiStrings {
 
   static const String id = 'id';
   static const String data = 'data';
-  // static const String attributes = 'attributes';
+  static const String attributes = 'attributes';
   static const String createdAt = 'created_at';
   static const String thumbnail = 'thumbnail';
   static const String products = 'products';
   static const String images = 'images';
+  static const String image = 'image';
+  static const String url = 'url';
   static const String productCategories = 'product_categories';
   static const String brands = 'brands';
   static const String vendor = 'vendor';
@@ -36,4 +38,8 @@ class ApiStrings {
   static const String shipping = 'shipping';
   static const String status = 'status';
   static const String pending = 'Pending';
+  static const String termsAndConditions = 'terms_and_conditions';
+  static const String privacyPolicy = 'privacy_policy';
+  static const String aboutUs = 'about_us';
+  static const String contactUs = 'contact_us';
 }

@@ -41,7 +41,7 @@ class ProductCardWidget extends StatelessWidget {
                       AppRadius.imageContainerRadius,
                     ),
                     child: Image.network(
-                      product.image ?? '',
+                      product.image?.url ?? '',
                       width: double.infinity,
                       fit: BoxFit.cover,
                     ),
@@ -56,7 +56,7 @@ class ProductCardWidget extends StatelessWidget {
                   children: [
                     //! Product Title
                     Text(
-                      product.title,
+                      product.name ?? '',
                       style: context.labelLarge.copyWith(
                           overflow: TextOverflow.ellipsis,
                           fontWeight: FontWeight.bold),

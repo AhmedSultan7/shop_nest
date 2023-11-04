@@ -21,7 +21,8 @@ class ProductsDetailsScreen extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    final quantity = useValueNotifier(1);
+    final quantity = useState<int>(1);
+
     return Scaffold(
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -38,7 +39,7 @@ class ProductsDetailsScreen extends HookWidget {
                   height: context.height * 0.5,
                   width: double.infinity,
                   child: Image.network(
-                    product.image,
+                    product.image?.url ?? '',
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -61,6 +62,7 @@ class ProductsDetailsScreen extends HookWidget {
               ProductDetails(product: product),
               context.xlLargeGap,
               AddToCartAndBuyNow(
+                product: product,
                 quantity: quantity,
               ),
             ],

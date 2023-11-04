@@ -20,7 +20,7 @@ class ProductDetails extends StatelessWidget {
       Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(product.title, style: context.headLine.copyWith(fontSize: 40)),
+          Text(product.name ?? '', style: context.headLine),
           context.smallGap,
           //! price and currency
           Row(
@@ -42,6 +42,8 @@ class ProductDetails extends StatelessWidget {
                   style: context.title.copyWith(fontWeight: FontWeight.bold)),
             ],
           ),
+          context.mediumGap,
+          Text(product.description ?? '', style: context.labelLarge),
         ],
       )
     ]);

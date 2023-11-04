@@ -5,10 +5,10 @@ class ApiEndPoints {
     'Accept': 'application/json',
   };
 
-  static const String baseUrl = "https://old-strapi-backend.onrender.com";
-  // static const String baseUrl = "https://strapi.inspireui.com";
-
-  static const String productsCategory = "/product-categories";
-  static const String products = "/products";
-  static const String orders = "/orders";
+  static const String baseUrl =
+      "https://strapi-production-5c35.up.railway.app/api";
+  static const String populate = "?populate=*";
+  static const String products = "/products$populate";
+  static const String sliders = "/sliders$populate";
+  static const String setting = "/setting$populate";
 }

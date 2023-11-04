@@ -2,25 +2,28 @@ import 'package:cards_app/src/core/extensions/extensions.dart';
 import 'package:cards_app/src/screens/home/view/widgets/products_grid_view.dart';
 import 'package:cards_app/src/screens/home/view/widgets/top_section/home_slider.dart';
 import 'package:cards_app/src/screens/home/view/widgets/top_section/main_home_search.dart';
+import 'package:cards_app/src/screens/home/view_model/slider_view_model.dart';
+import 'package:cards_app/src/screens/product/view_model/product_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:provider/provider.dart';
 
 import '../../../core/resources/app_spaces.dart';
-import 'widgets/category_list_view.dart';
 
 class HomePage extends HookWidget {
   const HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    // final orderVM = context.read<OrderVM>();
-    // useEffect(() {
-    //   WidgetsBinding.instance.addPostFrameCallback((_) {
-    //     orderVM.getOrder(context);
-    //   });
-    //   return () {};
-    // }, []);
-    // ignore: prefer_const_constructors
+    final productVM = context.read<ProductVM>();
+    final sliderVM = context.read<SliderVM>();
+    useEffect(() {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        productVM.getProducts();
+        sliderVM.getSlider();
+      });
+      return () {};
+    }, []);
     return ListView(
       children: [
         const HomeSearch().paddingOnly(
@@ -30,14 +33,16 @@ class HomePage extends HookWidget {
         context.largeGap,
         const HomeSlider(),
         context.mediumGap,
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const HomeCategoriesList(),
-            context.largeGap,
-            const ProductsGridView(),
-          ],
-        ).paddingSymmetric(horizontal: AppSpaces.defaultPadding)
+        const ProductsGridView()
+            .paddingSymmetric(horizontal: AppSpaces.defaultPadding),
+        // Column(
+        //   crossAxisAlignment: CrossAxisAlignment.start,
+        //   children: [
+        //     const HomeCategoriesList(),
+        //     context.largeGap,
+        //     const ProductsGridView(),
+        //   ],
+        // ).paddingSymmetric(horizontal: AppSpaces.defaultPadding)
       ],
     );
   }
