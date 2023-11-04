@@ -14,9 +14,15 @@ class ProductsGridView extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          context.tr.products,
-          style: context.headLine,
+        Row(
+          children: [
+            Text(
+              context.tr.products,
+              style: context.headLine,
+            ),
+            Spacer(),
+            IconButton(onPressed: () {}, icon: const Icon(Icons.add))
+          ],
         ),
         context.mediumGap,
         Consumer<ProductVM>(

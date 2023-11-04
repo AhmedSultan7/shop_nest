@@ -33,6 +33,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "عربة فارغة حاول إضافة بعض المنتجات"),
         "history": MessageLookupByLibrary.simpleMessage("الطلبات السابقة"),
         "home": MessageLookupByLibrary.simpleMessage("الصفحة الرئيسية"),
+        "login": MessageLookupByLibrary.simpleMessage("تسجيل الدخول"),
         "noHistory":
             MessageLookupByLibrary.simpleMessage("لا يوجد طلبات سابقة"),
         "policy": MessageLookupByLibrary.simpleMessage("سياسة الخصوصية"),

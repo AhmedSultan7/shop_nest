@@ -1,4 +1,6 @@
 import 'package:cards_app/src/core/extensions/extensions.dart';
+import 'package:cards_app/src/core/resources/app_radius.dart';
+import 'package:cards_app/src/core/resources/app_spaces.dart';
 import 'package:cards_app/src/screens/cart/model/cart_model.dart';
 import 'package:cards_app/src/screens/cart/view_model/cart_view_model.dart';
 import 'package:flutter/material.dart';
@@ -41,6 +43,8 @@ class CartScreen extends HookWidget {
           );
         }
         return ListView.separated(
+            padding:
+                const EdgeInsets.symmetric(vertical: AppSpaces.defaultPadding),
             shrinkWrap: true,
             itemBuilder: (context, index) =>
                 BuildCartWidget(cart: cartData[index], index: index),
@@ -61,91 +65,114 @@ class BuildCartWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final product = cart.product;
 
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.end,
-        crossAxisAlignment: CrossAxisAlignment.start,
+    return Container(
+      margin: const EdgeInsets.symmetric(horizontal: AppSpaces.smallPadding),
+      padding: const EdgeInsets.symmetric(
+          vertical: AppSpaces.smallPadding,
+          horizontal: AppSpaces.defaultPadding),
+      decoration: BoxDecoration(
+          color: ColorManager.white,
+          borderRadius: BorderRadius.circular(AppRadius.baseRadius),
+          boxShadow: ConstantsWidgets.boxShadowFromBottom),
+      child: Row(
         children: [
-          //! product name & price & image
-          Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              //! product image
-              Image.network(
-                product.image!.url,
-                width: 150,
-                errorBuilder: (context, error, stackTrace) {
-                  return const Icon(Icons.abc);
-                },
-              ),
-              10.horizontalSpace,
-              //! product name & price
-              Column(
-                mainAxisAlignment: MainAxisAlignment.start,
+          //! product image
+          Expanded(
+            flex: 2,
+            child: Stack(
+              alignment: Alignment.topRight,
+              children: [
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(AppRadius.baseRadius),
+                  child: Image.network(
+                    product.image!.url,
+                    fit: BoxFit.cover,
+                    height: 100,
+                    errorBuilder: (context, error, stackTrace) {
+                      return const Icon(Icons.abc);
+                    },
+                  ),
+                ),
+                //! delete button
+                IconButton(
+                  onPressed: () {
+                    context.read<CartVM>().deleteFromCart(index: index);
+                  },
+                  icon: CircleAvatar(
+                      backgroundColor:
+                          ColorManager.primaryColor.withOpacity(0.7),
+                      radius: 18,
+                      child: const Icon(
+                        Icons.delete_rounded,
+                        color: Colors.white,
+                      )),
+                ),
+              ],
+            ),
+          ),
+          context.smallGap,
+          //! product name & price
+          Expanded(
+            flex: 2,
+            child: Align(
+              alignment: Alignment.centerRight,
+              child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   //! product name
                   Text(
-                    'بطاقة شحن'.toString() ?? '',
+                    cart.product.description ?? '',
                     style: context.subTitle,
+                    maxLines: 2,
                   ),
                   5.verticalSpace,
                   Text(
                     '\$${product.price} ',
                     style: context.title
                         .copyWith(color: ColorManager.primaryColor),
-                  ),
+                  ).paddingOnly(right: AppSpaces.xSmallPadding),
                 ],
               ),
-              context.largeGap,
-              Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  //! add & remove buttons & quantity
-                  Container(
-                    height: 35.h,
-                    width: 100.w,
-                    decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(7),
-                        boxShadow: ConstantsWidgets.boxShadow),
-                    child: Row(
-                      children: [
-                        //! increase  quantity
-                        Expanded(
-                            child: IconButton(
-                          onPressed: () {},
-                          icon: const Icon(
-                            Icons.add,
-                          ),
-                        )),
-                        //! quantity
-                        Text('${cart.quantity}',
-                            style: context.labelLarge
-                                .copyWith(fontWeight: FontWeight.bold)),
-                        //! uncreased  quantity
-                        Expanded(
-                            child: IconButton(
-                          onPressed: () {},
-                          icon: const Icon(
-                            Icons.remove,
-                          ),
-                        )),
-                        //! delete button
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            ],
+            ),
           ),
-          IconButton(
-            onPressed: () {
-              context.read<CartVM>().deleteFromCart(index: index);
-            },
-            icon: const Icon(Icons.delete_rounded),
+          context.smallGap,
+          Flexible(
+            child: Align(
+              alignment: Alignment.centerLeft,
+              child: Container(
+                width: 40.w,
+                decoration: BoxDecoration(
+                  color: Colors.blueGrey.withOpacity(0.1),
+                  borderRadius:
+                      BorderRadius.circular(AppRadius.baseContainerRadius),
+                ),
+                child: Column(
+                  children: [
+                    //! increase  quantity
+                    IconButton(
+                      onPressed: () {},
+                      icon: const Icon(
+                        Icons.add,
+                        color: Colors.black,
+                      ),
+                    ),
+                    //! quantity
+                    Text('${cart.quantity}',
+                        style: context.labelMedium.copyWith(
+                            fontWeight: FontWeight.bold,
+                            color: ColorManager.primaryColor)),
+                    //! uncreased  quantity
+                    IconButton(
+                      onPressed: () {},
+                      icon: const Icon(
+                        Icons.remove,
+                        color: Colors.black,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
           ),
         ],
       ),

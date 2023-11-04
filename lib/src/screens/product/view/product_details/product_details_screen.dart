@@ -24,50 +24,52 @@ class ProductsDetailsScreen extends HookWidget {
     final quantity = useState<int>(1);
 
     return Scaffold(
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          //! Product image
-          Stack(
-            children: [
-              ClipRRect(
-                borderRadius: const BorderRadius.only(
-                  bottomLeft: Radius.circular(AppRadius.productRadius),
-                  bottomRight: Radius.circular(AppRadius.productRadius),
-                ),
-                child: SizedBox(
-                  height: context.height * 0.5,
-                  width: double.infinity,
-                  child: Image.network(
-                    product.image?.url ?? '',
-                    fit: BoxFit.cover,
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            //! Product image
+            Stack(
+              children: [
+                ClipRRect(
+                  borderRadius: const BorderRadius.only(
+                    bottomLeft: Radius.circular(AppRadius.productRadius),
+                    bottomRight: Radius.circular(AppRadius.productRadius),
+                  ),
+                  child: SizedBox(
+                    height: context.height * 0.5,
+                    width: double.infinity,
+                    child: Image.network(
+                      product.image?.url ?? '',
+                      fit: BoxFit.cover,
+                    ),
                   ),
                 ),
-              ),
-              CircleAvatar(
-                backgroundColor: ColorManager.grey.withOpacity(0.6),
-                radius: 25,
-                child: const BackButtonWidget(
-                  isWhite: false,
-                ),
-              ).paddingSymmetric(vertical: 25.h, horizontal: 10.w),
-            ],
-          ),
-          context.largeGap,
+                CircleAvatar(
+                  backgroundColor: ColorManager.grey.withOpacity(0.6),
+                  radius: 25,
+                  child: const BackButtonWidget(
+                    isWhite: false,
+                  ),
+                ).paddingSymmetric(vertical: 25.h, horizontal: 10.w),
+              ],
+            ),
+            context.largeGap,
 
-          //! Product name, price , description , category name , delete & edit
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              ProductDetails(product: product),
-              context.xlLargeGap,
-              AddToCartAndBuyNow(
-                product: product,
-                quantity: quantity,
-              ),
-            ],
-          ).paddingAll(AppSpaces.defaultPadding)
-        ],
+            //! Product name, price , description , category name , delete & edit
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                ProductDetails(product: product),
+                context.xlLargeGap,
+                AddToCartAndBuyNow(
+                  product: product,
+                  quantity: quantity,
+                ),
+              ],
+            ).paddingAll(AppSpaces.defaultPadding)
+          ],
+        ),
       ),
     );
   }

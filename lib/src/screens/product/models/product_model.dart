@@ -45,7 +45,8 @@ class ProductModel {
 
   Map toLocalJson() => {
         'id': id,
-        'title': name,
+        ApiStrings.name: name,
+        ApiStrings.description: description,
         'image': image!.toMap(),
         'price': price,
       };

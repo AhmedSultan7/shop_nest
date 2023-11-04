@@ -3,6 +3,7 @@ class Assets {
   Assets._();
 
   static const String animationCart = 'assets/animation/cart.json';
+  static const String animationLogin = 'assets/animation/login.json';
   static const String animationNoHistory = 'assets/animation/NoHistory.json';
   static const String iconsAboutUs = 'assets/icons/aboutUs.png';
   static const String iconsCart = 'assets/icons/cart.png';

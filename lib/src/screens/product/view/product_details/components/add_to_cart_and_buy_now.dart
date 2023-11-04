@@ -92,7 +92,7 @@ class _ProductQuantityButtons extends StatelessWidget {
                   isOutLine: true,
                   isPrefixIcon: true,
                   onPressed: () {
-                    cartVM.addProductsToCart(
+                    cartVM.addProductsToCart(context,
                         cart: CartModel(
                             quantity: 1, id: product.id, product: product));
                   },
