@@ -7,16 +7,35 @@ class ProductModel {
 
   static List<ProductModel> productList = [
     ProductModel(
-      price: 20,
+        price: 300,
+        image:
+            'https://cdn.salla.sa/PwXz/SlJI5ZJGJ87GZIOJyjA1hAqXIO7tauqOVQpfPtQL.jpg',
+        // 'https://quick4pay.com/wp-content/uploads/2018/05/google-play-600x600.png',
+        title: 'بطاقة شحن STC'
+        // 'جوجل بلاي 10 - للحسابات الأمريكية',
+        ),
+    ProductModel(
+      price: 250,
       image:
-          'https://quick4pay.com/wp-content/uploads/2018/05/google-play-600x600.png',
-      title: 'جوجل بلاي 10 - للحسابات الأمريكية',
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS9PlYrVnyDuRPD6qgzTAoUg_kVKWAYNTgt04iyP8a5pdT90EpJuO8u3I5QTYuv2Z88Q6E&usqp=CAU",
+      // 'https://livekaarten.be/pl/apple-gift-card-10-eur-be-67516.png',
+      title: 'بطاقة شحن موبايلي',
     ),
     ProductModel(
       price: 250,
-      image: 'https://livekaarten.be/pl/apple-gift-card-10-eur-be-67516.png',
-      title: 'بطاقة ابل 250 ريال - للحساب السعودي',
+      image:
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS9PlYrVnyDuRPD6qgzTAoUg_kVKWAYNTgt04iyP8a5pdT90EpJuO8u3I5QTYuv2Z88Q6E&usqp=CAU",
+      // 'https://livekaarten.be/pl/apple-gift-card-10-eur-be-67516.png',
+      title: 'بطاقة شحن موبايلي',
     ),
+    ProductModel(
+        price: 300,
+        image:
+            'https://cdn.salla.sa/PwXz/SlJI5ZJGJ87GZIOJyjA1hAqXIO7tauqOVQpfPtQL.jpg',
+        // 'https://quick4pay.com/wp-content/uploads/2018/05/google-play-600x600.png',
+        title: 'بطاقة شحن STC'
+        // 'جوجل بلاي 10 - للحسابات الأمريكية',
+        ),
     ProductModel(
       price: 150,
       image:
