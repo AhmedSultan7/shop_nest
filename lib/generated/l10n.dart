@@ -249,6 +249,86 @@ class S {
       args: [],
     );
   }
+
+  /// `أضافة منتج`
+  String get addProduct {
+    return Intl.message(
+      'أضافة منتج',
+      name: 'addProduct',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `انقر لإختيار صورة`
+  String get clickToBrowse {
+    return Intl.message(
+      'انقر لإختيار صورة',
+      name: 'clickToBrowse',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `الاسم`
+  String get name {
+    return Intl.message(
+      'الاسم',
+      name: 'name',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `الوصف`
+  String get description {
+    return Intl.message(
+      'الوصف',
+      name: 'description',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `إدخال`
+  String get enter {
+    return Intl.message(
+      'إدخال',
+      name: 'enter',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `حقل مطلوب`
+  String get requiredField {
+    return Intl.message(
+      'حقل مطلوب',
+      name: 'requiredField',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `أضافة`
+  String get add {
+    return Intl.message(
+      'أضافة',
+      name: 'add',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `تعديل`
+  String get edit {
+    return Intl.message(
+      'تعديل',
+      name: 'edit',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

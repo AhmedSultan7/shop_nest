@@ -8,6 +8,7 @@ import 'package:cards_app/src/screens/product/models/repository/product_repo.dar
 import 'package:cards_app/src/screens/product/view_model/product_view_model.dart';
 import 'package:cards_app/src/screens/settings/repository/settings_repo.dart';
 import 'package:cards_app/src/screens/settings/view_model/setting_view_model.dart';
+import 'package:cards_app/src/screens/shared/media/view_models/media_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -39,6 +40,9 @@ class BaseMultiProvider extends StatelessWidget {
         ),
         ChangeNotifierProvider(
           create: (context) => SettingsVM(SettingsRepo(NetworkApiService())),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => MediaVM(),
         ),
       ],
       child: child,

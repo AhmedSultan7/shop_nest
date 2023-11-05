@@ -94,7 +94,7 @@ class _ProductQuantityButtons extends StatelessWidget {
                   onPressed: () {
                     cartVM.addProductsToCart(context,
                         cart: CartModel(
-                            quantity: 1, id: product.id, product: product));
+                            quantity: 1, id: product.id!, product: product));
                   },
                   color: ColorManager.black,
                   label: context.tr.addToCart,

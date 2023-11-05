@@ -18,5 +18,14 @@
   "noHistory": "لا يوجد طلبات سابقة",
   "termsAndCondition": "الشروط و الأحكام",
   "aboutUS": "من نحن",
-  "login": "تسجيل الدخول"
+  "login": "تسجيل الدخول",
+  "addProduct": "أضافة منتج",
+  "clickToBrowse": "انقر لإختيار صورة",
+  "name": "الاسم",
+  "description": "الوصف",
+  "enter": "إدخال",
+  "requiredField": "حقل مطلوب",
+  "add": "أضافة",
+  "add": "أضافة",
+  "edit": "تعديل"
 }

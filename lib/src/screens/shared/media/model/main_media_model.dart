@@ -20,6 +20,8 @@ class MainMediaModel {
     return MainMediaModel(url: json[ApiStrings.url] ?? '');
   }
 
+  factory MainMediaModel.empty() => MainMediaModel(url: '');
+
   Map<String, dynamic> toMap() {
     return {ApiStrings.url: url};
   }

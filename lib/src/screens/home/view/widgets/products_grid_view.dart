@@ -1,5 +1,7 @@
 import 'package:cards_app/src/core/extensions/extensions.dart';
 import 'package:cards_app/src/core/resources/app_spaces.dart';
+import 'package:cards_app/src/core/shared_widgets/shared_widgets.dart';
+import 'package:cards_app/src/screens/product/view/add_products/add_product.dart';
 import 'package:cards_app/src/screens/product/view_model/product_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -11,28 +13,30 @@ class ProductsGridView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Row(
+    return Consumer<ProductVM>(
+      builder: (context, productVM, child) {
+        if (productVM.isLoading) {
+          return const LoadingWidget();
+        }
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              context.tr.products,
-              style: context.headLine,
+            Row(
+              children: [
+                Text(
+                  context.tr.products,
+                  style: context.headLine,
+                ),
+                const Spacer(),
+                IconButton(
+                    onPressed: () {
+                      context.to(AddProductScreen());
+                    },
+                    icon: const Icon(Icons.add)),
+              ],
             ),
-            Spacer(),
-            IconButton(onPressed: () {}, icon: const Icon(Icons.add))
-          ],
-        ),
-        context.mediumGap,
-        Consumer<ProductVM>(
-          builder: (context, productVM, child) {
-            if (productVM.isLoading) {
-              return const Center(
-                child: CircularProgressIndicator(),
-              );
-            }
-            return GridView.builder(
+            context.mediumGap,
+            GridView.builder(
               padding: const EdgeInsets.only(bottom: AppSpaces.defaultPadding),
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
@@ -46,10 +50,10 @@ class ProductsGridView extends StatelessWidget {
               itemBuilder: (_, index) => ProductCardWidget(
                 product: productVM.products[index],
               ),
-            );
-          },
-        ),
-      ],
+            ),
+          ],
+        );
+      },
     );
   }
 }

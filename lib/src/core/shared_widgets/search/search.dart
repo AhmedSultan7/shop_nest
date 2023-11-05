@@ -21,7 +21,6 @@ class SearchWidget extends StatelessWidget {
           hint: context.tr.search,
           suffixIcon: const IconWidget(icon: Assets.iconsSearch)
               .paddingAll(AppSpaces.defaultPadding),
-          onSubmitted: onSubmitted,
         ));
   }
 }

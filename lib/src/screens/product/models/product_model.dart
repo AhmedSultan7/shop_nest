@@ -3,18 +3,13 @@ import 'package:cards_app/src/screens/shared/media/model/main_media_model.dart';
 import '../../../core/data/remote/response/api_strings.dart';
 
 class ProductModel {
-  final int id;
+  final int? id;
   final String? name;
   final String? description;
   final num? price;
   final MainMediaModel? image;
 
-  ProductModel(
-      {required this.price,
-      this.image,
-      required this.name,
-      required this.id,
-      required this.description});
+  ProductModel({this.price, this.image, this.name, this.id, this.description});
 
   //! Remote Constructor---------------------------------------
   factory ProductModel.fromJson(Map<String, dynamic> json) {
@@ -40,6 +35,17 @@ class ProductModel {
       image: MainMediaModel.fromLocalJson(
         json[ApiStrings.image],
       ),
+    );
+  }
+
+  //! Empty Constructor---------------------------------------
+  factory ProductModel.empty() {
+    return ProductModel(
+      id: 0,
+      name: null,
+      description: null,
+      price: null,
+      image: MainMediaModel.empty(),
     );
   }
 
