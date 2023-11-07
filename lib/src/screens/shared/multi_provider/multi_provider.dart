@@ -1,5 +1,8 @@
 import 'package:cards_app/src/core/data/local/hive_helper.dart';
 import 'package:cards_app/src/core/data/remote/network/network_api_service.dart';
+import 'package:cards_app/src/screens/auth/repository/local_repo/auth_local_repo.dart';
+import 'package:cards_app/src/screens/auth/repository/remote_repo/auth_remote_repo.dart';
+import 'package:cards_app/src/screens/auth/view_model/auth_view_model.dart';
 import 'package:cards_app/src/screens/cart/repository/local/cart_local_repo.dart';
 import 'package:cards_app/src/screens/cart/view_model/cart_view_model.dart';
 import 'package:cards_app/src/screens/home/repositories/slider_repo.dart';
@@ -43,6 +46,12 @@ class BaseMultiProvider extends StatelessWidget {
         ),
         ChangeNotifierProvider(
           create: (context) => MediaVM(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => AuthVM(
+            AuthRepo(NetworkApiService(), AuthLocalRepo(HiveHelper())),
+            AuthLocalRepo(HiveHelper()),
+          ),
         ),
       ],
       child: child,

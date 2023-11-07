@@ -14,7 +14,7 @@ class CartLocalRepository {
 
   Future<void> addProductToCart({required CartModel cart}) async {
     try {
-      await hiveHelper.add(_cartHiveKey, data: cart.toLocalJson());
+      await hiveHelper.setData(_cartHiveKey, data: cart.toLocalJson());
     } catch (e) {
       Log.e(' Can\'t Add To Cart ${e.toString()}');
     }
@@ -22,7 +22,7 @@ class CartLocalRepository {
 
   Future<List<CartModel>> getCart() async {
     try {
-      final cartData = await hiveHelper.get(boxName: _cartHiveKey);
+      final cartData = await hiveHelper.getData(boxName: _cartHiveKey);
 
       final cartList = List<CartModel>.from(cartData.values.map((cart) {
         return CartModel.fromLocal(cart);

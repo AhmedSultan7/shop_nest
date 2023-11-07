@@ -42,4 +42,12 @@ class ApiStrings {
   static const String privacyPolicy = 'privacy_policy';
   static const String aboutUs = 'about_us';
   static const String contactUs = 'contact_us';
+  static const String password = 'password';
+  static const String jwt = 'jwt';
+  static const String sellerAr = 'بائع';
+  static const String buyerAr = 'مشتري';
+  static const String seller = "seller";
+  static const String buyer = "buyer";
+  static const String userType = "user_type";
+  static const String identifier = "identifier";
 }
