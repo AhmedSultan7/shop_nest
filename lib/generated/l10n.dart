@@ -219,6 +219,316 @@ class S {
       args: [],
     );
   }
+
+  /// `الشروط و الأحكام`
+  String get termsAndCondition {
+    return Intl.message(
+      'الشروط و الأحكام',
+      name: 'termsAndCondition',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `من نحن`
+  String get aboutUS {
+    return Intl.message(
+      'من نحن',
+      name: 'aboutUS',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `تسجيل الدخول`
+  String get login {
+    return Intl.message(
+      'تسجيل الدخول',
+      name: 'login',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `أضافة منتج`
+  String get addProduct {
+    return Intl.message(
+      'أضافة منتج',
+      name: 'addProduct',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `انقر لإختيار صورة`
+  String get clickToBrowse {
+    return Intl.message(
+      'انقر لإختيار صورة',
+      name: 'clickToBrowse',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `الاسم`
+  String get name {
+    return Intl.message(
+      'الاسم',
+      name: 'name',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `الوصف`
+  String get description {
+    return Intl.message(
+      'الوصف',
+      name: 'description',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `إدخال`
+  String get enter {
+    return Intl.message(
+      'إدخال',
+      name: 'enter',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `حقل مطلوب`
+  String get requiredField {
+    return Intl.message(
+      'حقل مطلوب',
+      name: 'requiredField',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `أضافة`
+  String get add {
+    return Intl.message(
+      'أضافة',
+      name: 'add',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `هل نسيت كلمة المرور`
+  String get forgetPassword {
+    return Intl.message(
+      'هل نسيت كلمة المرور',
+      name: 'forgetPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `تعديل`
+  String get edit {
+    return Intl.message(
+      'تعديل',
+      name: 'edit',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `البريد الإلكتروني`
+  String get emailAddress {
+    return Intl.message(
+      'البريد الإلكتروني',
+      name: 'emailAddress',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `كلمة المرور`
+  String get password {
+    return Intl.message(
+      'كلمة المرور',
+      name: 'password',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `ليس لديك حساب ؟`
+  String get dontHaveAnAccount {
+    return Intl.message(
+      'ليس لديك حساب ؟',
+      name: 'dontHaveAnAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `لديك حساب ؟`
+  String get HaveAnAccount {
+    return Intl.message(
+      'لديك حساب ؟',
+      name: 'HaveAnAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `إنشاء حساب`
+  String get signup {
+    return Intl.message(
+      'إنشاء حساب',
+      name: 'signup',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `نوع المستخدم`
+  String get userType {
+    return Intl.message(
+      'نوع المستخدم',
+      name: 'userType',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `بائع`
+  String get seller {
+    return Intl.message(
+      'بائع',
+      name: 'seller',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `مشتري`
+  String get buyer {
+    return Intl.message(
+      'مشتري',
+      name: 'buyer',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `يجب أن تحتوي كلمة المرور على 8 أحرف`
+  String get passwordMustContain8Characters {
+    return Intl.message(
+      'يجب أن تحتوي كلمة المرور على 8 أحرف',
+      name: 'passwordMustContain8Characters',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `الرجاء إدخال البريد الإلكتروني الصحيح`
+  String get pleaseEnterCorrectEmail {
+    return Intl.message(
+      'الرجاء إدخال البريد الإلكتروني الصحيح',
+      name: 'pleaseEnterCorrectEmail',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `الرجاء إدخال الأسم`
+  String get pleaseEnterYourUserName {
+    return Intl.message(
+      'الرجاء إدخال الأسم',
+      name: 'pleaseEnterYourUserName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `يرجى التحقق من البريد الإلكتروني وكلمة المرور الخاصة بك`
+  String get PleaseCheckYourEmailAndPassword {
+    return Intl.message(
+      'يرجى التحقق من البريد الإلكتروني وكلمة المرور الخاصة بك',
+      name: 'PleaseCheckYourEmailAndPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `تم تسجيل الدخول بنجاح`
+  String get loginSuccessfully {
+    return Intl.message(
+      'تم تسجيل الدخول بنجاح',
+      name: 'loginSuccessfully',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `تم إنشاء الحساب بنجاح`
+  String get signupSuccessfully {
+    return Intl.message(
+      'تم إنشاء الحساب بنجاح',
+      name: 'signupSuccessfully',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `برجاء إختيار نوع المستخدم`
+  String get chooseUserType {
+    return Intl.message(
+      'برجاء إختيار نوع المستخدم',
+      name: 'chooseUserType',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `حذف من السلة`
+  String get deleteFromCart {
+    return Intl.message(
+      'حذف من السلة',
+      name: 'deleteFromCart',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `البريد الإلكتروني أو اسم المستخدم تم إستخدامة من قبل بالفعل`
+  String get emailOrUsernameAreAlreadyTaken {
+    return Intl.message(
+      'البريد الإلكتروني أو اسم المستخدم تم إستخدامة من قبل بالفعل',
+      name: 'emailOrUsernameAreAlreadyTaken',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `تسجيل الخروج`
+  String get logout {
+    return Intl.message(
+      'تسجيل الخروج',
+      name: 'logout',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `تعديل الملف الشخصي`
+  String get editProfile {
+    return Intl.message(
+      'تعديل الملف الشخصي',
+      name: 'editProfile',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

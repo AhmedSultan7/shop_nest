@@ -23,9 +23,9 @@ class PolicyScreen extends HookWidget {
       return () {};
     }, []);
     return Scaffold(
-      appBar: const MainAppBar(
+      appBar: MainAppBar(
         isBackButton: true,
-        title: 'سياسة الخصوصية',
+        title: context.tr.policy,
       ),
       body: settingsVM.isLoading
           ? const LoadingWidget()

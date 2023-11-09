@@ -1,5 +1,8 @@
 import 'package:cards_app/src/core/data/local/hive_helper.dart';
 import 'package:cards_app/src/core/data/remote/network/network_api_service.dart';
+import 'package:cards_app/src/screens/auth/repository/local_repo/auth_local_repo.dart';
+import 'package:cards_app/src/screens/auth/repository/remote_repo/auth_remote_repo.dart';
+import 'package:cards_app/src/screens/auth/view_model/auth_view_model.dart';
 import 'package:cards_app/src/screens/cart/repository/local/cart_local_repo.dart';
 import 'package:cards_app/src/screens/cart/view_model/cart_view_model.dart';
 import 'package:cards_app/src/screens/home/repositories/slider_repo.dart';
@@ -8,6 +11,7 @@ import 'package:cards_app/src/screens/product/models/repository/product_repo.dar
 import 'package:cards_app/src/screens/product/view_model/product_view_model.dart';
 import 'package:cards_app/src/screens/settings/repository/settings_repo.dart';
 import 'package:cards_app/src/screens/settings/view_model/setting_view_model.dart';
+import 'package:cards_app/src/screens/shared/media/view_models/media_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -39,6 +43,16 @@ class BaseMultiProvider extends StatelessWidget {
         ),
         ChangeNotifierProvider(
           create: (context) => SettingsVM(SettingsRepo(NetworkApiService())),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => MediaVM(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => AuthVM(
+              AuthRepo(NetworkApiService(), AuthLocalRepo(HiveHelper())),
+              AuthLocalRepo(HiveHelper()),
+              HiveHelper())
+            ..getUser(),
         ),
       ],
       child: child,

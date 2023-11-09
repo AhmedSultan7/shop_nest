@@ -4,8 +4,6 @@ import 'package:cards_app/src/core/utils/logger.dart';
 import 'package:cards_app/src/screens/cart/model/cart_model.dart';
 
 class CartLocalRepository {
-  // final hive = Hive.box(AppConsts.cart);
-
   final HiveHelper hiveHelper;
 
   CartLocalRepository({required this.hiveHelper});
@@ -13,12 +11,16 @@ class CartLocalRepository {
   final _cartHiveKey = AppConsts.cart;
 
   Future<void> addProductToCart({required CartModel cart}) async {
-    await hiveHelper.add(_cartHiveKey, data: cart.toLocalJson());
+    try {
+      await hiveHelper.setData(_cartHiveKey, data: cart.toLocalJson());
+    } catch (e) {
+      Log.e(' Can\'t Add To Cart ${e.toString()}');
+    }
   }
 
   Future<List<CartModel>> getCart() async {
     try {
-      final cartData = await hiveHelper.get(boxName: _cartHiveKey);
+      final cartData = await hiveHelper.getData(boxName: _cartHiveKey);
 
       final cartList = List<CartModel>.from(cartData.values.map((cart) {
         return CartModel.fromLocal(cart);

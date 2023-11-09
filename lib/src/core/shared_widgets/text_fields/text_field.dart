@@ -5,27 +5,26 @@ class BaseTextField extends StatelessWidget {
   final TextEditingController? controller;
   final TextInputType textInputType;
   final Function(String)? onChanged;
-  final Function(String)? onSubmitted;
   final TextAlign textAlign;
   final Function()? onTap;
-  final EdgeInsetsGeometry? contentPadding;
+  final EdgeInsetsGeometry contentPadding;
   final Widget? icon;
   final Widget? suffixIcon;
   final String? label;
   final String? hint;
   final int maxLines;
-  final bool isWhiteText;
   final String? ignoringMessage;
   final String? Function(String?)? validator;
   final bool isObscure;
   final bool isRequired;
   final String? initialValue;
-  final bool enabled;
-  final bool readOnly;
+  final String? title;
+  final bool? enabled;
 
   const BaseTextField({
     Key? key,
     this.ignoringMessage,
+    this.enabled = true,
     this.focusNode,
     this.controller,
     this.isObscure = false,
@@ -35,68 +34,83 @@ class BaseTextField extends StatelessWidget {
     this.suffixIcon,
     this.label,
     this.onChanged,
-    this.onSubmitted,
     this.initialValue,
     this.textAlign = TextAlign.start,
-    this.contentPadding = const EdgeInsets.all(AppSpaces.defaultPadding),
+    this.contentPadding = const EdgeInsets.symmetric(
+      horizontal: 12,
+      vertical: 8,
+    ),
     this.textInputType = TextInputType.text,
     this.maxLines = 1,
-    this.isWhiteText = false,
     this.isRequired = true,
-    this.enabled = true,
-    this.readOnly = false,
     this.validator,
+    this.title,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return _textField(context);
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        if (title != null) ...[
+          Text(
+            title!,
+            style: context.labelLarge,
+          ),
+          context.smallGap,
+        ],
+
+        //! Text Field
+        _textField(context),
+      ],
+    );
   }
 
   Widget _textField(BuildContext context) {
-    validations(value) {
-      if (textInputType == TextInputType.number) {
-        return Validations.numbersOnly(context, value);
-      } else if (textInputType == TextInputType.emailAddress) {
-        return Validations.email(context, value);
-      } else if (textInputType == TextInputType.phone) {
-        return Validations.phoneNumber(context, value);
-      }
-      return Validations.mustBeNotEmpty(context, value);
-    }
-
     return TextFormField(
-      style: isWhiteText ? context.whiteLabelLarge : null,
-      onTapOutside: (e) => FocusScope.of(context).unfocus(),
+      enabled: enabled,
+      cursorColor: ColorManager.primaryColor,
       focusNode: focusNode,
       obscureText: isObscure,
-      enabled: enabled,
-      readOnly: readOnly,
       controller: controller,
       keyboardType: textInputType,
       inputFormatters: [
         if (textInputType == TextInputType.number)
-          FilteringTextInputFormatter.allow(RegExp(r'[0-9.-]'))
+          FilteringTextInputFormatter.allow(RegExp(r'[0-9.-]')),
       ],
       textAlign: textAlign,
       onTap: onTap,
       onChanged: onChanged,
-      onFieldSubmitted: onSubmitted,
       initialValue: initialValue,
       maxLines: maxLines,
-      validator: isRequired ? (validator ?? validations) : null,
+      validator: validator ??
+          (value) {
+            if (isRequired && value!.isEmpty) {
+              return context.tr.requiredField;
+            }
+            return null;
+          },
+      style: context.labelMedium,
       decoration: InputDecoration(
-        hintText: hint,
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(AppRadius.baseRadius),
+          borderSide: const BorderSide(
+              color: Color(0xFF000000), width: 0.9, style: BorderStyle.solid),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderSide: const BorderSide(color: Color(0xFF000000), width: 1),
+          borderRadius: BorderRadius.circular(AppRadius.baseRadius),
+        ),
+        hintText: '${context.tr.enter} ${hint ?? title ?? ''}',
         hintStyle: context.hint,
-        labelStyle: isWhiteText ? context.whiteLabelLarge : context.labelLarge,
         contentPadding: contentPadding,
         labelText: label,
         suffixIcon: suffixIcon,
         prefixIcon: icon != null
             ? Padding(
-                padding: const EdgeInsets.symmetric(
-                    horizontal: AppSpaces.defaultPadding,
-                    vertical: AppSpaces.smallPadding),
+                padding: const EdgeInsets.only(
+                    right: AppSpaces.smallPadding,
+                    left: AppSpaces.smallPadding),
                 child: icon,
               )
             : null,

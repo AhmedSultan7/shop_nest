@@ -1,3 +1,4 @@
+import 'package:cards_app/src/core/extensions/extensions.dart';
 import 'package:cards_app/src/screens/cart/model/cart_model.dart';
 import 'package:cards_app/src/screens/cart/repository/local/cart_local_repo.dart';
 import 'package:flutter/cupertino.dart';
@@ -10,9 +11,21 @@ class CartVM extends ChangeNotifier {
   CartVM({required this.cartLocalRepository});
 
 //! Add to cart ======================================
-  Future<void> addProductsToCart({required CartModel cart}) async {
-    await cartLocalRepository.addProductToCart(cart: cart);
-    notifyListeners();
+  Future<void> addProductsToCart(
+    BuildContext context, {
+    required CartModel cart,
+  }) async {
+    try {
+      await cartLocalRepository.addProductToCart(cart: cart);
+      context.showFlushBar(
+        type: FlushBarType.add,
+      );
+      notifyListeners();
+    } catch (e) {
+      context.showFlushBar(
+        type: FlushBarType.error,
+      );
+    }
   }
 
   //! Get Cart  ======================================

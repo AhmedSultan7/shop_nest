@@ -11,8 +11,8 @@ Flushbar showBarAlert(BuildContext context, String msg,
     Color? color,
     Function(Flushbar)? onTap}) {
   return Flushbar(
-    backgroundColor: color ??
-        (isError ? ColorManager.errorColor : ColorManager.primaryColor),
+    backgroundColor:
+        color ?? (isError ? ColorManager.errorColor : Colors.green),
     title: title,
     message: msg,
     icon: Icon(isError ? Icons.error : icon, size: 28.0, color: iconColor),

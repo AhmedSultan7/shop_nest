@@ -23,7 +23,7 @@ class AppTheme {
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(AppRadius.baseRadius),
           borderSide: const BorderSide(
-              color: Colors.grey, width: 0.9, style: BorderStyle.solid),
+              color: Colors.black, width: 1, style: BorderStyle.solid),
         ),
         //! focused border
         focusedErrorBorder: OutlineInputBorder(
@@ -32,7 +32,7 @@ class AppTheme {
           borderRadius: BorderRadius.circular(AppRadius.baseRadius),
         ),
         focusedBorder: OutlineInputBorder(
-          borderSide: const BorderSide(color: Colors.grey, width: 1),
+          borderSide: const BorderSide(color: Colors.black, width: 1),
           borderRadius: BorderRadius.circular(AppRadius.baseRadius),
         ),
         //! border

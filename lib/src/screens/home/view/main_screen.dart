@@ -1,16 +1,13 @@
 import 'package:cards_app/src/core/extensions/extensions.dart';
+import 'package:cards_app/src/core/shared_widgets/slider_drawer_widget/slider_drawer_widget.dart';
 import 'package:cards_app/src/screens/cart/view/cart_screen.dart';
-import 'package:cards_app/src/screens/drawer/home_drawer.dart';
 import 'package:cards_app/src/screens/history/view/history_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_slider_drawer/flutter_slider_drawer.dart';
 import 'package:provider/provider.dart';
 
 import '../../../core/shared_widgets/home_navigations/bottom_nav_bar_widget.dart';
 import '../view_model/bottom_nav_provider.dart';
 import 'home_page.dart';
-
-GlobalKey<SliderDrawerState> drawerKey = GlobalKey<SliderDrawerState>();
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -26,21 +23,27 @@ class _MainScreenState extends State<MainScreen> {
       selector: (context, provider) => provider.currentIndex,
       builder: (context, currentIndex, child) {
         return Scaffold(
-          body: SliderDrawer(
-            isDraggable: true,
-            slideDirection: SlideDirection.TOP_TO_BOTTOM,
-            key: drawerKey,
-            appBar: SliderAppBar(
-              title: Text(
-                selectedTitle(currentIndex, context),
-                style: context.title,
-              ),
-            ),
-            slider: const HomeDrawer(),
+          body: SliderDrawerWidget(
+            title: selectedTitle(currentIndex, context),
             child: _SelectedScreen(
               currentIndex: currentIndex,
             ),
           ),
+          // SliderDrawer(
+          //   isDraggable: true,
+          //   slideDirection: SlideDirection.TOP_TO_BOTTOM,
+          //   key: drawerKey,
+          //   appBar: SliderAppBar(
+          //     title: Text(
+          //       selectedTitle(currentIndex, context),
+          //       style: context.title,
+          //     ),
+          //   ),
+          //   slider: const HomeDrawer(),
+          //   child: _SelectedScreen(
+          //     currentIndex: currentIndex,
+          //   ),
+          // ),
           bottomNavigationBar: const BottomNavBarWidget(),
         );
       },

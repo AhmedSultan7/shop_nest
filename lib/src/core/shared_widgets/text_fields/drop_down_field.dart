@@ -48,7 +48,6 @@ class BaseDropDown extends StatelessWidget {
           onChanged: onChanged,
           decoration: InputDecoration(
             contentPadding: EdgeInsets.symmetric(
-              vertical: 16.h,
               horizontal: icon == null ? 16.w : 12.w,
             ),
             label: Padding(
@@ -68,7 +67,7 @@ class BaseDropDown extends StatelessWidget {
           ),
           validator: (value) {
             if (value == null) {
-              return '${'requiredField'} $label';
+              return ' $label ${context.tr.requiredField}';
             }
             return null;
           },

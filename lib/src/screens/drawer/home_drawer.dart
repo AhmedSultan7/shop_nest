@@ -2,8 +2,9 @@ import 'package:blur/blur.dart';
 import 'package:cards_app/generated/assets.dart';
 import 'package:cards_app/src/core/extensions/extensions.dart';
 import 'package:cards_app/src/core/shared_widgets/row_icon_and_title.dart';
-import 'package:cards_app/src/screens/home/view/main_screen.dart';
+import 'package:cards_app/src/screens/auth/view_model/auth_view_model.dart';
 import 'package:cards_app/src/screens/settings/model/settings_model.dart';
+import 'package:cards_app/src/screens/settings/view/edit_profile/profile_screen.dart';
 import 'package:cards_app/src/screens/settings/view/policy_screen.dart';
 import 'package:cards_app/src/screens/settings/view/terms_screen.dart';
 import 'package:flutter/material.dart';
@@ -41,7 +42,9 @@ class HomeDrawer extends HookWidget {
             const _HeaderDrawer(),
             _DrawerList(
               settings: settingsVM.settings,
-            ).paddingAll(AppSpaces.defaultPadding),
+            ).paddingOnly(
+                right: AppSpaces.defaultPadding,
+                bottom: AppSpaces.defaultPadding),
           ],
         ),
       ],
@@ -54,47 +57,38 @@ class _HeaderDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      padding: const EdgeInsets.only(
-          top: AppSpaces.largePadding + 10,
-          left: AppSpaces.defaultPadding,
-          bottom: 10),
-      decoration: const BoxDecoration(),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.end,
-        children: [
-          Column(
+    return Consumer<AuthVM>(
+      builder: (context, authVM, child) {
+        return Container(
+          width: double.infinity,
+          padding: const EdgeInsets.only(
+              top: AppSpaces.xlLargePadding,
+              left: AppSpaces.defaultPadding,
+              bottom: 10),
+          decoration: const BoxDecoration(),
+          child: Column(
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
               Text(
-                'Issa Mohamed',
+                authVM.user.userName,
                 style: context.whiteTitle,
               ),
               Text(
-                'issaDeeb03@gmail.com',
-                style: context.whiteLabelMedium
-                    .copyWith(fontWeight: FontWeight.w300),
+                authVM.user.email,
+                style: context.whiteLabelLarge
+                    .copyWith(fontWeight: FontWeight.w100),
               ),
             ],
           ),
-          context.smallGap,
-          ClipRRect(
-            borderRadius: BorderRadius.circular(50),
-            child: Image.network(
-              height: 50,
-              width: 50,
-              'https://w7.pngwing.com/pngs/129/292/png-transparent-female-avatar-girl-face-woman-user-flat-classy-users-icon.png',
-            ),
-          ),
-        ],
-      ),
+        );
+      },
     );
   }
 }
 
 class _DrawerList extends StatelessWidget {
   final SettingsModel settings;
+
   const _DrawerList({required this.settings});
 
   @override
@@ -106,13 +100,11 @@ class _DrawerList extends StatelessWidget {
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            //! Home
+            //! Policy
             RowIconAndTitle(
-              iconPath: Assets.iconsHome,
-              title: context.tr.home,
-              onTap: () {
-                drawerKey.currentState!.closeSlider();
-              },
+              iconPath: Assets.iconsTerms,
+              title: context.tr.policy,
+              onTap: () => context.to(const PolicyScreen()),
             ),
             context.largeGap,
 
@@ -120,15 +112,21 @@ class _DrawerList extends StatelessWidget {
             RowIconAndTitle(
               iconPath: Assets.iconsTerms,
               title: context.tr.terms,
-              onTap: () => context.to(TermsScreen()),
+              onTap: () {
+                context.to(const TermsScreen());
+              },
             ),
             context.largeGap,
 
-            //! Contact Us
-            RowIconAndTitle(
-              iconPath: Assets.iconsContact,
-              title: context.tr.contactUs,
-              onTap: () => context.to(ContactUsScreen()),
+            //! Logout
+            Consumer<AuthVM>(
+              builder: (context, authVM, child) {
+                return RowIconAndTitle(
+                  iconPath: Assets.iconsLogout,
+                  title: context.tr.logout,
+                  onTap: () => authVM.logout(context),
+                );
+              },
             ),
           ],
         ),
@@ -138,19 +136,21 @@ class _DrawerList extends StatelessWidget {
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            //! Policy
-            RowIconAndTitle(
-              iconPath: Assets.iconsTerms,
-              title: context.tr.policy,
-              onTap: () => context.to(PolicyScreen()),
-            ),
-            context.largeGap,
-
             //! About Us
             RowIconAndTitle(
               iconPath: Assets.iconsAboutUs,
               title: context.tr.aboutUs,
-              onTap: () => context.to(AboutUsScreen()),
+              onTap: () {
+                context.to(const AboutUsScreen());
+              },
+            ),
+            context.largeGap,
+
+            //! Contact Us
+            RowIconAndTitle(
+              iconPath: Assets.iconsContact,
+              title: context.tr.contactUs,
+              onTap: () => context.to(const ContactUsScreen()),
             ),
             context.largeGap,
 
@@ -158,7 +158,7 @@ class _DrawerList extends StatelessWidget {
             RowIconAndTitle(
               iconPath: Assets.iconsSettings,
               title: context.tr.settings,
-              onTap: () {},
+              onTap: () => context.to(const ProfileScreen()),
             ),
           ],
         ),

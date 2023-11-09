@@ -10,7 +10,7 @@ class HiveHelper {
   Future<Box> openBox({required String boxName}) async =>
       await Hive.openBox(boxName);
 
-  Future<void> add(String boxName, {required dynamic data}) async {
+  Future<void> setData(String boxName, {required dynamic data}) async {
     if (Hive.isBoxOpen(boxName)) {
       await Hive.box(boxName).add(data);
     } else {
@@ -19,8 +19,8 @@ class HiveHelper {
     }
   }
 
-  Future<Map<dynamic, dynamic>> get({required String boxName}) async {
-    Map<dynamic, dynamic> data;
+  Future<Map<dynamic, dynamic>> getData({required String boxName}) async {
+    Map<dynamic, dynamic> data = {};
 
     if (Hive.isBoxOpen(boxName)) {
       data = Hive.box(boxName).toMap();
@@ -41,5 +41,13 @@ class HiveHelper {
     } else {
       await Hive.openBox(boxName).then((box) => box.deleteAt(index));
     }
+  }
+
+  Future<void> clearData() async {
+    await Hive.deleteFromDisk();
+  }
+
+  Future<void> clearUserData(String boxName) async {
+    await Hive.box(boxName).clear();
   }
 }

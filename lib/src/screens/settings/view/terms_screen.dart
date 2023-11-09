@@ -24,9 +24,9 @@ class TermsScreen extends HookWidget {
     }, []);
 
     return Scaffold(
-      appBar: const MainAppBar(
+      appBar: MainAppBar(
         isBackButton: true,
-        title: ' الشروط و الأحكام ',
+        title: context.tr.termsAndCondition,
       ),
       body: settingsVM.isLoading
           ? LoadingWidget()
