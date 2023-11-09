@@ -19,15 +19,33 @@ class ContactUsScreen extends StatelessWidget {
       ),
       body: Column(
         children: [
+          context.mediumGap,
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Icon(
+                Icons.info_outline,
+                size: 30,
+                color: ColorManager.primaryColor,
+              ),
+              context.smallGap,
+              Text(
+                textAlign: TextAlign.center,
+                'للاعلانات والاستفسارات',
+                style: context.headLine.copyWith(fontWeight: FontWeight.bold),
+              ),
+            ],
+          ),
+          context.xlLargeGap,
           Row(
             children: [
               Text(
                 textAlign: TextAlign.center,
-                'issadeeb000@gmail.com',
+                'sim.saudi.app@gmail.com',
                 style: context.headLine.copyWith(fontWeight: FontWeight.bold),
               ),
-              Spacer(),
-              CircleAvatar(
+              const Spacer(),
+              const CircleAvatar(
                 radius: 25,
                 backgroundColor: ColorManager.primaryColor,
                 child: Icon(
@@ -43,11 +61,12 @@ class ContactUsScreen extends StatelessWidget {
             children: [
               Text(
                 textAlign: TextAlign.center,
-                '0201118414599+',
+                '+962 79 000 0000',
                 style: context.headLine.copyWith(fontWeight: FontWeight.bold),
+                textDirection: TextDirection.ltr,
               ),
-              Spacer(),
-              CircleAvatar(
+              const Spacer(),
+              const CircleAvatar(
                 radius: 25,
                 backgroundColor: ColorManager.primaryColor,
                 child: Icon(
