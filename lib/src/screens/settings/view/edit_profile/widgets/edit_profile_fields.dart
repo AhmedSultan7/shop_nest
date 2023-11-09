@@ -1,5 +1,6 @@
 import 'package:cards_app/src/core/data/remote/response/api_strings.dart';
 import 'package:cards_app/src/core/extensions/extensions.dart';
+import 'package:cards_app/src/core/utils/validations.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../core/shared_widgets/shared_widgets.dart';
@@ -35,15 +36,7 @@ class EditProfileFields extends StatelessWidget {
 
           //! Email Field
           BaseTextField(
-            validator: (value) {
-              if (value!.isEmpty) {
-                return context.tr.requiredField;
-              }
-              if (!value.contains('@gmail.com')) {
-                return context.tr.pleaseEnterCorrectEmail;
-              }
-              return null;
-            },
+            textInputType: TextInputType.emailAddress,
             controller: controllers[ApiStrings.email],
             icon: const Icon(Icons.email_rounded),
             label: context.tr.emailAddress,
@@ -54,11 +47,9 @@ class EditProfileFields extends StatelessWidget {
           BaseTextField(
             isRequired: false,
             validator: (value) {
-              if (value!.length < 8) {
-                return context.tr.passwordMustContain8Characters;
-              } else {
-                return null;
-              }
+              if (value!.isEmpty) return null;
+
+              return Validations.password(context, value);
             },
             controller: controllers[ApiStrings.password],
             icon: const Icon(Icons.password_rounded),

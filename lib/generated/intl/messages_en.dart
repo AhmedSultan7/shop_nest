@@ -53,6 +53,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "emptyCart": MessageLookupByLibrary.simpleMessage(
             "عربة فارغة حاول إضافة بعض المنتجات"),
         "enter": MessageLookupByLibrary.simpleMessage("إدخال"),
+        "enterValidEmail": MessageLookupByLibrary.simpleMessage(
+            "الرجاء إدخال بريد إلكتروني صحيح"),
         "forgetPassword":
             MessageLookupByLibrary.simpleMessage("هل نسيت كلمة المرور"),
         "history": MessageLookupByLibrary.simpleMessage("الطلبات السابقة"),

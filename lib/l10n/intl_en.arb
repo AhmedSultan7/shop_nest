@@ -46,5 +46,6 @@
   "deleteFromCart": "حذف من السلة",
   "emailOrUsernameAreAlreadyTaken": "البريد الإلكتروني أو اسم المستخدم تم إستخدامة من قبل بالفعل",
   "logout": "تسجيل الخروج",
-  "editProfile": "تعديل الملف الشخصي"
+  "editProfile": "تعديل الملف الشخصي",
+  "enterValidEmail": "الرجاء إدخال بريد إلكتروني صحيح"
 }

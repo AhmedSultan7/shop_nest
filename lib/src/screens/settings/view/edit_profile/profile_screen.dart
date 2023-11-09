@@ -17,8 +17,12 @@ class ProfileScreen extends HookWidget {
     final authVM = context.read<AuthVM>().user;
     final formKey = useState(GlobalKey<FormState>());
     final fieldsControllers = {
-      ApiStrings.email: useTextEditingController(),
-      ApiStrings.username: useTextEditingController(),
+      ApiStrings.email: useTextEditingController(
+        text: authVM.email,
+      ),
+      ApiStrings.username: useTextEditingController(
+        text: authVM.userName,
+      ),
       ApiStrings.password: useTextEditingController()
     };
     return Scaffold(

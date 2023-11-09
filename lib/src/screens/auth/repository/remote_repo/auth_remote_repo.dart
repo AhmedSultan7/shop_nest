@@ -7,11 +7,11 @@ import '../../../../core/data/remote/app_exception.dart';
 import '../../../../core/data/remote/response/api_end_points.dart';
 import '../../model/user_model.dart';
 
-class AuthRepo {
+class AuthRemoteRepo {
   final BaseApiServices _networkApiServices;
   final AuthLocalRepo _authLocalRepo;
 
-  AuthRepo(this._networkApiServices, this._authLocalRepo);
+  AuthRemoteRepo(this._networkApiServices, this._authLocalRepo);
 
   //! Register User =================================
   Future<void> registerUser(User user) async {
@@ -42,10 +42,10 @@ class AuthRepo {
   }
 
 //! Update User ===============================
-  Future<void> updateUser(User user) async {
+  Future<void> updateUser(User user, {required int id}) async {
     try {
       await _networkApiServices.putResponse(ApiEndPoints.user,
-          data: user.toJson());
+          id: id, data: user.toJson());
     } on FetchDataException {
       rethrow;
     } on TimeoutException {

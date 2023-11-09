@@ -18,6 +18,17 @@ class UserModel {
   Map<String, dynamic> toJson() {
     return {ApiStrings.jwt: jwt, ApiStrings.user: user?.toJson()};
   }
+
+  //? Copy With ====================================
+  UserModel copyWith({
+    String? jwt,
+    User? user,
+  }) {
+    return UserModel(
+      jwt: jwt ?? this.jwt,
+      user: user ?? this.user,
+    );
+  }
 }
 
 class User {
@@ -54,13 +65,33 @@ class User {
 
   Map<String, dynamic> toJson() {
     return {
-      if (id != null) ApiStrings.id: id,
+      // if (id != null) ApiStrings.id: id,
       ApiStrings.username: userName,
-      if (password != null) ApiStrings.password: password,
+      if (password != null && password!.isNotEmpty)
+        ApiStrings.password: password,
       ApiStrings.email: email,
       if (identifier != null) ApiStrings.identifier: identifier,
       if (usertype != null) ApiStrings.userType: usertype!.name,
     };
+  }
+
+  //? Copy With ====================================
+  User copyWith({
+    int? id,
+    String? userName,
+    String? email,
+    String? password,
+    String? identifier,
+    UserTypeEnum? usertype,
+  }) {
+    return User(
+      id: id ?? this.id,
+      userName: userName ?? this.userName,
+      email: email ?? this.email,
+      password: password ?? this.password,
+      identifier: identifier ?? this.identifier,
+      usertype: usertype ?? this.usertype,
+    );
   }
 }
 

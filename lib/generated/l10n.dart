@@ -529,6 +529,16 @@ class S {
       args: [],
     );
   }
+
+  /// `الرجاء إدخال بريد إلكتروني صحيح`
+  String get enterValidEmail {
+    return Intl.message(
+      'الرجاء إدخال بريد إلكتروني صحيح',
+      name: 'enterValidEmail',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
