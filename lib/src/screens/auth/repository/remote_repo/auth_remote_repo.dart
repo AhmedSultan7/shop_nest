@@ -40,4 +40,16 @@ class AuthRepo {
       rethrow;
     }
   }
+
+//! Update User ===============================
+  Future<void> updateUser(User user) async {
+    try {
+      await _networkApiServices.putResponse(ApiEndPoints.user,
+          data: user.toJson());
+    } on FetchDataException {
+      rethrow;
+    } on TimeoutException {
+      rethrow;
+    }
+  }
 }

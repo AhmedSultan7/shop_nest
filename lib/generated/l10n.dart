@@ -490,11 +490,41 @@ class S {
     );
   }
 
+  /// `حذف من السلة`
+  String get deleteFromCart {
+    return Intl.message(
+      'حذف من السلة',
+      name: 'deleteFromCart',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `البريد الإلكتروني أو اسم المستخدم تم إستخدامة من قبل بالفعل`
   String get emailOrUsernameAreAlreadyTaken {
     return Intl.message(
       'البريد الإلكتروني أو اسم المستخدم تم إستخدامة من قبل بالفعل',
       name: 'emailOrUsernameAreAlreadyTaken',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `تسجيل الخروج`
+  String get logout {
+    return Intl.message(
+      'تسجيل الخروج',
+      name: 'logout',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `تعديل الملف الشخصي`
+  String get editProfile {
+    return Intl.message(
+      'تعديل الملف الشخصي',
+      name: 'editProfile',
       desc: '',
       args: [],
     );

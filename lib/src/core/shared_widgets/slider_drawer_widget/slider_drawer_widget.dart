@@ -3,8 +3,6 @@ import 'package:cards_app/src/screens/drawer/home_drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slider_drawer/flutter_slider_drawer.dart';
 
-GlobalKey<SliderDrawerState> drawerKey = GlobalKey<SliderDrawerState>();
-
 class SliderDrawerWidget extends StatelessWidget {
   final String title;
   final Widget child;
@@ -14,6 +12,8 @@ class SliderDrawerWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    GlobalKey<SliderDrawerState> drawerKey = GlobalKey<SliderDrawerState>();
+
     return SliderDrawer(
       isDraggable: true,
       slideDirection: SlideDirection.TOP_TO_BOTTOM,

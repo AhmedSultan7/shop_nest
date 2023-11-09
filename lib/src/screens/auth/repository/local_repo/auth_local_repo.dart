@@ -23,9 +23,12 @@ class AuthLocalRepo {
     try {
       final userData = await _hiveHelper.getData(boxName: LocalKeys.userData);
 
-      final userMap = userData.values.firstOrNull ?? {};
+      final userMap = userData.values.firstOrNull;
+
+      if (userMap == null) return UserModel.empty();
 
       final user = UserModel.fromJson(userMap);
+
       return user;
     } on Exception {
       throw AppException('Error When Get User Data');

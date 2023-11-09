@@ -7,8 +7,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
-import '../../../../../core/utils/logger.dart';
-
 class AddProductWidget extends StatelessWidget {
   final Map<String, TextEditingController> controllers;
   final ProductModel product;
@@ -20,7 +18,6 @@ class AddProductWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer<MediaVM>(
       builder: (context, mediaVM, child) {
-        Log.w(mediaVM.filePickerResult);
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -28,8 +25,6 @@ class AddProductWidget extends StatelessWidget {
             Center(
               child: SinglePickImageWidget(
                 pickedResult: mediaVM.filePickerResult,
-                networkImage: product.image!.url,
-                // isSingleImage: true,
               ),
             ),
             context.xlLargeGap,

@@ -31,7 +31,7 @@ class _PickImageButton extends StatelessWidget {
                   IconWidget(
                     height: 50.h,
                     width: 50.w,
-                    icon: Assets.iconsHome,
+                    icon: Assets.iconsPickImage,
                   ),
                   Text(
                     context.tr.clickToBrowse,

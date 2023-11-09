@@ -1,7 +1,6 @@
 import 'package:cards_app/src/core/extensions/extensions.dart';
 import 'package:cards_app/src/core/resources/app_spaces.dart';
 import 'package:cards_app/src/core/shared_widgets/shared_widgets.dart';
-import 'package:cards_app/src/screens/product/view/add_products/add_product.dart';
 import 'package:cards_app/src/screens/product/view_model/product_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -27,12 +26,12 @@ class ProductsGridView extends StatelessWidget {
                   context.tr.products,
                   style: context.headLine,
                 ),
-                const Spacer(),
-                IconButton(
-                    onPressed: () {
-                      context.to(AddProductScreen());
-                    },
-                    icon: const Icon(Icons.add)),
+                // const Spacer(),
+                // IconButton(
+                //     onPressed: () {
+                //       context.to(AddProductScreen());
+                //     },
+                //     icon: const Icon(Icons.add)),
               ],
             ),
             context.mediumGap,

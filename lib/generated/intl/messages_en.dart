@@ -39,10 +39,13 @@ class MessageLookup extends MessageLookupByLibrary {
         "clickToBrowse":
             MessageLookupByLibrary.simpleMessage("انقر لإختيار صورة"),
         "contactUs": MessageLookupByLibrary.simpleMessage("تواصل معنا"),
+        "deleteFromCart": MessageLookupByLibrary.simpleMessage("حذف من السلة"),
         "description": MessageLookupByLibrary.simpleMessage("الوصف"),
         "dontHaveAnAccount":
             MessageLookupByLibrary.simpleMessage("ليس لديك حساب ؟"),
         "edit": MessageLookupByLibrary.simpleMessage("تعديل"),
+        "editProfile":
+            MessageLookupByLibrary.simpleMessage("تعديل الملف الشخصي"),
         "emailAddress":
             MessageLookupByLibrary.simpleMessage("البريد الإلكتروني"),
         "emailOrUsernameAreAlreadyTaken": MessageLookupByLibrary.simpleMessage(
@@ -57,6 +60,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "login": MessageLookupByLibrary.simpleMessage("تسجيل الدخول"),
         "loginSuccessfully":
             MessageLookupByLibrary.simpleMessage("تم تسجيل الدخول بنجاح"),
+        "logout": MessageLookupByLibrary.simpleMessage("تسجيل الخروج"),
         "name": MessageLookupByLibrary.simpleMessage("الاسم"),
         "noHistory":
             MessageLookupByLibrary.simpleMessage("لا يوجد طلبات سابقة"),

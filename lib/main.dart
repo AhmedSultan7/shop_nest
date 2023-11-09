@@ -10,7 +10,7 @@ void main() async {
     Hive.initFlutter(),
     FastCachedImageConfig.init(),
   ]);
-  // await HiveHelper().openBox(boxName: AppConsts.cart);
-  // await Hive.box(AppConsts.cart).clear();
+  // await HiveHelper().openBox(boxName: LocalKeys.userData);
+  // await Hive.box(LocalKeys.userData).clear();
   runApp(const MyApp());
 }

@@ -94,13 +94,11 @@ class BaseTextField extends StatelessWidget {
       decoration: InputDecoration(
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(AppRadius.baseRadius),
-          borderSide: BorderSide(
-              color: const Color(0xFF000000),
-              width: 0.9,
-              style: BorderStyle.solid),
+          borderSide: const BorderSide(
+              color: Color(0xFF000000), width: 0.9, style: BorderStyle.solid),
         ),
         focusedBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: const Color(0xFF000000), width: 1),
+          borderSide: const BorderSide(color: Color(0xFF000000), width: 1),
           borderRadius: BorderRadius.circular(AppRadius.baseRadius),
         ),
         hintText: '${context.tr.enter} ${hint ?? title ?? ''}',

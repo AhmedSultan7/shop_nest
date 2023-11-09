@@ -4,8 +4,6 @@ import 'package:cards_app/src/core/utils/logger.dart';
 import 'package:cards_app/src/screens/cart/model/cart_model.dart';
 
 class CartLocalRepository {
-  // final hive = Hive.box(AppConsts.cart);
-
   final HiveHelper hiveHelper;
 
   CartLocalRepository({required this.hiveHelper});

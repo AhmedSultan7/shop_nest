@@ -23,7 +23,7 @@ class LoginScreen extends HookWidget {
     final formKey = useState(GlobalKey<FormState>());
     final fieldsController = {
       ApiStrings.identifier: useTextEditingController(text: 'issa@gmail.com'),
-      ApiStrings.password: useTextEditingController(text: '12346789'),
+      ApiStrings.password: useTextEditingController(text: '123456789'),
     };
 
     return SafeArea(
@@ -71,8 +71,8 @@ class LoginScreen extends HookWidget {
                                 if (value == true) {
                                   context.to(const MainScreen());
                                   context.showBarMessage(
-                                      context.tr.loginSuccessfully,
-                                      isError: false);
+                                    context.tr.loginSuccessfully,
+                                  );
                                 } else {
                                   context.showBarMessage(
                                       context

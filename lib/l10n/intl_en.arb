@@ -43,5 +43,8 @@
   "loginSuccessfully": "تم تسجيل الدخول بنجاح",
   "signupSuccessfully": "تم إنشاء الحساب بنجاح",
   "chooseUserType": "برجاء إختيار نوع المستخدم",
-  "emailOrUsernameAreAlreadyTaken": "البريد الإلكتروني أو اسم المستخدم تم إستخدامة من قبل بالفعل"
+  "deleteFromCart": "حذف من السلة",
+  "emailOrUsernameAreAlreadyTaken": "البريد الإلكتروني أو اسم المستخدم تم إستخدامة من قبل بالفعل",
+  "logout": "تسجيل الخروج",
+  "editProfile": "تعديل الملف الشخصي"
 }

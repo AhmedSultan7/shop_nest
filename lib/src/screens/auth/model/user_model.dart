@@ -6,12 +6,14 @@ class UserModel {
   final String? jwt;
   final User? user;
 
-  UserModel({this.jwt, this.user});
+  const UserModel({this.jwt, this.user});
 
   factory UserModel.fromJson(Map<dynamic, dynamic> json) {
     return UserModel(
         jwt: json[ApiStrings.jwt], user: User.fromJson(json[ApiStrings.user]));
   }
+
+  factory UserModel.empty() => const UserModel();
 
   Map<String, dynamic> toJson() {
     return {ApiStrings.jwt: jwt, ApiStrings.user: user?.toJson()};
@@ -20,18 +22,18 @@ class UserModel {
 
 class User {
   final int? id;
-  final String? userName;
-  final String? email;
+  final String userName;
+  final String email;
   final String? password;
   final String? identifier;
   final UserTypeEnum? usertype;
 
-  User({
+  const User({
     this.id,
     this.identifier,
-    this.userName,
+    this.userName = '',
     this.password,
-    this.email,
+    this.email = '',
     this.usertype,
   });
 
@@ -41,19 +43,21 @@ class User {
         : UserTypeEnum.buyer;
     return User(
         id: json[ApiStrings.id],
-        userName: json[ApiStrings.username],
-        email: json[ApiStrings.email],
+        userName: json[ApiStrings.username] ?? '',
+        email: json[ApiStrings.email] ?? '',
         password: json[ApiStrings.password],
-        identifier: json[ApiStrings.identifier],
+        identifier: json[ApiStrings.identifier] ?? '',
         usertype: userType);
   }
+
+  factory User.empty() => const User();
 
   Map<String, dynamic> toJson() {
     return {
       if (id != null) ApiStrings.id: id,
-      if (userName != null) ApiStrings.username: userName,
+      ApiStrings.username: userName,
       if (password != null) ApiStrings.password: password,
-      if (email != null) ApiStrings.email: email,
+      ApiStrings.email: email,
       if (identifier != null) ApiStrings.identifier: identifier,
       if (usertype != null) ApiStrings.userType: usertype!.name,
     };

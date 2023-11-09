@@ -25,8 +25,8 @@ class SignupScreen extends HookWidget {
     final formKey = useState(GlobalKey<FormState>());
     final fieldsController = {
       ApiStrings.username: useTextEditingController(),
-      ApiStrings.email: useTextEditingController(),
-      ApiStrings.password: useTextEditingController(),
+      ApiStrings.email: useTextEditingController(text: '@gmail.com'),
+      ApiStrings.password: useTextEditingController(text: '123456789'),
     };
     final userTypeValueNotifier = useState<UserTypeEnum?>(null);
 
