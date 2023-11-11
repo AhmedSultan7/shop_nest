@@ -99,7 +99,7 @@ class AuthVM extends ChangeNotifier {
 
       final updatedUser = _userModel?.copyWith(user: userData);
 
-      await _authRemoteRepo.updateUser(userData, id: user.id!);
+      await _authRemoteRepo.updateUser(userData);
 
       await _authLocalRepo.putUserData(updatedUser!.toJson());
 

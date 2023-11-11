@@ -17,7 +17,7 @@ void appInjector() {
   getIt.registerLazySingleton(
       () => AuthLocalRepo(hiveHelper: getIt<HiveHelper>()));
 
-  getIt.registerLazySingleton(() => AuthRepo(
+  getIt.registerLazySingleton(() => AuthRemoteRepo(
       networkApiServices: getIt<NetworkApiService>(),
       authLocalRepo: getIt<AuthLocalRepo>()));
 

@@ -7,11 +7,12 @@ import '../../../../core/data/remote/app_exception.dart';
 import '../../../../core/data/remote/response/api_end_points.dart';
 import '../../model/user_model.dart';
 
-class AuthRepo {
+class AuthRemoteRepo {
   final BaseApiServices networkApiServices;
   final AuthLocalRepo authLocalRepo;
 
-  AuthRepo({required this.networkApiServices, required this.authLocalRepo});
+  AuthRemoteRepo(
+      {required this.networkApiServices, required this.authLocalRepo});
 
   //! Register User =================================
   Future<void> registerUser(User user) async {

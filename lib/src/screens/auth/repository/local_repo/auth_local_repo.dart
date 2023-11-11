@@ -21,7 +21,7 @@ class AuthLocalRepo {
   //! Put User Data ====================================
   Future<void> putUserData(Map<String, dynamic> user) async {
     try {
-      await _hiveHelper.putData(key: 0, LocalKeys.userData, data: user);
+      await hiveHelper.putData(key: 0, LocalKeys.userData, data: user);
     } on Exception {
       throw AppException('Error When Save Register Data');
     }
@@ -30,7 +30,7 @@ class AuthLocalRepo {
   //! Clear User Data ====================================
   Future<void> clearUserData() async {
     try {
-      await _hiveHelper.clear(LocalKeys.userData);
+      await hiveHelper.clear(LocalKeys.userData);
     } on Exception {
       throw AppException('Error When Clear User Data');
     }
