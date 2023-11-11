@@ -49,8 +49,11 @@ class BaseMultiProvider extends StatelessWidget {
         ),
         ChangeNotifierProvider(
           create: (context) => AuthVM(
-            AuthRemoteRepo(NetworkApiService(), AuthLocalRepo(HiveHelper())),
-            AuthLocalRepo(HiveHelper()),
+            AuthRemoteRepo(
+              networkApiServices: NetworkApiService(),
+              authLocalRepo: AuthLocalRepo(hiveHelper: HiveHelper()),
+            ),
+            AuthLocalRepo(hiveHelper: HiveHelper()),
           )..getUser(),
         ),
       ],

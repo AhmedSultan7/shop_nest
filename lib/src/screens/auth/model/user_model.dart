@@ -16,7 +16,7 @@ class UserModel {
   factory UserModel.empty() => const UserModel();
 
   Map<String, dynamic> toJson() {
-    return {ApiStrings.jwt: jwt, ApiStrings.user: user?.toJson()};
+    return {ApiStrings.jwt: jwt, ApiStrings.user: user?.toJson(sendId: true)};
   }
 
   //? Copy With ====================================
@@ -63,9 +63,11 @@ class User {
 
   factory User.empty() => const User();
 
-  Map<String, dynamic> toJson() {
+  Map<String, dynamic> toJson({
+    bool sendId = false,
+  }) {
     return {
-      // if (id != null) ApiStrings.id: id,
+      if (id != null && sendId) ApiStrings.id: id,
       ApiStrings.username: userName,
       if (password != null && password!.isNotEmpty)
         ApiStrings.password: password,
