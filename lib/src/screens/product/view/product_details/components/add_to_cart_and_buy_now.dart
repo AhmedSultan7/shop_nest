@@ -4,7 +4,6 @@ import 'package:cards_app/src/screens/cart/model/cart_model.dart';
 import 'package:cards_app/src/screens/cart/view_model/cart_view_model.dart';
 import 'package:cards_app/src/screens/product/models/product_model.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../../core/resources/theme/theme.dart';
@@ -86,20 +85,17 @@ class _ProductQuantityButtons extends StatelessWidget {
             context.mediumGap,
             Expanded(
               flex: 2,
-              child: SizedBox(
-                height: 40.h,
-                child: Button(
-                  isOutLine: true,
-                  isPrefixIcon: true,
-                  onPressed: () {
-                    cartVM.addProductsToCart(context,
-                        cart: CartModel(
-                            quantity: 1, id: product.id!, product: product));
-                  },
-                  color: ColorManager.black,
-                  label: context.tr.addToCart,
-                  isWhiteText: true,
-                ),
+              child: Button(
+                isOutLine: true,
+                isPrefixIcon: true,
+                onPressed: () {
+                  cartVM.addProductsToCart(context,
+                      cart: CartModel(
+                          quantity: 1, id: product.id!, product: product));
+                },
+                color: ColorManager.black,
+                label: context.tr.addToCart,
+                isWhiteText: true,
               ),
             ),
           ],

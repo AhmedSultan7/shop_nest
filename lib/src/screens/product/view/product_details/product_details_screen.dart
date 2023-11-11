@@ -7,7 +7,6 @@ import 'package:cards_app/src/screens/product/models/product_model.dart';
 import 'package:cards_app/src/screens/product/view/product_details/components/add_to_cart_and_buy_now.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'components/product_container_details.dart';
 
@@ -51,7 +50,9 @@ class ProductsDetailsScreen extends HookWidget {
                   child: const BackButtonWidget(
                     isWhite: false,
                   ),
-                ).paddingSymmetric(vertical: 25.h, horizontal: 10.w),
+                ).paddingSymmetric(
+                    vertical: AppSpaces.defaultPadding,
+                    horizontal: AppSpaces.smallPadding),
               ],
             ),
             context.largeGap,

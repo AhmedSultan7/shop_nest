@@ -2,18 +2,32 @@ import 'package:cards_app/src/core/data/local/hive_helper.dart';
 import 'package:cards_app/src/core/data/remote/network/network_api_service.dart';
 import 'package:cards_app/src/screens/auth/repository/local_repo/auth_local_repo.dart';
 import 'package:cards_app/src/screens/auth/repository/remote_repo/auth_remote_repo.dart';
+import 'package:cards_app/src/screens/auth/view_model/auth_view_model.dart';
+import 'package:cards_app/src/screens/cart/repository/local/cart_local_repo.dart';
+import 'package:cards_app/src/screens/cart/view_model/cart_view_model.dart';
 import 'package:cards_app/src/screens/home/repositories/slider_repo.dart';
 import 'package:cards_app/src/screens/home/view_model/bottom_nav_provider.dart';
 import 'package:cards_app/src/screens/home/view_model/slider_view_model.dart';
+import 'package:cards_app/src/screens/product/models/repository/product_repo.dart';
+import 'package:cards_app/src/screens/product/view_model/product_view_model.dart';
+import 'package:cards_app/src/screens/settings/repository/settings_repo.dart';
+import 'package:cards_app/src/screens/settings/view_model/setting_view_model.dart';
+import 'package:cards_app/src/screens/shared/media/view_models/media_view_model.dart';
 import 'package:get_it/get_it.dart';
 
 final getIt = GetIt.instance;
 
-void appInjector() {
+Future<void> appInjector() async {
   // * Base Injector ===========================================
+
   getIt.registerLazySingleton(() => NetworkApiService());
 
+  // * Hive Injector ===========================================
+
+  getIt.registerLazySingleton(() => HiveHelper());
+
   // * Auth Injector ===========================================
+
   getIt.registerLazySingleton(
       () => AuthLocalRepo(hiveHelper: getIt<HiveHelper>()));
 
@@ -21,15 +35,41 @@ void appInjector() {
       networkApiServices: getIt<NetworkApiService>(),
       authLocalRepo: getIt<AuthLocalRepo>()));
 
+  getIt.registerLazySingleton(() => AuthVM(
+      authLocalRepo: getIt<AuthLocalRepo>(),
+      authRemoteRepo: getIt<AuthRemoteRepo>()));
+
   // * Home Injector ===========================================
-  //! BottomNavbar -----------------------------
+
+  //! BottomNavbar ----------------------------------------------------
   getIt.registerLazySingleton(() => BottomNavbarVM());
 
-  //! Slider ------------------------------------
+  //! Slider ------------------------------------------------------------
   getIt.registerLazySingleton(
       () => SlidersRepo(networkApiServices: getIt<NetworkApiService>()));
 
   getIt.registerLazySingleton(() => SliderVM(getIt<SlidersRepo>()));
 
+  //! Product ----------------------------------------------------------
+  getIt.registerLazySingleton(() => ProductRepo(getIt<NetworkApiService>()));
+
+  getIt.registerLazySingleton(() => ProductVM(getIt<ProductRepo>()));
+
   // * Cart Injector ===========================================
+
+  getIt.registerLazySingleton(
+      () => CartLocalRepository(hiveHelper: getIt<HiveHelper>()));
+
+  getIt.registerLazySingleton(
+      () => CartVM(cartLocalRepository: getIt<CartLocalRepository>()));
+
+  // * Settings Injector ===========================================
+
+  getIt.registerLazySingleton(() => SettingsRepo(getIt<NetworkApiService>()));
+
+  getIt.registerLazySingleton(() => SettingsVM(getIt<SettingsRepo>()));
+
+  // * Media Injector ===========================================
+
+  getIt.registerLazySingleton(() => MediaVM());
 }

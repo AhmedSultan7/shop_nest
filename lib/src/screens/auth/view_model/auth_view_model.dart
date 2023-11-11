@@ -15,10 +15,10 @@ import '../model/user_model.dart';
 import '../view/login_screen/login_screen.dart';
 
 class AuthVM extends ChangeNotifier {
-  final AuthRemoteRepo _authRemoteRepo;
-  final AuthLocalRepo _authLocalRepo;
+  final AuthRemoteRepo authRemoteRepo;
+  final AuthLocalRepo authLocalRepo;
 
-  AuthVM(this._authRemoteRepo, this._authLocalRepo);
+  AuthVM({required this.authRemoteRepo, required this.authLocalRepo});
 
   bool _isLoading = false;
   bool isObscure = false;
@@ -43,7 +43,7 @@ class AuthVM extends ChangeNotifier {
           userName: controllers[ApiStrings.username]!.text,
           usertype: valueNotifier.value);
 
-      await _authRemoteRepo.registerUser(userModel);
+      await authRemoteRepo.registerUser(userModel);
       getUser();
       isLoading = false;
       return true;
@@ -68,7 +68,7 @@ class AuthVM extends ChangeNotifier {
         identifier: controllers[ApiStrings.identifier]!.text,
         password: controllers[ApiStrings.password]!.text,
       );
-      await _authRemoteRepo.login(userModel);
+      await authRemoteRepo.login(userModel);
       getUser();
       isLoading = false;
       return true;
@@ -99,9 +99,9 @@ class AuthVM extends ChangeNotifier {
 
       final updatedUser = _userModel?.copyWith(user: userData);
 
-      await _authRemoteRepo.updateUser(userData);
+      await authRemoteRepo.updateUser(userData, id: user.id!);
 
-      await _authLocalRepo.putUserData(updatedUser!.toJson());
+      await authLocalRepo.putUserData(updatedUser!.toJson());
 
       getUser();
 
@@ -129,7 +129,7 @@ class AuthVM extends ChangeNotifier {
   bool get isVendor => user.usertype == UserTypeEnum.seller;
 
   void getUser() async {
-    _userModel = await _authLocalRepo.getUserData();
+    _userModel = await authLocalRepo.getUserData();
 
     notifyListeners();
   }

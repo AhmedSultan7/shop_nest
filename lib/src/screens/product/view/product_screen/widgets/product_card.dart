@@ -4,7 +4,6 @@ import 'package:cards_app/src/core/resources/theme/theme.dart';
 import 'package:cards_app/src/core/shared_widgets/box_shadow.dart';
 import 'package:cards_app/src/core/shared_widgets/shared_widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../../core/resources/app_radius.dart';
 import '../../../../../core/resources/app_spaces.dart';
@@ -35,7 +34,7 @@ class ProductCardWidget extends StatelessWidget {
               children: [
                 //! Product image
                 SizedBox(
-                  height: 170.h,
+                  height: context.height * 0.26,
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(
                       AppRadius.imageContainerRadius,
@@ -88,7 +87,7 @@ class ProductCardWidget extends StatelessWidget {
                     ),
                     context.smallGap,
                     SizedBox(
-                        height: 30.h,
+                        height: context.height * 0.05,
                         child:
                             Button(label: context.tr.buyNow, onPressed: () {})),
                   ],
