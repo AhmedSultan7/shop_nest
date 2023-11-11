@@ -67,6 +67,17 @@ class BaseTextField extends StatelessWidget {
   }
 
   Widget _textField(BuildContext context) {
+    validations(value) {
+      if (textInputType == TextInputType.number) {
+        return Validations.numbersOnly(context, value);
+      } else if (textInputType == TextInputType.emailAddress) {
+        return Validations.email(context, value);
+      } else if (textInputType == TextInputType.phone) {
+        return Validations.phoneNumber(context, value);
+      }
+      return Validations.mustBeNotEmpty(context, value);
+    }
+
     return TextFormField(
       enabled: enabled,
       cursorColor: ColorManager.primaryColor,
@@ -83,13 +94,7 @@ class BaseTextField extends StatelessWidget {
       onChanged: onChanged,
       initialValue: initialValue,
       maxLines: maxLines,
-      validator: validator ??
-          (value) {
-            if (isRequired && value!.isEmpty) {
-              return context.tr.requiredField;
-            }
-            return null;
-          },
+      validator: isRequired ? (validator ?? validations) : null,
       style: context.labelMedium,
       decoration: InputDecoration(
         enabledBorder: OutlineInputBorder(

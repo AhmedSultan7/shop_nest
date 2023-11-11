@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:cards_app/src/core/data/remote/response/api_strings.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:http/http.dart' as http;
 
@@ -171,6 +172,7 @@ class NetworkApiService extends BaseApiServices {
     required Map<String, dynamic> data,
     FilePickerResult? fileResult,
     String? fieldName,
+    int? id,
   }) async {
     dynamic responseJson;
     try {
@@ -199,7 +201,9 @@ class NetworkApiService extends BaseApiServices {
       //
       // request.fields.addAll({ApiStrings.data: jsonEncode(fieldsData)});
 
-      final apiUrl = Uri.parse('${ApiEndPoints.baseUrl}$url/26');
+      final putId = id ?? data[ApiStrings.id];
+
+      final apiUrl = Uri.parse('${ApiEndPoints.baseUrl}$url/$putId');
 
       final response = await http.put(apiUrl, body: data);
 

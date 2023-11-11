@@ -15,11 +15,10 @@ import '../model/user_model.dart';
 import '../view/login_screen/login_screen.dart';
 
 class AuthVM extends ChangeNotifier {
-  final AuthRepo _authRepo;
+  final AuthRemoteRepo _authRemoteRepo;
   final AuthLocalRepo _authLocalRepo;
-  final HiveHelper _hiveHelper;
 
-  AuthVM(this._authRepo, this._authLocalRepo, this._hiveHelper);
+  AuthVM(this._authRemoteRepo, this._authLocalRepo);
 
   bool _isLoading = false;
   bool isObscure = false;
@@ -44,7 +43,7 @@ class AuthVM extends ChangeNotifier {
           userName: controllers[ApiStrings.username]!.text,
           usertype: valueNotifier.value);
 
-      await _authRepo.registerUser(userModel);
+      await _authRemoteRepo.registerUser(userModel);
       getUser();
       isLoading = false;
       return true;
@@ -69,7 +68,7 @@ class AuthVM extends ChangeNotifier {
         identifier: controllers[ApiStrings.identifier]!.text,
         password: controllers[ApiStrings.password]!.text,
       );
-      await _authRepo.login(userModel);
+      await _authRemoteRepo.login(userModel);
       getUser();
       isLoading = false;
       return true;
@@ -87,30 +86,38 @@ class AuthVM extends ChangeNotifier {
   //! Update User ===============================
   Future<void> updateUser(BuildContext context,
       {required Map<String, TextEditingController> controllers}) async {
-    // try {
-    isLoading = true;
-    final updatedUser = User(
-      // id: user.id,
-      userName: controllers[ApiStrings.username]!.text,
-      email: controllers[ApiStrings.email]!.text,
-      password: controllers[ApiStrings.password]!.text,
-      usertype: user.usertype,
-    );
-    await _authRepo.updateUser(updatedUser);
-    // await _authLocalRepo.setUserData(updatedUser.toJson());
-    // getUser();
-    isLoading = false;
-    if (context.mounted) {
-      context.to(const MainScreen());
+    try {
+      isLoading = true;
+
+      final userData = user.copyWith(
+        id: user.id,
+        userName: controllers[ApiStrings.username]!.text,
+        email: controllers[ApiStrings.email]!.text,
+        password: controllers[ApiStrings.password]!.text,
+        usertype: user.usertype,
+      );
+
+      final updatedUser = _userModel?.copyWith(user: userData);
+
+      await _authRemoteRepo.updateUser(userData, id: user.id!);
+
+      await _authLocalRepo.putUserData(updatedUser!.toJson());
+
+      getUser();
+
+      isLoading = false;
+
+      if (context.mounted) {
+        context.to(const MainScreen());
+      }
+    } on FetchDataException catch (e) {
+      Log.e('Fetch Data Exception ${e.toString()}');
+      isLoading = false;
+    } on SocketException {
+      isLoading = false;
+    } on TimeoutException {
+      isLoading = false;
     }
-    // } on FetchDataException catch (e) {
-    //   Log.e('Fetch Data Exception ${e.toString()}');
-    //   isLoading = false;
-    // } on SocketException {
-    //   isLoading = false;
-    // } on TimeoutException {
-    //   isLoading = false;
-    // }
   }
 
   UserModel? _userModel;
@@ -134,7 +141,7 @@ class AuthVM extends ChangeNotifier {
 
   //! Logout
   void logout(BuildContext context) {
-    HiveHelper().clearData();
+    HiveHelper().clearAllData();
     context.toReplacement(const LoginScreen());
   }
 }

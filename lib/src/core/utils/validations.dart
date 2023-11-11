@@ -1,3 +1,4 @@
+import 'package:cards_app/src/core/extensions/extensions.dart';
 import 'package:flutter/cupertino.dart';
 
 class Validations {
@@ -40,9 +41,9 @@ class Validations {
     final RegExp urlExp = RegExp(
         r"^[a-zA-Z0-9.a-zA-Z0-9!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
     if (value == null || value.isEmpty) {
-      return 'requiredField';
+      return context.tr.requiredField;
     } else if (!urlExp.hasMatch(value)) {
-      return 'enterValidEmail';
+      return context.tr.enterValidEmail;
     }
     return null;
   }

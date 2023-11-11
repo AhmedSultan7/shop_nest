@@ -19,6 +19,16 @@ class HiveHelper {
     }
   }
 
+  Future<void> putData(String boxName,
+      {required dynamic key, required dynamic data}) async {
+    if (Hive.isBoxOpen(boxName)) {
+      await Hive.box(boxName).put(key, data);
+    } else {
+      await openBox(boxName: boxName).then((box) => box.put(key, data));
+      Log.w('Put===================$boxName');
+    }
+  }
+
   Future<Map<dynamic, dynamic>> getData({required String boxName}) async {
     Map<dynamic, dynamic> data = {};
 
@@ -43,11 +53,11 @@ class HiveHelper {
     }
   }
 
-  Future<void> clearData() async {
+  Future<void> clearAllData() async {
     await Hive.deleteFromDisk();
   }
 
-  Future<void> clearUserData(String boxName) async {
+  Future<void> clear(String boxName) async {
     await Hive.box(boxName).clear();
   }
 }

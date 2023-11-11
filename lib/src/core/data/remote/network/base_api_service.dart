@@ -15,6 +15,7 @@ abstract class BaseApiServices {
     required Map<String, dynamic> data,
     FilePickerResult? fileResult,
     String? fieldName,
+    int? id,
   });
 
   Future<dynamic> deleteResponse(String url);
