@@ -8,18 +8,18 @@ import '../../../../core/data/remote/response/api_end_points.dart';
 import '../../model/user_model.dart';
 
 class AuthRepo {
-  final BaseApiServices _networkApiServices;
-  final AuthLocalRepo _authLocalRepo;
+  final BaseApiServices networkApiServices;
+  final AuthLocalRepo authLocalRepo;
 
-  AuthRepo(this._networkApiServices, this._authLocalRepo);
+  AuthRepo({required this.networkApiServices, required this.authLocalRepo});
 
   //! Register User =================================
   Future<void> registerUser(User user) async {
     try {
-      final response = await _networkApiServices
+      final response = await networkApiServices
           .postResponse(ApiEndPoints.register, data: user.toJson());
 
-      await _authLocalRepo.setUserData(response);
+      await authLocalRepo.setUserData(response);
     } on FetchDataException {
       rethrow;
     } on TimeoutException {
@@ -30,10 +30,10 @@ class AuthRepo {
   //! Login User =================================
   Future<void> login(User user) async {
     try {
-      final response = await _networkApiServices
-          .postResponse(ApiEndPoints.login, data: user.toJson());
+      final response = await networkApiServices.postResponse(ApiEndPoints.login,
+          data: user.toJson());
 
-      await _authLocalRepo.setUserData(response);
+      await authLocalRepo.setUserData(response);
     } on FetchDataException {
       rethrow;
     } on TimeoutException {
@@ -44,7 +44,7 @@ class AuthRepo {
 //! Update User ===============================
   Future<void> updateUser(User user) async {
     try {
-      await _networkApiServices.putResponse(ApiEndPoints.user,
+      await networkApiServices.putResponse(ApiEndPoints.user,
           data: user.toJson());
     } on FetchDataException {
       rethrow;

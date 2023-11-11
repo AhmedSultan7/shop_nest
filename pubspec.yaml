@@ -33,6 +33,10 @@ dependencies:
   dotted_border: ^2.0.0+3
   permission_handler: ^11.0.0
   fast_cached_network_image: ^1.2.0
+
+  #? Injector
+  get_it: ^7.6.4
+
   #? Hive
   hive: ^2.2.3
   hive_flutter:
