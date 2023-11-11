@@ -22,7 +22,7 @@ class LoginScreen extends HookWidget {
   Widget build(BuildContext context) {
     final formKey = useState(GlobalKey<FormState>());
     final fieldsController = {
-      ApiStrings.identifier: useTextEditingController(text: 'fofato@gmail.com'),
+      ApiStrings.identifier: useTextEditingController(text: 'amr@gmail.com'),
       ApiStrings.password: useTextEditingController(text: '123456789'),
     };
 

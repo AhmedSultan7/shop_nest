@@ -43,10 +43,10 @@ class AuthRemoteRepo {
   }
 
 //! Update User ===============================
-  Future<void> updateUser(User user) async {
+  Future<void> updateUser(User user, {required int id}) async {
     try {
       await networkApiServices.putResponse(ApiEndPoints.user,
-          data: user.toJson());
+          id: id, data: user.toJson());
     } on FetchDataException {
       rethrow;
     } on TimeoutException {
