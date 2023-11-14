@@ -17,7 +17,7 @@ void main() async {
 
     FastCachedImageConfig.init(),
   ]);
-  // await HiveHelper().openBox(boxName: LocalKeys.userData);
-  // await Hive.box(LocalKeys.userData).clear();
+  // await HiveHelper().openBox(boxName: AppConsts.cart);
+  // await Hive.box(AppConsts.cart).clear();
   runApp(const MyApp());
 }

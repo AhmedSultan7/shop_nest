@@ -23,6 +23,7 @@ class CartLocalRepository {
       final cartData = await hiveHelper.getData(boxName: _cartHiveKey);
 
       final cartList = List<CartModel>.from(cartData.values.map((cart) {
+        // Log.w(' cart ID ${cart['id']}');
         return CartModel.fromLocal(cart);
       }));
 

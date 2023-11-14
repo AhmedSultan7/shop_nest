@@ -21,82 +21,74 @@ class AddToCartAndBuyNow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        _ProductQuantityButtons(
-          quantity: quantity,
-          product: product,
-        ),
-        context.largeGap,
-        Button(
-          isPrefixIcon: true,
-          onPressed: () {},
-          color: ColorManager.primaryColor,
-          label: context.tr.buyNow,
-          isWhiteText: true,
-        ),
-      ],
-    );
-  }
-}
-
-class _ProductQuantityButtons extends StatelessWidget {
-  final ValueNotifier<int> quantity;
-  final ProductModel product;
-
-  const _ProductQuantityButtons(
-      {required this.quantity, required this.product});
-
-  @override
-  Widget build(BuildContext context) {
     return Consumer<CartVM>(
       builder: (context, cartVM, child) {
-        return Row(
+        return Column(
           children: [
             Row(
               children: [
-                BaseFloatingButton(
-                  onTap: () {
-                    quantity.value--;
-                  },
-                  child: const Icon(
-                    Icons.remove,
-                    color: Colors.white,
-                  ),
+                //! Positive & Minus Buttons
+                Row(
+                  children: [
+                    BaseFloatingButton(
+                      onTap: () {
+                        quantity.value--;
+                      },
+                      child: const Icon(
+                        Icons.remove,
+                        color: Colors.white,
+                      ),
+                    ),
+                    context.mediumGap,
+                    Text(
+                      quantity.value.toString(),
+                      style: context.title
+                          .copyWith(color: ColorManager.primaryColor),
+                    ),
+                    context.mediumGap,
+                    BaseFloatingButton(
+                      onTap: () {
+                        quantity.value++;
+                      },
+                      child: const Icon(
+                        Icons.add,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ],
                 ),
                 context.mediumGap,
-                Text(
-                  quantity.value.toString(),
-                  style:
-                      context.title.copyWith(color: ColorManager.primaryColor),
-                ),
-                context.mediumGap,
-                BaseFloatingButton(
-                  onTap: () {
-                    quantity.value++;
-                  },
-                  child: const Icon(
-                    Icons.add,
-                    color: Colors.white,
+                //! Add to cart button
+                Expanded(
+                  flex: 2,
+                  child: Button(
+                    isOutLine: true,
+                    isPrefixIcon: true,
+                    onPressed: () {
+                      cartVM.addProductsToCart(context,
+                          cart: CartModel(
+                              quantity: quantity.value,
+                              id: product.id!,
+                              product: product,
+                              key: product.id!));
+                    },
+                    color: ColorManager.black,
+                    label: context.tr.addToCart,
+                    isWhiteText: true,
                   ),
                 ),
               ],
             ),
-            context.mediumGap,
-            Expanded(
-              flex: 2,
-              child: Button(
-                isOutLine: true,
-                isPrefixIcon: true,
-                onPressed: () {
-                  cartVM.addProductsToCart(context,
-                      cart: CartModel(
-                          quantity: 1, id: product.id!, product: product));
-                },
-                color: ColorManager.black,
-                label: context.tr.addToCart,
-                isWhiteText: true,
-              ),
+
+            context.largeGap,
+
+            //! Buy now button
+            Button(
+              isPrefixIcon: true,
+              onPressed: () {},
+              color: ColorManager.primaryColor,
+              label: context.tr.buyNow,
+              isWhiteText: true,
             ),
           ],
         );

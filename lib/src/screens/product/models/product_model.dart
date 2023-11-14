@@ -6,7 +6,7 @@ class ProductModel {
   final int? id;
   final String? name;
   final String? description;
-  final num? price;
+  final int? price;
   final MainMediaModel? image;
 
   ProductModel({this.price, this.image, this.name, this.id, this.description});

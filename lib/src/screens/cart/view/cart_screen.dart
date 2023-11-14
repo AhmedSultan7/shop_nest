@@ -28,8 +28,9 @@ class CartScreen extends HookWidget {
 
     return Consumer<CartVM>(
       builder: (context, cartVM, child) {
-        final cartData = cartVM.cart;
-
+        final cartData = cartVM.cartList;
+        final totalPrice = cartData.fold(0,
+            (previousValue, element) => previousValue + element.product.price!);
         if (cartData.isEmpty) {
           return Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -42,20 +43,29 @@ class CartScreen extends HookWidget {
             ],
           );
         }
-        return ListView.separated(
-            padding:
-                const EdgeInsets.symmetric(vertical: AppSpaces.defaultPadding),
-            shrinkWrap: true,
-            itemBuilder: (context, index) =>
-                BuildCartWidget(cart: cartData[index], index: index),
-            separatorBuilder: (context, index) => context.mediumGap,
-            itemCount: cartData.length);
+        return Column(
+          children: [
+            ListView.separated(
+                padding: const EdgeInsets.symmetric(
+                    vertical: AppSpaces.defaultPadding),
+                shrinkWrap: true,
+                itemBuilder: (context, index) =>
+                    BuildCartWidget(cart: cartData[index], index: index),
+                separatorBuilder: (context, index) => context.mediumGap,
+                itemCount: cartData.length),
+            context.largeGap,
+            Text(
+              totalPrice.toString(),
+              style: context.headLine,
+            )
+          ],
+        );
       },
     );
   }
 }
 
-class BuildCartWidget extends StatelessWidget {
+class BuildCartWidget extends HookWidget {
   final CartModel cart;
   final int index;
 
@@ -63,7 +73,9 @@ class BuildCartWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final product = cart.product;
+    late final product = cart.product;
+    final quantity = useState<int>(cart.quantity);
+    final productPrice = product.price! * quantity.value;
 
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: AppSpaces.smallPadding),
@@ -121,13 +133,14 @@ class BuildCartWidget extends StatelessWidget {
                 children: [
                   //! product name
                   Text(
-                    cart.product.description ?? '',
-                    style: context.subTitle,
+                    cart.product.name ?? '',
+                    style: context.title,
                     maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
                   ),
                   5.verticalSpace,
                   Text(
-                    '\$${product.price} ',
+                    '\$$productPrice ',
                     style: context.title
                         .copyWith(color: ColorManager.primaryColor),
                   ).paddingOnly(right: AppSpaces.xSmallPadding),
@@ -142,7 +155,7 @@ class BuildCartWidget extends StatelessWidget {
               child: Container(
                 width: 40.w,
                 decoration: BoxDecoration(
-                  color: Colors.blueGrey.withOpacity(0.1),
+                  color: Colors.grey.withOpacity(0.1),
                   borderRadius:
                       BorderRadius.circular(AppRadius.baseContainerRadius),
                 ),
@@ -150,20 +163,28 @@ class BuildCartWidget extends StatelessWidget {
                   children: [
                     //! increase  quantity
                     IconButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        if (quantity.value < 10) {
+                          quantity.value++;
+                        }
+                      },
                       icon: const Icon(
                         Icons.add,
                         color: Colors.black,
                       ),
                     ),
                     //! quantity
-                    Text('${cart.quantity}',
+                    Text('${quantity.value}',
                         style: context.labelMedium.copyWith(
                             fontWeight: FontWeight.bold,
                             color: ColorManager.primaryColor)),
                     //! uncreased  quantity
                     IconButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        if (quantity.value > 1) {
+                          quantity.value--;
+                        }
+                      },
                       icon: const Icon(
                         Icons.remove,
                         color: Colors.black,
