@@ -1,7 +1,7 @@
 part of shared_widgets;
 
 class SinglePickImageWidget extends StatelessWidget {
-  final FilePickerResult? pickedResult;
+  final String? pickedResult;
   final String? networkImage;
 
   const SinglePickImageWidget({
@@ -19,8 +19,8 @@ class SinglePickImageWidget extends StatelessWidget {
       return const _PickImageButton();
     }
 
-    final pickResultIsNotNull =
-        pickedResult?.files != null && pickedResult!.files.isNotEmpty;
+    final pickResultIsNotNull = pickedResult != null;
+    // pickedResult?.files != null && pickedResult!.files.isNotEmpty;
 
     //! View Picked Image ========================================
     if (pickResultIsNotNull) {

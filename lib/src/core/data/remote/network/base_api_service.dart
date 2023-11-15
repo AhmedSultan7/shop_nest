@@ -6,7 +6,7 @@ abstract class BaseApiServices {
   Future<dynamic> postResponse(
     String url, {
     required Map<String, dynamic> data,
-    FilePickerResult? fileResult,
+    List<String>? fileResult,
     String? fieldName,
   });
 

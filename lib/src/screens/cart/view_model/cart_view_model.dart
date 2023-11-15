@@ -47,11 +47,21 @@ class CartVM extends ChangeNotifier {
     }
   }
 
-  //! delete Cart  ======================================
-
+  //! delete Product From Cart  ======================================
   Future<void> deleteFromCart({required int index}) async {
     await cartLocalRepository.deleteFromCart(index: index);
     getCart();
     notifyListeners();
+  }
+
+  //! Delete All Cart ===============================================
+  Future<void> clearCart() async {
+    try {
+      await cartLocalRepository.clearCart();
+      getCart();
+      notifyListeners();
+    } catch (e) {
+      Log.e(' Error when you try to delete cart ${e.toString()}');
+    }
   }
 }

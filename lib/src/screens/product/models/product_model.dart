@@ -6,7 +6,7 @@ class ProductModel {
   final int? id;
   final String? name;
   final String? description;
-  final int? price;
+  final num? price;
   final MainMediaModel? image;
 
   ProductModel({this.price, this.image, this.name, this.id, this.description});
@@ -47,6 +47,15 @@ class ProductModel {
       price: null,
       image: MainMediaModel.empty(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      if (id != null) ApiStrings.id: id,
+      if (name != null) ApiStrings.name: name,
+      if (description != null) ApiStrings.description: description,
+      if (price != null) ApiStrings.price: price,
+    };
   }
 
   Map toLocalJson() => {

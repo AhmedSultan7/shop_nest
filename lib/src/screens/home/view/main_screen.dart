@@ -1,13 +1,17 @@
 import 'package:cards_app/src/core/extensions/extensions.dart';
 import 'package:cards_app/src/core/shared_widgets/slider_drawer_widget/slider_drawer_widget.dart';
+import 'package:cards_app/src/screens/auth/model/user_model.dart';
+import 'package:cards_app/src/screens/auth/view_model/auth_view_model.dart';
 import 'package:cards_app/src/screens/cart/view/cart_screen.dart';
 import 'package:cards_app/src/screens/history/view/history_screen.dart';
+import 'package:cards_app/src/screens/home/view/seller/seller_home_screen.dart';
+import 'package:cards_app/src/screens/product/view/seller_products/seller_products_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../../core/shared_widgets/home_navigations/bottom_nav_bar_widget.dart';
 import '../view_model/bottom_nav_provider.dart';
-import 'home_page.dart';
+import 'buyer/buyer_home_screen.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -19,31 +23,22 @@ class MainScreen extends StatefulWidget {
 class _MainScreenState extends State<MainScreen> {
   @override
   Widget build(BuildContext context) {
-    return Selector<BottomNavbarVM, int>(
-      selector: (context, provider) => provider.currentIndex,
-      builder: (context, currentIndex, child) {
+    return Consumer2<BottomNavbarVM, AuthVM>(
+      builder: (context, bottomNavbarVM, authVM, child) {
+        final isBuyer = authVM.user.usertype == UserTypeEnum.buyer;
         return Scaffold(
           body: SliderDrawerWidget(
-            title: selectedTitle(currentIndex, context),
-            child: _SelectedScreen(
-              currentIndex: currentIndex,
-            ),
+            title: isBuyer
+                ? _buyerSelectedTitle(bottomNavbarVM.currentIndex, context)
+                : _sellerSelectedTitle(bottomNavbarVM.currentIndex, context),
+            child: isBuyer
+                ? _BuyerSelectedScreen(
+                    currentIndex: bottomNavbarVM.currentIndex,
+                  )
+                : _SellerSelectedScreen(
+                    currentIndex: bottomNavbarVM.currentIndex,
+                  ),
           ),
-          // SliderDrawer(
-          //   isDraggable: true,
-          //   slideDirection: SlideDirection.TOP_TO_BOTTOM,
-          //   key: drawerKey,
-          //   appBar: SliderAppBar(
-          //     title: Text(
-          //       selectedTitle(currentIndex, context),
-          //       style: context.title,
-          //     ),
-          //   ),
-          //   slider: const HomeDrawer(),
-          //   child: _SelectedScreen(
-          //     currentIndex: currentIndex,
-          //   ),
-          // ),
           bottomNavigationBar: const BottomNavBarWidget(),
         );
       },
@@ -51,7 +46,28 @@ class _MainScreenState extends State<MainScreen> {
   }
 }
 
-String selectedTitle(int currentIndex, BuildContext context) {
+// * Buyer ==================================================
+class _BuyerSelectedScreen extends StatelessWidget {
+  final int currentIndex;
+
+  const _BuyerSelectedScreen({Key? key, required this.currentIndex})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    switch (currentIndex) {
+      case 0:
+        return const BuyerHomeScreen();
+      case 1:
+        return const CartScreen();
+      case 2:
+        return const HistoryScreen();
+    }
+    return const SizedBox.shrink();
+  }
+}
+
+String _buyerSelectedTitle(int currentIndex, BuildContext context) {
   switch (currentIndex) {
     case 0:
       return context.tr.home;
@@ -63,22 +79,32 @@ String selectedTitle(int currentIndex, BuildContext context) {
   return context.tr.home;
 }
 
-class _SelectedScreen extends StatelessWidget {
+// * Seller ==================================================
+class _SellerSelectedScreen extends StatelessWidget {
   final int currentIndex;
 
-  const _SelectedScreen({Key? key, required this.currentIndex})
+  const _SellerSelectedScreen({Key? key, required this.currentIndex})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     switch (currentIndex) {
       case 0:
-        return const HomePage();
+        return const SellerOrderScreen();
       case 1:
-        return const CartScreen();
+        return const SellerProductsScreen();
       case 2:
-        return const HistoryScreen();
     }
     return const SizedBox.shrink();
   }
+}
+
+String _sellerSelectedTitle(int currentIndex, BuildContext context) {
+  switch (currentIndex) {
+    case 0:
+      return context.tr.orders;
+    case 1:
+      return context.tr.yourProducts;
+  }
+  return context.tr.orders;
 }

@@ -24,13 +24,15 @@ class AddProductWidget extends StatelessWidget {
             //! Image
             Center(
               child: SinglePickImageWidget(
-                pickedResult: mediaVM.filePickerResult,
+                pickedResult: mediaVM.filesPaths.firstOrNull,
+                networkImage: product.image?.url,
               ),
             ),
             context.xlLargeGap,
             //! Name Field ---------------
             BaseTextField(
               controller: controllers[ApiStrings.name],
+              textInputType: TextInputType.name,
               title: context.tr.name,
             ),
 
@@ -40,6 +42,7 @@ class AddProductWidget extends StatelessWidget {
             BaseTextField(
               controller: controllers[ApiStrings.description],
               title: context.tr.description,
+              textInputType: TextInputType.text,
               maxLines: 4,
             ),
 
@@ -47,9 +50,10 @@ class AddProductWidget extends StatelessWidget {
 
             //! Price Field ---------------
             SizedBox(
-              width: 100.w,
+              width: 130.w,
               child: BaseTextField(
                 controller: controllers[ApiStrings.price],
+                textInputType: TextInputType.number,
                 title: context.tr.price,
               ),
             ),

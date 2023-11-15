@@ -1,14 +1,16 @@
 import 'package:cards_app/src/core/extensions/extensions.dart';
 import 'package:cards_app/src/core/resources/app_spaces.dart';
+import 'package:cards_app/src/core/resources/theme/theme.dart';
 import 'package:cards_app/src/core/shared_widgets/shared_widgets.dart';
+import 'package:cards_app/src/screens/product/view/product_screen/widgets/products_screen.dart';
 import 'package:cards_app/src/screens/product/view_model/product_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../../product/view/product_screen/widgets/product_card.dart';
+import 'product_card.dart';
 
-class ProductsGridView extends StatelessWidget {
-  const ProductsGridView({super.key});
+class HomeProductsGridView extends StatelessWidget {
+  const HomeProductsGridView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -26,12 +28,16 @@ class ProductsGridView extends StatelessWidget {
                   context.tr.products,
                   style: context.headLine,
                 ),
-                // const Spacer(),
-                // IconButton(
-                //     onPressed: () {
-                //       context.to(AddProductScreen());
-                //     },
-                //     icon: const Icon(Icons.add)),
+                const Spacer(),
+                TextButton(
+                    onPressed: () {
+                      context.to(const ProductsScreen());
+                    },
+                    child: Text(
+                      context.tr.seeAll,
+                      style: context.labelLarge
+                          .copyWith(color: ColorManager.primaryColor),
+                    )),
               ],
             ),
             context.mediumGap,

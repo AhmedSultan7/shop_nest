@@ -1,7 +1,7 @@
 part of shared_widgets;
 
 class _ViewPickedImage extends StatelessWidget {
-  final FilePickerResult pickedResult;
+  final String? pickedResult;
 
   const _ViewPickedImage({required this.pickedResult});
 
@@ -19,7 +19,7 @@ class _ViewPickedImage extends StatelessWidget {
           child: ClipRRect(
             borderRadius: BorderRadius.circular(15),
             child: Image.file(
-              File(pickedResult.files.first.path!),
+              File(pickedResult!),
               fit: BoxFit.cover,
             ),
           ),

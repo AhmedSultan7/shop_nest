@@ -539,6 +539,76 @@ class S {
       args: [],
     );
   }
+
+  /// `حذف السلة`
+  String get deleteCart {
+    return Intl.message(
+      'حذف السلة',
+      name: 'deleteCart',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `عرض الكل`
+  String get seeAll {
+    return Intl.message(
+      'عرض الكل',
+      name: 'seeAll',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `منتجاتك`
+  String get yourProducts {
+    return Intl.message(
+      'منتجاتك',
+      name: 'yourProducts',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `الطلبات`
+  String get orders {
+    return Intl.message(
+      'الطلبات',
+      name: 'orders',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please pick an image`
+  String get pleasePickImage {
+    return Intl.message(
+      'Please pick an image',
+      name: 'pleasePickImage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Max upload images is only 4`
+  String get maxUploadFilesIsOnly4 {
+    return Intl.message(
+      'Max upload images is only 4',
+      name: 'maxUploadFilesIsOnly4',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Max upload image size is only 5 MB`
+  String get maxUploadFileSizeIsOnly5MB {
+    return Intl.message(
+      'Max upload image size is only 5 MB',
+      name: 'maxUploadFileSizeIsOnly5MB',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

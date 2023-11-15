@@ -29,8 +29,8 @@ class CartScreen extends HookWidget {
     return Consumer<CartVM>(
       builder: (context, cartVM, child) {
         final cartData = cartVM.cartList;
-        final totalPrice = cartData.fold(0,
-            (previousValue, element) => previousValue + element.product.price!);
+        // final totalPrice = cartData.fold(0,
+        //     (previousValue, element) => previousValue + element.product.price!);
         if (cartData.isEmpty) {
           return Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -54,10 +54,10 @@ class CartScreen extends HookWidget {
                 separatorBuilder: (context, index) => context.mediumGap,
                 itemCount: cartData.length),
             context.largeGap,
-            Text(
-              totalPrice.toString(),
-              style: context.headLine,
-            )
+            // Text(
+            //   ca.toString(),
+            //   style: context.headLine,
+            // )
           ],
         );
       },

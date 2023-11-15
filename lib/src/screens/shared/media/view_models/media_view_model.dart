@@ -10,15 +10,20 @@ class MediaVM extends ChangeNotifier {
 
   FilePickerResult? _filePickerResult;
 
-  FilePickerResult? get filePickerResult => _filePickerResult;
+  List<String> get filesPaths =>
+      _filePickerResult?.paths.map((e) => e ?? '').toList() ?? [];
 
-  Future<FilePickerResult?> pickFile({
+  Future<FilePickerResult?> pickFile(
+    BuildContext context, {
     bool imageUpload = true,
     bool allowMultiple = false,
+    int oldFilesLength = 0,
   }) async {
     try {
-      final pickedFiles = await _mediaRepo.pickFiles(
-          imageUpload: imageUpload, uploadMultiple: allowMultiple);
+      final pickedFiles = await _mediaRepo.pickFiles(context,
+          imageUpload: imageUpload,
+          uploadMultiple: allowMultiple,
+          oldFilesLength: oldFilesLength);
 
       if (pickedFiles == null) return null;
 

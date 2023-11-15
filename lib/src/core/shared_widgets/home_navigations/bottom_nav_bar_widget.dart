@@ -3,6 +3,8 @@ import 'package:cards_app/generated/assets.dart';
 import 'package:cards_app/src/core/extensions/extensions.dart';
 import 'package:cards_app/src/core/resources/theme/theme.dart';
 import 'package:cards_app/src/core/shared_widgets/icon_widget/icon_widget.dart';
+import 'package:cards_app/src/screens/auth/model/user_model.dart';
+import 'package:cards_app/src/screens/auth/view_model/auth_view_model.dart';
 import 'package:cards_app/src/screens/cart/view_model/cart_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -15,66 +17,137 @@ class BottomNavBarWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer2<BottomNavbarVM, CartVM>(
-      builder: (context, bottomNavbarVM, cartVM, child) {
+    return Consumer3<BottomNavbarVM, CartVM, AuthVM>(
+      builder: (context, bottomNavbarVM, cartVM, authVM, child) {
         final counter = cartVM.counter;
-
-        return BottomNavigationBar(
-          selectedLabelStyle: const TextStyle(
-              fontSize: 15,
-              fontWeight: FontWeight.bold,
-              color: ColorManager.primaryColor),
-          unselectedLabelStyle: const TextStyle(
-            fontSize: 12,
-          ),
-          type: BottomNavigationBarType.fixed,
-          selectedItemColor: ColorManager.primaryColor,
-
-          elevation: 0,
-          backgroundColor: ColorManager.backgroundColor,
-          unselectedItemColor: Theme.of(context).focusColor.withOpacity(1),
-          currentIndex: bottomNavbarVM.currentIndex,
-          // widget.currentTab,
-          onTap: (index) {
-            bottomNavbarVM.setCurrentIndex(index);
-          },
-          // this will be set when a new tab is tapped
-          items: [
-            BottomNavigationBarItem(
-              icon: IconWidget(
-                  color: bottomNavbarVM.currentIndex == 0
-                      ? ColorManager.primaryColor
-                      : ColorManager.black,
-                  icon: Assets.iconsHome),
-              label: context.tr.home,
-            ),
-            BottomNavigationBarItem(
-              icon: badges.Badge(
-                showBadge: counter == 0 ? false : true,
-                position: badges.BadgePosition.topStart(top: -10.h),
-                badgeContent: Text(
-                  counter.toString(),
-                  style: context.whiteHint,
-                ),
-                child: IconWidget(
-                    color: bottomNavbarVM.currentIndex == 1
-                        ? ColorManager.primaryColor
-                        : ColorManager.black,
-                    icon: Assets.iconsCart),
-              ),
-              label: context.tr.cart,
-            ),
-            BottomNavigationBarItem(
-              icon: IconWidget(
-                  color: bottomNavbarVM.currentIndex == 2
-                      ? ColorManager.primaryColor
-                      : ColorManager.black,
-                  icon: Assets.iconsHistory),
-              label: context.tr.history,
-            ),
-          ],
-        );
+        if (authVM.user.usertype == UserTypeEnum.buyer) {
+          return _BuyerBottomNavbar(
+            bottomNavbarVM: bottomNavbarVM,
+            counter: counter,
+          );
+        }
+        return _SellerBottomNavbar(bottomNavbarVM: bottomNavbarVM);
       },
+    );
+  }
+}
+
+// * Buyer BottomNavbar ==================================================
+class _BuyerBottomNavbar extends StatelessWidget {
+  final BottomNavbarVM bottomNavbarVM;
+  final int counter;
+
+  const _BuyerBottomNavbar(
+      {required this.bottomNavbarVM, required this.counter});
+
+  @override
+  Widget build(BuildContext context) {
+    return BottomNavigationBar(
+      selectedLabelStyle: const TextStyle(
+          fontSize: 15,
+          fontWeight: FontWeight.bold,
+          color: ColorManager.primaryColor),
+      unselectedLabelStyle: const TextStyle(
+        fontSize: 12,
+      ),
+      type: BottomNavigationBarType.fixed,
+      selectedItemColor: ColorManager.primaryColor,
+
+      elevation: 0,
+      backgroundColor: ColorManager.backgroundColor,
+      unselectedItemColor: Theme.of(context).focusColor.withOpacity(1),
+      currentIndex: bottomNavbarVM.currentIndex,
+      // widget.currentTab,
+      onTap: (index) {
+        bottomNavbarVM.setCurrentIndex(index);
+      },
+      // this will be set when a new tab is tapped
+      items: [
+        BottomNavigationBarItem(
+          icon: IconWidget(
+              color: bottomNavbarVM.currentIndex == 0
+                  ? ColorManager.primaryColor
+                  : ColorManager.black,
+              icon: Assets.iconsHome),
+          label: context.tr.home,
+        ),
+        BottomNavigationBarItem(
+          icon: badges.Badge(
+            showBadge: counter == 0 ? false : true,
+            position: badges.BadgePosition.topStart(top: -10.h),
+            badgeContent: Text(
+              counter.toString(),
+              style: context.whiteHint,
+            ),
+            child: IconWidget(
+                color: bottomNavbarVM.currentIndex == 1
+                    ? ColorManager.primaryColor
+                    : ColorManager.black,
+                icon: Assets.iconsCart),
+          ),
+          label: context.tr.cart,
+        ),
+        BottomNavigationBarItem(
+          icon: IconWidget(
+              color: bottomNavbarVM.currentIndex == 2
+                  ? ColorManager.primaryColor
+                  : ColorManager.black,
+              icon: Assets.iconsHistory),
+          label: context.tr.history,
+        ),
+      ],
+    );
+  }
+}
+
+// * Seller BottomNavbar ==================================================
+class _SellerBottomNavbar extends StatelessWidget {
+  final BottomNavbarVM bottomNavbarVM;
+
+  const _SellerBottomNavbar({
+    required this.bottomNavbarVM,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return BottomNavigationBar(
+      selectedLabelStyle: const TextStyle(
+          fontSize: 15,
+          fontWeight: FontWeight.bold,
+          color: ColorManager.primaryColor),
+      unselectedLabelStyle: const TextStyle(
+        fontSize: 12,
+      ),
+      type: BottomNavigationBarType.fixed,
+      selectedItemColor: ColorManager.primaryColor,
+
+      elevation: 0,
+      backgroundColor: ColorManager.backgroundColor,
+      unselectedItemColor: Theme.of(context).focusColor.withOpacity(1),
+      currentIndex: bottomNavbarVM.currentIndex,
+      // widget.currentTab,
+      onTap: (index) {
+        bottomNavbarVM.setCurrentIndex(index);
+      },
+      // this will be set when a new tab is tapped
+      items: [
+        BottomNavigationBarItem(
+          icon: IconWidget(
+              color: bottomNavbarVM.currentIndex == 0
+                  ? ColorManager.primaryColor
+                  : ColorManager.black,
+              icon: Assets.iconsOrder),
+          label: context.tr.orders,
+        ),
+        BottomNavigationBarItem(
+          icon: IconWidget(
+              color: bottomNavbarVM.currentIndex == 1
+                  ? ColorManager.primaryColor
+                  : ColorManager.black,
+              icon: Assets.iconsProduct),
+          label: context.tr.yourProducts,
+        ),
+      ],
     );
   }
 }

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../core/shared_widgets/shared_widgets.dart';
+import '../../../../../../core/shared_widgets/shared_widgets.dart';
 
 class HomeSearch extends StatelessWidget {
   const HomeSearch({super.key});

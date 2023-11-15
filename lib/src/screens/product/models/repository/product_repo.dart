@@ -27,4 +27,21 @@ class ProductRepo {
       rethrow;
     }
   }
+
+  //! Add Products ===================================
+  Future<void> addProduct({
+    required ProductModel product,
+    required String? pickedImage,
+  }) async {
+    try {
+      await _networkApiServices.postResponse(ApiEndPoints.products,
+          fileResult: [pickedImage ?? ''],
+          fieldName: ApiStrings.image,
+          data: product.toJson());
+    } on FetchDataException {
+      rethrow;
+    } on TimeoutException {
+      rethrow;
+    }
+  }
 }

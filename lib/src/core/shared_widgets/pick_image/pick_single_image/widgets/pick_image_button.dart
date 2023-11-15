@@ -1,13 +1,17 @@
 part of shared_widgets;
 
 class _PickImageButton extends StatelessWidget {
-  const _PickImageButton();
+  final int oldFilesLength;
+
+  const _PickImageButton({this.oldFilesLength = 0});
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       borderRadius: BorderRadius.circular(20),
-      onTap: () => context.read<MediaVM>().pickFile(),
+      onTap: () => context
+          .read<MediaVM>()
+          .pickFile(context, oldFilesLength: oldFilesLength),
       child: Container(
         height: 120.h,
         width: 150.w,

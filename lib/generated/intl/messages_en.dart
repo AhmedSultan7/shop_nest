@@ -39,6 +39,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "clickToBrowse":
             MessageLookupByLibrary.simpleMessage("انقر لإختيار صورة"),
         "contactUs": MessageLookupByLibrary.simpleMessage("تواصل معنا"),
+        "deleteCart": MessageLookupByLibrary.simpleMessage("حذف السلة"),
         "deleteFromCart": MessageLookupByLibrary.simpleMessage("حذف من السلة"),
         "description": MessageLookupByLibrary.simpleMessage("الوصف"),
         "dontHaveAnAccount":
@@ -63,9 +64,14 @@ class MessageLookup extends MessageLookupByLibrary {
         "loginSuccessfully":
             MessageLookupByLibrary.simpleMessage("تم تسجيل الدخول بنجاح"),
         "logout": MessageLookupByLibrary.simpleMessage("تسجيل الخروج"),
+        "maxUploadFileSizeIsOnly5MB": MessageLookupByLibrary.simpleMessage(
+            "Max upload image size is only 5 MB"),
+        "maxUploadFilesIsOnly4":
+            MessageLookupByLibrary.simpleMessage("Max upload images is only 4"),
         "name": MessageLookupByLibrary.simpleMessage("الاسم"),
         "noHistory":
             MessageLookupByLibrary.simpleMessage("لا يوجد طلبات سابقة"),
+        "orders": MessageLookupByLibrary.simpleMessage("الطلبات"),
         "password": MessageLookupByLibrary.simpleMessage("كلمة المرور"),
         "passwordMustContain8Characters": MessageLookupByLibrary.simpleMessage(
             "يجب أن تحتوي كلمة المرور على 8 أحرف"),
@@ -73,11 +79,14 @@ class MessageLookup extends MessageLookupByLibrary {
             "الرجاء إدخال البريد الإلكتروني الصحيح"),
         "pleaseEnterYourUserName":
             MessageLookupByLibrary.simpleMessage("الرجاء إدخال الأسم"),
+        "pleasePickImage":
+            MessageLookupByLibrary.simpleMessage("Please pick an image"),
         "policy": MessageLookupByLibrary.simpleMessage("سياسة الخصوصية"),
         "price": MessageLookupByLibrary.simpleMessage("السعر :"),
         "products": MessageLookupByLibrary.simpleMessage("المنتجات"),
         "requiredField": MessageLookupByLibrary.simpleMessage("حقل مطلوب"),
         "search": MessageLookupByLibrary.simpleMessage("بحث"),
+        "seeAll": MessageLookupByLibrary.simpleMessage("عرض الكل"),
         "seller": MessageLookupByLibrary.simpleMessage("بائع"),
         "settings": MessageLookupByLibrary.simpleMessage("الإعدادات"),
         "signup": MessageLookupByLibrary.simpleMessage("إنشاء حساب"),
@@ -87,6 +96,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "terms": MessageLookupByLibrary.simpleMessage("الشروط والأحكام"),
         "termsAndCondition":
             MessageLookupByLibrary.simpleMessage("الشروط و الأحكام"),
-        "userType": MessageLookupByLibrary.simpleMessage("نوع المستخدم")
+        "userType": MessageLookupByLibrary.simpleMessage("نوع المستخدم"),
+        "yourProducts": MessageLookupByLibrary.simpleMessage("منتجاتك")
       };
 }

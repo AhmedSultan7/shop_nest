@@ -41,4 +41,13 @@ class CartLocalRepository {
       Log.e(' Cart repo delete error${e.toString()}');
     }
   }
+
+//! Delete All Cart ===============================================
+  Future<void> clearCart() async {
+    try {
+      await hiveHelper.clear(_cartHiveKey);
+    } catch (e) {
+      Log.e(' Error when you try to delete cart ${e.toString()}');
+    }
+  }
 }

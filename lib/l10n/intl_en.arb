@@ -47,5 +47,12 @@
   "emailOrUsernameAreAlreadyTaken": "البريد الإلكتروني أو اسم المستخدم تم إستخدامة من قبل بالفعل",
   "logout": "تسجيل الخروج",
   "editProfile": "تعديل الملف الشخصي",
-  "enterValidEmail": "الرجاء إدخال بريد إلكتروني صحيح"
+  "enterValidEmail": "الرجاء إدخال بريد إلكتروني صحيح",
+  "deleteCart": "حذف السلة",
+  "seeAll": "عرض الكل",
+  "yourProducts": "منتجاتك",
+  "orders": "الطلبات",
+  "pleasePickImage": "Please pick an image",
+  "maxUploadFilesIsOnly4": "Max upload images is only 4",
+  "maxUploadFileSizeIsOnly5MB": "Max upload image size is only 5 MB"
 }

@@ -5,7 +5,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../../../../core/resources/theme/theme.dart';
+import '../../../../../../core/resources/theme/theme.dart';
 
 class HomeSlider extends StatelessWidget {
   const HomeSlider({super.key});

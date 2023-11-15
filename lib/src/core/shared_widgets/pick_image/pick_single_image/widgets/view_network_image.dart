@@ -38,7 +38,7 @@ class _EditButton extends StatelessWidget {
         maxRadius: 20,
         backgroundColor: ColorManager.primaryColor.withOpacity(0.8),
         child: IconButton(
-            onPressed: () => context.read<MediaVM>().pickFile(),
+            onPressed: () => context.read<MediaVM>().pickFile(context),
             icon: const BaseLottieIcon(
               Assets.animationEdit,
               height: AppSpaces.iconSize,
