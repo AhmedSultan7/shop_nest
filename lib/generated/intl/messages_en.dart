@@ -30,6 +30,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "add": MessageLookupByLibrary.simpleMessage("أضافة"),
         "addProduct": MessageLookupByLibrary.simpleMessage("أضافة منتج"),
         "addToCart": MessageLookupByLibrary.simpleMessage("إضافة إلي السلة"),
+        "areYouSureYouWantToCancelThisOrderOf":
+            MessageLookupByLibrary.simpleMessage(
+                "هل أنت متأكد أنك تريد إلغاء هذا الطلب من العميل ؟"),
         "buyNow": MessageLookupByLibrary.simpleMessage("اشتري الآن"),
         "buyer": MessageLookupByLibrary.simpleMessage("مشتري"),
         "cart": MessageLookupByLibrary.simpleMessage("سلة المنتجات"),
@@ -38,10 +41,15 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("برجاء إختيار نوع المستخدم"),
         "clickToBrowse":
             MessageLookupByLibrary.simpleMessage("انقر لإختيار صورة"),
+        "confirmation": MessageLookupByLibrary.simpleMessage("تأكيد"),
         "contactUs": MessageLookupByLibrary.simpleMessage("تواصل معنا"),
         "deleteCart": MessageLookupByLibrary.simpleMessage("حذف السلة"),
         "deleteFromCart": MessageLookupByLibrary.simpleMessage("حذف من السلة"),
+        "deleteProductConfirmationMessage":
+            MessageLookupByLibrary.simpleMessage(
+                "هل أنت متأكد أنك تريد حذف هذه المنتج ؟"),
         "description": MessageLookupByLibrary.simpleMessage("الوصف"),
+        "dismiss": MessageLookupByLibrary.simpleMessage("تجاهل"),
         "dontHaveAnAccount":
             MessageLookupByLibrary.simpleMessage("ليس لديك حساب ؟"),
         "edit": MessageLookupByLibrary.simpleMessage("تعديل"),

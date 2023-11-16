@@ -26,11 +26,25 @@ class AddProductScreen extends HookWidget {
       ApiStrings.price:
           useTextEditingController(text: product?.price.toString()),
     };
-
+    final formKey = useState(GlobalKey<FormState>());
     final productVM = context.read<ProductVM>();
     final mediaVM = context.read<MediaVM>();
-    final formKey = useState(GlobalKey<FormState>());
+    final isEdit = product != null;
 
+    void addOrEditProduct() {
+      if (isEdit) {
+        productVM.editProduct(context,
+            controllers: fieldsControllers,
+            id: product!.id!,
+            fileResult: mediaVM.filesPaths);
+      } else {
+        productVM.addProduct(context,
+            controllers: fieldsControllers,
+            pickedImage: mediaVM.filesPaths.first);
+      }
+    }
+
+    //! ==============================
     void validateAndAddEditCategory() async {
       if (mediaVM.filesPaths.isEmpty) {
         context.showBarMessage(
@@ -42,16 +56,14 @@ class AddProductScreen extends HookWidget {
 
       if (!formKey.value.currentState!.validate()) return;
 
-      productVM.addProduct(context,
-          controllers: fieldsControllers,
-          pickedImage: mediaVM.filesPaths.first);
+      addOrEditProduct();
     }
 
     return Form(
       key: formKey.value,
       child: Scaffold(
         appBar: MainAppBar(
-          title: context.tr.addProduct,
+          title: isEdit ? context.tr.edit : context.tr.addProduct,
         ),
         body: Consumer<ProductVM>(
           builder: (context, productVM, child) {
@@ -64,7 +76,7 @@ class AddProductScreen extends HookWidget {
                 ),
                 context.xlLargeGap,
                 Button(
-                    label: context.tr.add,
+                    label: isEdit ? context.tr.edit : context.tr.add,
                     isLoading: productVM.isLoading,
                     onPressed: () {
                       validateAndAddEditCategory();

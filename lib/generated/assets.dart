@@ -2,7 +2,9 @@
 class Assets {
   Assets._();
 
+  static const String animationAlert = 'assets/animation/alert.json';
   static const String animationCart = 'assets/animation/cart.json';
+  static const String animationDelete = 'assets/animation/delete.json';
   static const String animationEdit = 'assets/animation/edit.json';
   static const String animationLogin = 'assets/animation/login.json';
   static const String animationNoHistory = 'assets/animation/NoHistory.json';

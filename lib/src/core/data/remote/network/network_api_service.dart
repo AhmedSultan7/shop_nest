@@ -151,7 +151,7 @@ class NetworkApiService extends BaseApiServices {
   Future putResponse(
     String url, {
     required Map<String, dynamic> data,
-    FilePickerResult? fileResult,
+    List<String>? fileResult,
     String? fieldName,
     int? id,
   }) async {

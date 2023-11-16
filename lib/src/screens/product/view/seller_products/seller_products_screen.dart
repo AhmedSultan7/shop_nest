@@ -1,4 +1,3 @@
-import 'package:cards_app/src/core/extensions/extensions.dart';
 import 'package:cards_app/src/core/resources/app_spaces.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -34,7 +33,10 @@ class SellerProductsScreen extends HookWidget {
               return const LoadingWidget();
             }
             return GridView.builder(
-              padding: const EdgeInsets.only(bottom: AppSpaces.defaultPadding),
+              padding: const EdgeInsets.only(
+                  bottom: AppSpaces.defaultPadding,
+                  left: AppSpaces.defaultPadding,
+                  right: AppSpaces.defaultPadding),
               physics: const NeverScrollableScrollPhysics(),
               shrinkWrap: true,
               itemCount: productVM.products.length,
@@ -47,7 +49,7 @@ class SellerProductsScreen extends HookWidget {
               itemBuilder: (_, index) => ProductCardWidget(
                 product: productVM.products[index],
               ),
-            ).paddingAll(AppSpaces.defaultPadding);
+            );
           },
         ),
       ],

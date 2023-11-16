@@ -68,4 +68,57 @@ class ProductVM extends ChangeNotifier {
       isLoading = false;
     }
   }
+
+  //! Edit Product ===================================
+  Future<void> editProduct(BuildContext context,
+      {required Map<String, TextEditingController> controllers,
+      required int id,
+      List<String>? fileResult}) async {
+    try {
+      isLoading = true;
+      final product = ProductModel(
+        name: controllers[ApiStrings.name]!.text,
+        description: controllers[ApiStrings.description]!.text,
+        price: num.tryParse(controllers[ApiStrings.price]!.text),
+      );
+      await _productRepo.editProduct(
+        product: product,
+        fileResult: fileResult,
+      );
+      getProducts();
+      if (context.mounted) {
+        context.back();
+        context.showFlushBar(type: FlushBarType.add);
+      }
+      isLoading = false;
+    } on FetchDataException catch (e) {
+      Log.e('Fetch Data Exception ${e.toString()}');
+      isLoading = false;
+    } on SocketException {
+      isLoading = false;
+    } on TimeoutException {
+      isLoading = false;
+    }
+  }
+
+  //! Delete Products ===================================
+  Future<void> deleteProduct(BuildContext context, {required int id}) async {
+    try {
+      isLoading = true;
+      await _productRepo.deleteProduct(id: id);
+      getProducts();
+      if (context.mounted) {
+        context.back();
+        context.showFlushBar(type: FlushBarType.delete);
+      }
+      isLoading = false;
+    } on FetchDataException catch (e) {
+      Log.e('Fetch Data Exception ${e.toString()}');
+      isLoading = false;
+    } on SocketException {
+      isLoading = false;
+    } on TimeoutException {
+      isLoading = false;
+    }
+  }
 }

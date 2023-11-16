@@ -1,5 +1,3 @@
-import 'package:file_picker/file_picker.dart';
-
 abstract class BaseApiServices {
   Future<dynamic> getResponse(String url);
 
@@ -13,7 +11,7 @@ abstract class BaseApiServices {
   Future<dynamic> putResponse(
     String url, {
     required Map<String, dynamic> data,
-    FilePickerResult? fileResult,
+    List<String>? fileResult,
     String? fieldName,
     int? id,
   });

@@ -590,6 +590,16 @@ class S {
     );
   }
 
+  /// `تأكيد`
+  String get confirmation {
+    return Intl.message(
+      'تأكيد',
+      name: 'confirmation',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Max upload images is only 4`
   String get maxUploadFilesIsOnly4 {
     return Intl.message(
@@ -605,6 +615,36 @@ class S {
     return Intl.message(
       'Max upload image size is only 5 MB',
       name: 'maxUploadFileSizeIsOnly5MB',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `هل أنت متأكد أنك تريد حذف هذه المنتج ؟`
+  String get deleteProductConfirmationMessage {
+    return Intl.message(
+      'هل أنت متأكد أنك تريد حذف هذه المنتج ؟',
+      name: 'deleteProductConfirmationMessage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `هل أنت متأكد أنك تريد إلغاء هذا الطلب من العميل ؟`
+  String get areYouSureYouWantToCancelThisOrderOf {
+    return Intl.message(
+      'هل أنت متأكد أنك تريد إلغاء هذا الطلب من العميل ؟',
+      name: 'areYouSureYouWantToCancelThisOrderOf',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `تجاهل`
+  String get dismiss {
+    return Intl.message(
+      'تجاهل',
+      name: 'dismiss',
       desc: '',
       args: [],
     );
