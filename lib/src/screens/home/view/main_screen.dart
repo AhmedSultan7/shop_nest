@@ -1,14 +1,18 @@
 import 'package:cards_app/src/core/extensions/extensions.dart';
+import 'package:cards_app/src/core/resources/app_spaces.dart';
 import 'package:cards_app/src/core/shared_widgets/slider_drawer_widget/slider_drawer_widget.dart';
 import 'package:cards_app/src/screens/auth/model/user_model.dart';
 import 'package:cards_app/src/screens/auth/view_model/auth_view_model.dart';
 import 'package:cards_app/src/screens/cart/view/cart_screen.dart';
 import 'package:cards_app/src/screens/history/view/history_screen.dart';
 import 'package:cards_app/src/screens/home/view/seller/seller_home_screen.dart';
+import 'package:cards_app/src/screens/product/view/add_products/add_product.dart';
 import 'package:cards_app/src/screens/product/view/seller_products/seller_products_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
+import '../../../core/resources/theme/theme.dart';
 import '../../../core/shared_widgets/home_navigations/bottom_nav_bar_widget.dart';
 import '../view_model/bottom_nav_provider.dart';
 import 'buyer/buyer_home_screen.dart';
@@ -40,35 +44,33 @@ class _MainScreenState extends State<MainScreen> {
                   ),
           ),
           bottomNavigationBar: const BottomNavBarWidget(),
-
-          //
-          // floatingActionButtonLocation:
-          // FloatingActionButtonLocation.miniCenterDocked,
-          // floatingActionButton: SizedBox(
-          //   width: 100.w,
-          //   child: FloatingActionButton(
-          //     backgroundColor: ColorManager.primaryColor,
-          //     child: Row(
-          //       mainAxisAlignment: MainAxisAlignment.center,
-          //       children: [
-          //         Text(context.tr.addProduct, style: context.whiteLabelLarge),
-          //         const Icon(Icons.add, color: Colors.white),
-          //       ],
-          //     ),
-          //     onPressed: () {
-          //       showModalBottomSheet(
-          //           isScrollControlled: true,
-          //           context: context,
-          //           builder: (context) => Container(
-          //             margin:
-          //             const EdgeInsets.all(AppSpaces.defaultPadding),
-          //             height: MediaQuery.of(context).size.height * 0.75,
-          //             child: const AddProductScreen(),
-          //           ));
-          //     },
-          //   ),
-          // ),
-          // floatingActionButtonAnimator: FloatingActionButtonAnimator.scaling,
+          floatingActionButtonLocation:
+              FloatingActionButtonLocation.miniCenterDocked,
+          floatingActionButton: SizedBox(
+            width: 100.w,
+            child: FloatingActionButton(
+              backgroundColor: ColorManager.primaryColor,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(context.tr.addProduct, style: context.whiteLabelLarge),
+                  const Icon(Icons.add, color: Colors.white),
+                ],
+              ),
+              onPressed: () {
+                showModalBottomSheet(
+                    isScrollControlled: true,
+                    context: context,
+                    builder: (context) => Container(
+                          margin:
+                              const EdgeInsets.all(AppSpaces.defaultPadding),
+                          height: MediaQuery.of(context).size.height * 0.75,
+                          child: const AddProductScreen(),
+                        ));
+              },
+            ),
+          ),
+          floatingActionButtonAnimator: FloatingActionButtonAnimator.scaling,
         );
       },
     );

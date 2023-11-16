@@ -10,7 +10,7 @@ class ApiEndPoints {
   static const String register = "/auth/local/register";
   static const String login = "/auth/local";
   static const String products = "/products$populate";
-  static const String deleteProduct = "/products";
+  static const String crudProduct = "/products";
   static const String sliders = "/sliders$populate";
   static const String setting = "/setting$populate";
   static const String user = "/users";

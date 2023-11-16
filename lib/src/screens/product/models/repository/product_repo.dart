@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:developer';
 
 import 'package:cards_app/src/core/data/remote/app_exception.dart';
 import 'package:cards_app/src/core/data/remote/network/base_api_service.dart';
@@ -51,8 +50,7 @@ class ProductRepo {
       {required ProductModel product,
       required List<String>? fileResult}) async {
     try {
-      log('dsbhdvb');
-      await _networkApiServices.putResponse(ApiEndPoints.products,
+      await _networkApiServices.putResponse(ApiEndPoints.crudProduct,
           fieldName: ApiStrings.image,
           fileResult: fileResult,
           data: product.toJson());
@@ -67,7 +65,7 @@ class ProductRepo {
   Future<void> deleteProduct({required int id}) async {
     try {
       await _networkApiServices
-          .deleteResponse('${ApiEndPoints.deleteProduct}/$id');
+          .deleteResponse('${ApiEndPoints.crudProduct}/$id');
     } on FetchDataException {
       rethrow;
     } on TimeoutException {

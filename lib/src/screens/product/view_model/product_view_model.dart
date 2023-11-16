@@ -77,6 +77,7 @@ class ProductVM extends ChangeNotifier {
     try {
       isLoading = true;
       final product = ProductModel(
+        id: id,
         name: controllers[ApiStrings.name]!.text,
         description: controllers[ApiStrings.description]!.text,
         price: num.tryParse(controllers[ApiStrings.price]!.text),
@@ -88,7 +89,7 @@ class ProductVM extends ChangeNotifier {
       getProducts();
       if (context.mounted) {
         context.back();
-        context.showFlushBar(type: FlushBarType.add);
+        context.showFlushBar(type: FlushBarType.update);
       }
       isLoading = false;
     } on FetchDataException catch (e) {

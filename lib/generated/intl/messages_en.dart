@@ -27,8 +27,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "يرجى التحقق من البريد الإلكتروني وكلمة المرور الخاصة بك"),
         "aboutUS": MessageLookupByLibrary.simpleMessage("من نحن"),
         "aboutUs": MessageLookupByLibrary.simpleMessage("من نحن"),
-        "add": MessageLookupByLibrary.simpleMessage("أضافة"),
-        "addProduct": MessageLookupByLibrary.simpleMessage("أضافة منتج"),
+        "add": MessageLookupByLibrary.simpleMessage("إضافة"),
+        "addProduct": MessageLookupByLibrary.simpleMessage("اضافة منتج"),
         "addToCart": MessageLookupByLibrary.simpleMessage("إضافة إلي السلة"),
         "areYouSureYouWantToCancelThisOrderOf":
             MessageLookupByLibrary.simpleMessage(

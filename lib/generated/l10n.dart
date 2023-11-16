@@ -250,10 +250,10 @@ class S {
     );
   }
 
-  /// `أضافة منتج`
+  /// `اضافة منتج`
   String get addProduct {
     return Intl.message(
-      'أضافة منتج',
+      'اضافة منتج',
       name: 'addProduct',
       desc: '',
       args: [],
@@ -310,10 +310,10 @@ class S {
     );
   }
 
-  /// `أضافة`
+  /// `إضافة`
   String get add {
     return Intl.message(
-      'أضافة',
+      'إضافة',
       name: 'add',
       desc: '',
       args: [],

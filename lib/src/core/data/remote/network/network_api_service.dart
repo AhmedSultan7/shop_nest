@@ -157,38 +157,47 @@ class NetworkApiService extends BaseApiServices {
   }) async {
     dynamic responseJson;
     try {
-      // http.MultipartRequest request = http.MultipartRequest('PUT', apiUrl);
-      //
-      // request.headers.addAll({
-      //   'Content-Type': 'application/json',
-      //   'Accept': 'application/json',
-      //   // 'Authorization': "Bearer ${GetStorage().read(LocalKeys.token)}"
-      // });
-      //
-      // final filePaths = fileResult?.files.map((e) => e.path).toList() ?? [];
-      //
-      // if (filePaths.isNotEmpty) {
-      //   //! Add new images
-      //   for (int i = 0; i < filePaths.length; i++) {
-      //     final filePath = filePaths[i];
-      //     request.files.add(
-      //         await http.MultipartFile.fromPath('files.$fieldName', filePath!));
-      //   }
-      // }
-      //
-      // final Map<String, String> fieldsData = data.map((key, value) {
-      //   return MapEntry(key, value.toString());
-      // });
-      //
-      // request.fields.addAll({ApiStrings.data: jsonEncode(fieldsData)});
-
       final putId = id ?? data[ApiStrings.id];
 
       final apiUrl = Uri.parse('${ApiEndPoints.baseUrl}$url/$putId');
 
-      final response = await http.put(apiUrl, body: data);
+      http.MultipartRequest request = http.MultipartRequest('PUT', apiUrl);
+
+      request.headers.addAll({
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        // 'Authorization': "Bearer ${GetStorage().read(LocalKeys.token)}"
+      });
+
+      final filePaths = fileResult ?? [];
+
+      if (filePaths.isNotEmpty) {
+        //! Add new images
+        for (int i = 0; i < filePaths.length; i++) {
+          final filePath = filePaths[i];
+          request.files.add(
+              await http.MultipartFile.fromPath('files.$fieldName', filePath));
+        }
+      }
+
+      final Map<String, String> fieldsData = data.map((key, value) {
+        return MapEntry(key, value.toString());
+      });
+
+      request.fields.addAll({ApiStrings.data: jsonEncode(fieldsData)});
+
+      final response = await http.Response.fromStream(await request.send())
+          .timeout(const Duration(seconds: ApiStrings.timeOutDuration));
 
       Log.w('PutUrl => $apiUrl\nPutData => $data');
+
+      // final putId = id ?? data[ApiStrings.id];
+      //
+      // final apiUrl = Uri.parse('${ApiEndPoints.baseUrl}$url/$putId');
+      //
+      // final response = await http.put(apiUrl, body: data);
+      //
+      // Log.w('PutUrl => $apiUrl\nPutData => $data');
 
       Log.w('Res => ${response.body}');
 

@@ -1,7 +1,6 @@
 import 'package:cards_app/src/core/data/remote/response/api_strings.dart';
 import 'package:cards_app/src/core/extensions/extensions.dart';
 import 'package:cards_app/src/core/resources/app_spaces.dart';
-import 'package:cards_app/src/core/shared_widgets/appbar/main_appbar.dart';
 import 'package:cards_app/src/core/shared_widgets/shared_widgets.dart';
 import 'package:cards_app/src/screens/product/models/product_model.dart';
 import 'package:cards_app/src/screens/product/view_model/product_view_model.dart';
@@ -46,7 +45,7 @@ class AddProductScreen extends HookWidget {
 
     //! ==============================
     void validateAndAddEditCategory() async {
-      if (mediaVM.filesPaths.isEmpty) {
+      if (mediaVM.filesPaths.isEmpty && !isEdit) {
         context.showBarMessage(
           context.tr.pleasePickImage,
           isError: true,
@@ -61,31 +60,32 @@ class AddProductScreen extends HookWidget {
 
     return Form(
       key: formKey.value,
-      child: Scaffold(
-        appBar: MainAppBar(
-          title: isEdit ? context.tr.edit : context.tr.addProduct,
-        ),
-        body: Consumer<ProductVM>(
-          builder: (context, productVM, child) {
-            return Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                AddProductWidget(
-                  product: product ?? ProductModel.empty(),
-                  controllers: fieldsControllers,
-                ),
-                context.xlLargeGap,
-                Button(
-                    label: isEdit ? context.tr.edit : context.tr.add,
-                    isLoading: productVM.isLoading,
-                    onPressed: () {
-                      validateAndAddEditCategory();
-                    })
-              ],
-            ).scroll();
-          },
-        ).paddingAll(AppSpaces.defaultPadding),
-      ),
+      child: Consumer<ProductVM>(
+        builder: (context, productVM, child) {
+          return Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              AddProductWidget(
+                product: product ?? ProductModel.empty(),
+                controllers: fieldsControllers,
+              ),
+              context.xlLargeGap,
+              Button(
+                  label: isEdit ? context.tr.edit : context.tr.add,
+                  isLoading: productVM.isLoading,
+                  onPressed: () {
+                    validateAndAddEditCategory();
+                  })
+            ],
+          ).scroll();
+        },
+      ).paddingAll(AppSpaces.defaultPadding),
+      // Scaffold(
+      //   appBar: MainAppBar(
+      //     title: isEdit ? context.tr.edit : context.tr.addProduct,
+      //   ),
+      //   body:,
+      // ),
     );
   }
 }
