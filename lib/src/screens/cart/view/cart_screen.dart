@@ -29,8 +29,8 @@ class CartScreen extends HookWidget {
     return Consumer<CartVM>(
       builder: (context, cartVM, child) {
         final cartData = cartVM.cartList;
-        // final totalPrice = cartData.fold(0,
-        //     (previousValue, element) => previousValue + element.product.price!);
+
+        //! TODO-Check Move to widgets folder
         if (cartData.isEmpty) {
           return Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -43,6 +43,7 @@ class CartScreen extends HookWidget {
             ],
           );
         }
+
         return Column(
           children: [
             ListView.separated(
@@ -54,10 +55,6 @@ class CartScreen extends HookWidget {
                 separatorBuilder: (context, index) => context.mediumGap,
                 itemCount: cartData.length),
             context.largeGap,
-            // Text(
-            //   ca.toString(),
-            //   style: context.headLine,
-            // )
           ],
         );
       },
@@ -65,6 +62,7 @@ class CartScreen extends HookWidget {
   }
 }
 
+//! TODO-Check Move to widgets folder
 class BuildCartWidget extends HookWidget {
   final CartModel cart;
   final int index;
@@ -73,9 +71,17 @@ class BuildCartWidget extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    late final product = cart.product;
+    final product = cart.product;
+
     final quantity = useState<int>(cart.quantity);
     final productPrice = product.price! * quantity.value;
+
+    void updateCartQuantity() {
+      context.read<CartVM>().updateQuantity(
+            productId: product.id!,
+            quantity: quantity.value,
+          );
+    }
 
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: AppSpaces.smallPadding),
@@ -123,6 +129,7 @@ class BuildCartWidget extends HookWidget {
             ),
           ),
           context.smallGap,
+
           //! product name & price
           Expanded(
             flex: 2,
@@ -131,7 +138,7 @@ class BuildCartWidget extends HookWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  //! product name
+                  //! Product name
                   Text(
                     cart.product.name ?? '',
                     style: context.title,
@@ -164,9 +171,12 @@ class BuildCartWidget extends HookWidget {
                     //! increase  quantity
                     IconButton(
                       onPressed: () {
-                        if (quantity.value < 10) {
-                          quantity.value++;
-                        }
+                        // if (quantity.value < 10) {//! TODO-Check Leeeeh yactaa ?? Ma tsebo yshtry bra7too
+                        quantity.value++;
+
+                        //! Update cart quantity
+                        updateCartQuantity();
+                        // }
                       },
                       icon: const Icon(
                         Icons.add,
@@ -183,6 +193,9 @@ class BuildCartWidget extends HookWidget {
                       onPressed: () {
                         if (quantity.value > 1) {
                           quantity.value--;
+
+                          //! Update cart quantity
+                          updateCartQuantity();
                         }
                       },
                       icon: const Icon(

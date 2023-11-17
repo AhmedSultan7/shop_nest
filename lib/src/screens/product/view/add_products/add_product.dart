@@ -66,7 +66,8 @@ class AddProductScreen extends HookWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               AddProductWidget(
-                product: product ?? ProductModel.empty(),
+                product:
+                    product, //! TODO-Check  ProductModel.empty() ?? Make it nullable
                 controllers: fieldsControllers,
               ),
               context.xlLargeGap,

@@ -649,6 +649,66 @@ class S {
       args: [],
     );
   }
+
+  /// `تمت الإضافة بنجاح`
+  String get addedSuccessfully {
+    return Intl.message(
+      'تمت الإضافة بنجاح',
+      name: 'addedSuccessfully',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `تم التعديل بنجاح`
+  String get updatedSuccessfully {
+    return Intl.message(
+      'تم التعديل بنجاح',
+      name: 'updatedSuccessfully',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `تم الحذف بنجاح`
+  String get deletedSuccessfully {
+    return Intl.message(
+      'تم الحذف بنجاح',
+      name: 'deletedSuccessfully',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `حدث خطأ ما`
+  String get somethingWentWrong {
+    return Intl.message(
+      'حدث خطأ ما',
+      name: 'somethingWentWrong',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `لا يوجد إتصال بالإنترنت`
+  String get noInternet {
+    return Intl.message(
+      'لا يوجد إتصال بالإنترنت',
+      name: 'noInternet',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `تعذر الإتصال بالخادم، حاول مرة أخرى`
+  String get cantConnectToServer {
+    return Intl.message(
+      'تعذر الإتصال بالخادم، حاول مرة أخرى',
+      name: 'cantConnectToServer',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

@@ -113,22 +113,22 @@ extension ShowBars on BuildContext {
 
     switch (type) {
       case FlushBarType.add:
-        msg = 'addedSuccessfully';
+        msg = tr.addedSuccessfully;
         break;
       case FlushBarType.update:
-        msg = 'updatedSuccessfully';
+        msg = tr.updatedSuccessfully;
         break;
       case FlushBarType.delete:
-        msg = 'deletedSuccessfully';
+        msg = tr.deletedSuccessfully;
         break;
       case FlushBarType.error:
-        msg = 'somethingWentWrong';
+        msg = tr.somethingWentWrong;
         break;
       case FlushBarType.noInternet:
-        msg = 'noInternet';
+        msg = tr.noInternet;
         break;
       case FlushBarType.timeOut:
-        msg = 'cantConnectToServer';
+        msg = tr.cantConnectToServer;
         break;
     }
 

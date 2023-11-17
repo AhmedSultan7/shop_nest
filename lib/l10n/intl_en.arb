@@ -58,5 +58,11 @@
   "maxUploadFileSizeIsOnly5MB": "Max upload image size is only 5 MB",
   "deleteProductConfirmationMessage": "هل أنت متأكد أنك تريد حذف هذه المنتج ؟",
   "areYouSureYouWantToCancelThisOrderOf": "هل أنت متأكد أنك تريد إلغاء هذا الطلب من العميل ؟",
-  "dismiss": "تجاهل"
+  "dismiss": "تجاهل",
+  "addedSuccessfully": "تمت الإضافة بنجاح",
+  "updatedSuccessfully": "تم التعديل بنجاح",
+  "deletedSuccessfully": "تم الحذف بنجاح",
+  "somethingWentWrong": "حدث خطأ ما",
+  "noInternet": "لا يوجد إتصال بالإنترنت",
+  "cantConnectToServer": "تعذر الإتصال بالخادم، حاول مرة أخرى"
 }

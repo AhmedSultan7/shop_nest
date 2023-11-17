@@ -30,11 +30,15 @@ class MessageLookup extends MessageLookupByLibrary {
         "add": MessageLookupByLibrary.simpleMessage("إضافة"),
         "addProduct": MessageLookupByLibrary.simpleMessage("اضافة منتج"),
         "addToCart": MessageLookupByLibrary.simpleMessage("إضافة إلي السلة"),
+        "addedSuccessfully":
+            MessageLookupByLibrary.simpleMessage("تمت الإضافة بنجاح"),
         "areYouSureYouWantToCancelThisOrderOf":
             MessageLookupByLibrary.simpleMessage(
                 "هل أنت متأكد أنك تريد إلغاء هذا الطلب من العميل ؟"),
         "buyNow": MessageLookupByLibrary.simpleMessage("اشتري الآن"),
         "buyer": MessageLookupByLibrary.simpleMessage("مشتري"),
+        "cantConnectToServer": MessageLookupByLibrary.simpleMessage(
+            "تعذر الإتصال بالخادم، حاول مرة أخرى"),
         "cart": MessageLookupByLibrary.simpleMessage("سلة المنتجات"),
         "category": MessageLookupByLibrary.simpleMessage("الأقسام"),
         "chooseUserType":
@@ -48,6 +52,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "deleteProductConfirmationMessage":
             MessageLookupByLibrary.simpleMessage(
                 "هل أنت متأكد أنك تريد حذف هذه المنتج ؟"),
+        "deletedSuccessfully":
+            MessageLookupByLibrary.simpleMessage("تم الحذف بنجاح"),
         "description": MessageLookupByLibrary.simpleMessage("الوصف"),
         "dismiss": MessageLookupByLibrary.simpleMessage("تجاهل"),
         "dontHaveAnAccount":
@@ -79,6 +85,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "name": MessageLookupByLibrary.simpleMessage("الاسم"),
         "noHistory":
             MessageLookupByLibrary.simpleMessage("لا يوجد طلبات سابقة"),
+        "noInternet":
+            MessageLookupByLibrary.simpleMessage("لا يوجد إتصال بالإنترنت"),
         "orders": MessageLookupByLibrary.simpleMessage("الطلبات"),
         "password": MessageLookupByLibrary.simpleMessage("كلمة المرور"),
         "passwordMustContain8Characters": MessageLookupByLibrary.simpleMessage(
@@ -100,10 +108,14 @@ class MessageLookup extends MessageLookupByLibrary {
         "signup": MessageLookupByLibrary.simpleMessage("إنشاء حساب"),
         "signupSuccessfully":
             MessageLookupByLibrary.simpleMessage("تم إنشاء الحساب بنجاح"),
+        "somethingWentWrong":
+            MessageLookupByLibrary.simpleMessage("حدث خطأ ما"),
         "subCategory": MessageLookupByLibrary.simpleMessage("أقسام فرعية"),
         "terms": MessageLookupByLibrary.simpleMessage("الشروط والأحكام"),
         "termsAndCondition":
             MessageLookupByLibrary.simpleMessage("الشروط و الأحكام"),
+        "updatedSuccessfully":
+            MessageLookupByLibrary.simpleMessage("تم التعديل بنجاح"),
         "userType": MessageLookupByLibrary.simpleMessage("نوع المستخدم"),
         "yourProducts": MessageLookupByLibrary.simpleMessage("منتجاتك")
       };

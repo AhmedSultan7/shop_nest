@@ -46,30 +46,30 @@ class _MainScreenState extends State<MainScreen> {
           bottomNavigationBar: const BottomNavBarWidget(),
           floatingActionButtonLocation:
               FloatingActionButtonLocation.miniCenterDocked,
-          floatingActionButton: SizedBox(
-            width: 100.w,
-            child: FloatingActionButton(
-              backgroundColor: ColorManager.primaryColor,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(context.tr.addProduct, style: context.whiteLabelLarge),
-                  const Icon(Icons.add, color: Colors.white),
-                ],
-              ),
-              onPressed: () {
-                showModalBottomSheet(
-                    isScrollControlled: true,
-                    context: context,
-                    builder: (context) => Container(
-                          margin:
-                              const EdgeInsets.all(AppSpaces.defaultPadding),
-                          height: MediaQuery.of(context).size.height * 0.75,
-                          child: const AddProductScreen(),
-                        ));
-              },
-            ),
-          ),
+          // floatingActionButton: SizedBox(
+          //   width: 100.w,
+          //   child: FloatingActionButton(
+          //     backgroundColor: ColorManager.primaryColor,
+          //     child: Row(
+          //       mainAxisAlignment: MainAxisAlignment.center,
+          //       children: [
+          //         Text(context.tr.addProduct, style: context.whiteLabelLarge),
+          //         const Icon(Icons.add, color: Colors.white),
+          //       ],
+          //     ),
+          //     onPressed: () {
+          //       showModalBottomSheet(
+          //           isScrollControlled: true,
+          //           context: context,
+          //           builder: (context) => Container(
+          //                 margin:
+          //                     const EdgeInsets.all(AppSpaces.defaultPadding),
+          //                 height: MediaQuery.of(context).size.height * 0.75,
+          //                 child: const AddProductScreen(),
+          //               ));
+          //     },
+          //   ),
+          // ),
           floatingActionButtonAnimator: FloatingActionButtonAnimator.scaling,
         );
       },

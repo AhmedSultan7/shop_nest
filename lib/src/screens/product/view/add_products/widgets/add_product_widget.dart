@@ -9,10 +9,9 @@ import 'package:provider/provider.dart';
 
 class AddProductWidget extends StatelessWidget {
   final Map<String, TextEditingController> controllers;
-  final ProductModel product;
+  final ProductModel? product;
 
-  const AddProductWidget(
-      {super.key, required this.controllers, required this.product});
+  const AddProductWidget({super.key, required this.controllers, this.product});
 
   @override
   Widget build(BuildContext context) {
@@ -21,14 +20,16 @@ class AddProductWidget extends StatelessWidget {
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            //! Image
+            //! Image ---------------
             Center(
               child: SinglePickImageWidget(
                 pickedResult: mediaVM.filesPaths.firstOrNull,
-                networkImage: product.image?.url,
+                networkImage: product?.image?.url,
               ),
             ),
+
             context.xlLargeGap,
+
             //! Name Field ---------------
             BaseTextField(
               controller: controllers[ApiStrings.name],

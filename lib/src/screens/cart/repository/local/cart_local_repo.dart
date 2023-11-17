@@ -22,15 +22,34 @@ class CartLocalRepository {
     try {
       final cartData = await hiveHelper.getData(boxName: _cartHiveKey);
 
-      final cartList = List<CartModel>.from(cartData.values.map((cart) {
-        // Log.w(' cart ID ${cart['id']}');
-        return CartModel.fromLocal(cart);
-      }));
+      final cartList = <CartModel>[];
+
+      cartData.forEach((key, value) {
+        cartList.add(CartModel.fromLocal(key, value));
+      });
 
       return cartList;
     } on Exception catch (e) {
       Log.e(e.toString());
       return [];
+    }
+  }
+
+  //! Update quantity ======================================
+  Future<void> updateQuantity({
+    required CartModel cart,
+    required int quantity,
+  }) async {
+    try {
+      final newCart = cart.copyWith(quantity: quantity);
+
+      await hiveHelper.putData(
+        _cartHiveKey,
+        key: cart.id,
+        data: newCart.toLocalJson(),
+      );
+    } catch (e) {
+      Log.e(' Cart repo update error${e.toString()}');
     }
   }
 
