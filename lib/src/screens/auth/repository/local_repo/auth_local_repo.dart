@@ -1,8 +1,8 @@
 import 'package:cards_app/src/core/data/local/hive_helper.dart';
 import 'package:cards_app/src/core/data/local/local_keys.dart';
-import 'package:cards_app/src/screens/auth/model/user_model.dart';
+import 'package:cards_app/src/core/data/remote/app_exception.dart';
 
-import '../../../../core/data/remote/app_exception.dart';
+import '../../model/user_model.dart';
 
 class AuthLocalRepo {
   final HiveHelper hiveHelper;
@@ -37,15 +37,15 @@ class AuthLocalRepo {
   }
 
   //! Get User Data ===========================================
-  Future<UserModel> getUserData() async {
+  Future<MainUserModel> getUserData() async {
     try {
       final userData = await hiveHelper.getData(boxName: LocalKeys.userData);
 
       final userMap = userData.values.firstOrNull;
 
-      if (userMap == null) return UserModel.empty();
+      if (userMap == null) return MainUserModel.empty();
 
-      final user = UserModel.fromJson(userMap);
+      final user = MainUserModel.fromJson(userMap);
 
       return user;
     } on Exception {

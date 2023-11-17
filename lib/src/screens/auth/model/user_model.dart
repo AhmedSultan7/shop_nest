@@ -1,37 +1,40 @@
+import 'package:cards_app/src/core/data/local/hive_helper.dart';
+import 'package:cards_app/src/core/data/local/local_keys.dart';
 import 'package:cards_app/src/core/data/remote/response/api_strings.dart';
 
 enum UserTypeEnum { seller, buyer }
 
-class UserModel {
+class MainUserModel {
   final String? jwt;
-  final User? user;
+  final UserModel? user;
 
-  const UserModel({this.jwt, this.user});
+  const MainUserModel({this.jwt, this.user});
 
-  factory UserModel.fromJson(Map<dynamic, dynamic> json) {
-    return UserModel(
-        jwt: json[ApiStrings.jwt], user: User.fromJson(json[ApiStrings.user]));
+  factory MainUserModel.fromJson(Map<dynamic, dynamic> json) {
+    return MainUserModel(
+        jwt: json[ApiStrings.jwt],
+        user: UserModel.fromJson(json[ApiStrings.user]));
   }
 
-  factory UserModel.empty() => const UserModel();
+  factory MainUserModel.empty() => const MainUserModel();
 
   Map<String, dynamic> toJson() {
     return {ApiStrings.jwt: jwt, ApiStrings.user: user?.toJson(sendId: true)};
   }
 
   //? Copy With ====================================
-  UserModel copyWith({
+  MainUserModel copyWith({
     String? jwt,
-    User? user,
+    UserModel? user,
   }) {
-    return UserModel(
+    return MainUserModel(
       jwt: jwt ?? this.jwt,
       user: user ?? this.user,
     );
   }
 }
 
-class User {
+class UserModel {
   final int? id;
   final String userName;
   final String email;
@@ -39,7 +42,7 @@ class User {
   final String? identifier;
   final UserTypeEnum? usertype;
 
-  const User({
+  const UserModel({
     this.id,
     this.identifier,
     this.userName = '',
@@ -48,11 +51,11 @@ class User {
     this.usertype,
   });
 
-  factory User.fromJson(Map<dynamic, dynamic> json) {
+  factory UserModel.fromJson(Map<dynamic, dynamic> json) {
     final userType = json[ApiStrings.userType] == ApiStrings.seller
         ? UserTypeEnum.seller
         : UserTypeEnum.buyer;
-    return User(
+    return UserModel(
         id: json[ApiStrings.id],
         userName: json[ApiStrings.username] ?? '',
         email: json[ApiStrings.email] ?? '',
@@ -61,7 +64,7 @@ class User {
         usertype: userType);
   }
 
-  factory User.empty() => const User();
+  factory UserModel.empty() => const UserModel();
 
   Map<String, dynamic> toJson({
     bool sendId = false,
@@ -78,7 +81,7 @@ class User {
   }
 
   //? Copy With ====================================
-  User copyWith({
+  UserModel copyWith({
     int? id,
     String? userName,
     String? email,
@@ -86,7 +89,7 @@ class User {
     String? identifier,
     UserTypeEnum? usertype,
   }) {
-    return User(
+    return UserModel(
       id: id ?? this.id,
       userName: userName ?? this.userName,
       email: email ?? this.email,
@@ -94,6 +97,18 @@ class User {
       identifier: identifier ?? this.identifier,
       usertype: usertype ?? this.usertype,
     );
+  }
+
+  static Future<String> vendorFilter(HiveHelper hiveHelper) async {
+    final userData = await hiveHelper.getData(boxName: LocalKeys.userData);
+
+    final isVendor = userData['user_type'] == 'seller';
+
+    final vendorFilter =
+        // isVendor ? '?seller=${userData['id']}' :
+        '';
+
+    return vendorFilter;
   }
 }
 

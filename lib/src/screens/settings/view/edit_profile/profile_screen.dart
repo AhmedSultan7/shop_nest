@@ -3,11 +3,12 @@ import 'package:cards_app/src/core/extensions/extensions.dart';
 import 'package:cards_app/src/core/resources/app_spaces.dart';
 import 'package:cards_app/src/core/shared_widgets/appbar/main_appbar.dart';
 import 'package:cards_app/src/core/shared_widgets/shared_widgets.dart';
-import 'package:cards_app/src/screens/auth/view_model/auth_view_model.dart';
 import 'package:cards_app/src/screens/settings/view/edit_profile/widgets/edit_profile_fields.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:provider/provider.dart';
+
+import '../../../auth/view_model/auth_view_model.dart';
 
 class ProfileScreen extends HookWidget {
   const ProfileScreen({super.key});

@@ -6,7 +6,6 @@ import 'package:cards_app/src/core/utils/logger.dart';
 import 'package:cards_app/src/screens/auth/model/user_model.dart';
 import 'package:cards_app/src/screens/auth/view/signup_screen/view/components/signup_fields.dart';
 import 'package:cards_app/src/screens/auth/view_model/auth_view_model.dart';
-import 'package:cards_app/src/screens/home/view/main_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -15,6 +14,8 @@ import 'package:provider/provider.dart';
 
 import '../../../../core/resources/theme/theme.dart';
 import '../../../../core/shared_widgets/shared_widgets.dart';
+import '../../../buyer/home/view/main_buyer_screen.dart';
+import '../../../seller/home/view/main_seller_screen.dart';
 import '../login_screen/login_screen.dart';
 
 class SignupScreen extends HookWidget {
@@ -63,7 +64,9 @@ class SignupScreen extends HookWidget {
                                       valueNotifier: userTypeValueNotifier)
                                   .then((value) {
                                 if (value == true) {
-                                  context.toReplacement(const MainScreen());
+                                  context.toReplacement(authVM.isSeller
+                                      ? const MainBuyerScreen()
+                                      : const MainSellerScreen());
                                   context.showBarMessage(
                                       context.tr.signupSuccessfully);
                                 }

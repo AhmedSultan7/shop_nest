@@ -2,7 +2,7 @@ import 'package:cards_app/generated/assets.dart';
 import 'package:cards_app/src/core/extensions/extensions.dart';
 import 'package:cards_app/src/core/resources/app_spaces.dart';
 import 'package:cards_app/src/screens/auth/view_model/auth_view_model.dart';
-import 'package:cards_app/src/screens/home/view/main_screen.dart';
+import 'package:cards_app/src/screens/buyer/home/view/main_buyer_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -12,6 +12,7 @@ import 'package:provider/provider.dart';
 import '../../../../core/data/remote/response/api_strings.dart';
 import '../../../../core/resources/theme/theme.dart';
 import '../../../../core/shared_widgets/shared_widgets.dart';
+import '../../../seller/home/view/main_seller_screen.dart';
 import '../signup_screen/signup_screen.dart';
 import 'components/login_fields.dart';
 
@@ -69,7 +70,9 @@ class LoginScreen extends HookWidget {
                                   .login(controllers: fieldsController)
                                   .then((value) {
                                 if (value == true) {
-                                  context.to(const MainScreen());
+                                  context.to(authVM.isSeller
+                                      ? const MainBuyerScreen()
+                                      : const MainSellerScreen());
                                   context.showBarMessage(
                                     context.tr.loginSuccessfully,
                                   );

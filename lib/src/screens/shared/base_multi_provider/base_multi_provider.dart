@@ -1,14 +1,14 @@
 import 'package:cards_app/src/core/injector/injector.dart';
-import 'package:cards_app/src/screens/auth/view_model/auth_view_model.dart';
-import 'package:cards_app/src/screens/cart/view_model/cart_view_model.dart';
-import 'package:cards_app/src/screens/home/view_model/slider_view_model.dart';
-import 'package:cards_app/src/screens/product/view_model/product_view_model.dart';
+import 'package:cards_app/src/screens/seller/home/view_model/bottom_nav_provider.dart';
+import 'package:cards_app/src/screens/seller/product/view_model/product_view_model.dart';
 import 'package:cards_app/src/screens/settings/view_model/setting_view_model.dart';
 import 'package:cards_app/src/screens/shared/media/view_models/media_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../home/view_model/bottom_nav_provider.dart';
+import '../../auth/view_model/auth_view_model.dart';
+import '../../buyer/cart/view_model/cart_view_model.dart';
+import '../../buyer/home/view_model/slider_view_model.dart';
 
 class BaseMultiProvider extends StatelessWidget {
   final Widget child;
@@ -26,7 +26,7 @@ class BaseMultiProvider extends StatelessWidget {
           create: (context) => getIt<SliderVM>(),
         ),
         ChangeNotifierProvider(
-          create: (context) => getIt<ProductVM>(),
+          create: (context) => getIt<SellerProductVM>(),
         ),
         ChangeNotifierProvider(
           create: (context) => getIt<CartVM>(),

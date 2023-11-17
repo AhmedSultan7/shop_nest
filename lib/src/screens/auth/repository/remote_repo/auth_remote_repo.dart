@@ -15,7 +15,7 @@ class AuthRemoteRepo {
       {required this.networkApiServices, required this.authLocalRepo});
 
   //! Register User =================================
-  Future<void> registerUser(User user) async {
+  Future<void> registerUser(UserModel user) async {
     try {
       final response = await networkApiServices
           .postResponse(ApiEndPoints.register, data: user.toJson());
@@ -29,7 +29,7 @@ class AuthRemoteRepo {
   }
 
   //! Login User =================================
-  Future<void> login(User user) async {
+  Future<void> login(UserModel user) async {
     try {
       final response = await networkApiServices.postResponse(ApiEndPoints.login,
           data: user.toJson());
@@ -43,7 +43,7 @@ class AuthRemoteRepo {
   }
 
 //! Update User ===============================
-  Future<void> updateUser(User user, {required int id}) async {
+  Future<void> updateUser(UserModel user, {required int id}) async {
     try {
       await networkApiServices.putResponse(ApiEndPoints.user,
           id: id, data: user.toJson());
