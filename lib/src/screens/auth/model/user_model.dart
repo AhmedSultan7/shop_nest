@@ -1,6 +1,5 @@
-import 'package:cards_app/src/core/data/local/hive_helper.dart';
-import 'package:cards_app/src/core/data/local/local_keys.dart';
 import 'package:cards_app/src/core/data/remote/response/api_strings.dart';
+import 'package:cards_app/src/screens/auth/repository/local_repo/auth_local_repo.dart';
 
 enum UserTypeEnum { seller, buyer }
 
@@ -51,6 +50,8 @@ class UserModel {
     this.usertype,
   });
 
+  bool get isSeller => usertype == UserTypeEnum.seller;
+
   factory UserModel.fromJson(Map<dynamic, dynamic> json) {
     final userType = json[ApiStrings.userType] == ApiStrings.seller
         ? UserTypeEnum.seller
@@ -99,16 +100,18 @@ class UserModel {
     );
   }
 
-  static Future<String> vendorFilter(HiveHelper hiveHelper) async {
-    final userData = await hiveHelper.getData(boxName: LocalKeys.userData);
+  static Future<String> vendorFilter(AuthLocalRepo authLocalRepo) async {
+    final mainUser = await authLocalRepo.getUserData();
 
-    final isVendor = userData['user_type'] == 'seller';
+    final isSeller = mainUser.user!.isSeller;
 
-    final vendorFilter =
-        // isVendor ? '?seller=${userData['id']}' :
-        '';
+    final sellerId = mainUser.user!.id;
 
-    return vendorFilter;
+    //filters[seller][id][$eq]=23
+
+    final sellerFilter = isSeller ? '?filters[seller][id][\$eq]=$sellerId' : '';
+
+    return sellerFilter;
   }
 }
 

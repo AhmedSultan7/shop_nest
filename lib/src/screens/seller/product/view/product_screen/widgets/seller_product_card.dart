@@ -5,6 +5,7 @@ import 'package:cards_app/src/core/resources/theme/theme.dart';
 import 'package:cards_app/src/core/shared_widgets/box_shadow.dart';
 import 'package:cards_app/src/core/shared_widgets/shared_widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../../../../generated/assets.dart';
@@ -23,7 +24,7 @@ class SellerProductCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<SellerProductVM>(
+    return Consumer<ProductsVM>(
       builder: (context, productVM, child) {
         return InkWell(
           onTap: () {
@@ -43,7 +44,7 @@ class SellerProductCard extends StatelessWidget {
                   children: [
                     //! Product image
                     SizedBox(
-                      height: context.height * 0.26,
+                      height: 170.h,
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(
                           AppRadius.imageContainerRadius,

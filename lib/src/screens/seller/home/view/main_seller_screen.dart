@@ -4,24 +4,28 @@ import 'package:cards_app/src/core/shared_widgets/slider_drawer_widget/slider_dr
 import 'package:cards_app/src/screens/seller/home/view/widgets/seller_bottom_nav_bar.dart';
 import 'package:cards_app/src/screens/seller/order/view/seller_order_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../core/resources/app_spaces.dart';
 import '../../product/view/add_products/add_product.dart';
 import '../../product/view/product_screen/seller_products_screen.dart';
+import '../../product/view_model/product_view_model.dart';
 import '../view_model/bottom_nav_provider.dart';
 
-class MainSellerScreen extends StatefulWidget {
+class MainSellerScreen extends HookWidget {
   const MainSellerScreen({super.key});
 
   @override
-  State<MainSellerScreen> createState() => _MainSellerScreenState();
-}
-
-class _MainSellerScreenState extends State<MainSellerScreen> {
-  @override
   Widget build(BuildContext context) {
+    final productVM = context.read<ProductsVM>();
+    useEffect(() {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        productVM.getProducts();
+      });
+      return () {};
+    }, []);
     return Consumer<BottomNavbarVM>(
       builder: (context, bottomNavbarVM, child) {
         return Scaffold(

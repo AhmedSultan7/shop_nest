@@ -709,6 +709,26 @@ class S {
       args: [],
     );
   }
+
+  /// `الإجمالي : `
+  String get total {
+    return Intl.message(
+      'الإجمالي : ',
+      name: 'total',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `الدفع`
+  String get payment {
+    return Intl.message(
+      'الدفع',
+      name: 'payment',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

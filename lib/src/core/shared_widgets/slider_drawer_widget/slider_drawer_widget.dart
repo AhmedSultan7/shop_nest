@@ -8,7 +8,6 @@ import '../../../screens/auth/model/user_model.dart';
 import '../../../screens/auth/view_model/auth_view_model.dart';
 import '../../../screens/buyer/cart/view_model/cart_view_model.dart';
 import '../../../screens/drawer/home_drawer.dart';
-import '../../../screens/seller/product/view/add_products/add_product.dart';
 
 class SliderDrawerWidget extends StatelessWidget {
   final String title;
@@ -32,13 +31,6 @@ class SliderDrawerWidget extends StatelessWidget {
           slideDirection: SlideDirection.TOP_TO_BOTTOM,
           key: drawerKey,
           appBar: SliderAppBar(
-            trailing: !isBuyer && cartBottomNav == 0
-                ? IconButton(
-                    onPressed: () {
-                      context.to(const AddProductScreen());
-                    },
-                    icon: const Icon(Icons.add))
-                : null,
             title: Text(
               title,
               style: context.title,

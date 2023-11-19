@@ -3,10 +3,10 @@ import 'package:cards_app/src/core/resources/app_spaces.dart';
 import 'package:cards_app/src/core/resources/theme/theme.dart';
 import 'package:cards_app/src/core/shared_widgets/shared_widgets.dart';
 import 'package:cards_app/src/screens/buyer/product/view/product_screen/widgets/buyer_all_products_screen.dart';
-import 'package:cards_app/src/screens/seller/product/view_model/product_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../../../../../seller/product/view_model/product_view_model.dart';
 import 'buyer_product_card.dart';
 
 class HomeProductsGridView extends StatelessWidget {
@@ -14,7 +14,7 @@ class HomeProductsGridView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<SellerProductVM>(
+    return Consumer<ProductsVM>(
       builder: (context, productVM, child) {
         if (productVM.isLoading) {
           return const LoadingWidget();

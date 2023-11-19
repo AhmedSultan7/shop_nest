@@ -9,7 +9,7 @@ import '../../../../../../core/resources/theme/theme.dart';
 import '../../../../../../core/shared_widgets/shared_widgets.dart';
 import '../../../../../buyer/cart/model/cart_model.dart';
 import '../../../../../buyer/cart/view_model/cart_view_model.dart';
-import '../../../../../buyer/home/view_model/bottom_nav_provider.dart';
+import '../../../../../seller/home/view_model/bottom_nav_provider.dart';
 
 class AddToCartAndBuyNow extends StatelessWidget {
   final ValueNotifier<int> quantity;
@@ -28,11 +28,9 @@ class AddToCartAndBuyNow extends StatelessWidget {
         //! Add to cart ==============================
         void addToCart() {
           final cart = CartModel(
-            quantity: quantity.value,
             id: product.id!,
+            quantity: quantity.value,
             product: product,
-            // key: product.id!
-            //! TODO-Check removed from the model, why needed ? We can use id instead
           );
 
           cartVM.addProductsToCart(context, cart: cart);
@@ -45,7 +43,7 @@ class AddToCartAndBuyNow extends StatelessWidget {
           final allQuantity = currentCart.quantity + quantity.value;
 
           final result = await cartVM.updateQuantity(
-            productId: product.id!,
+            cart: currentCart,
             quantity: allQuantity,
           );
 

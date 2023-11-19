@@ -5,24 +5,18 @@ import 'package:cards_app/src/core/data/remote/app_exception.dart';
 import 'package:cards_app/src/core/data/remote/response/api_strings.dart';
 import 'package:cards_app/src/core/extensions/extensions.dart';
 import 'package:cards_app/src/core/utils/logger.dart';
+import 'package:cards_app/src/screens/auth/view_model/auth_view_model.dart';
 import 'package:cards_app/src/screens/seller/product/models/product_model.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:provider/provider.dart';
 
 import '../../../shared/loading_view_model/loading_view_model.dart';
 import '../repository/product_repo.dart';
 
-class ProductVM extends SellerProductVM {
-  ProductVM(super.productRepo);
+class ProductsVM extends LoadingVM {
+  final ProductRepo _productRepo;
 
-  Future<void> getUserProducts() async {
-    await super.getProducts();
-  }
-}
-
-class SellerProductVM extends LoadingVM {
-  final SellerProductRepo _productRepo;
-
-  SellerProductVM(this._productRepo);
+  ProductsVM(this._productRepo);
 
   List<ProductModel> products = [];
 
@@ -43,16 +37,20 @@ class SellerProductVM extends LoadingVM {
   }
 
 //! Add Products ===================================
-  Future<void> addProduct(BuildContext context,
-      {required Map<String, TextEditingController> controllers,
-      required String pickedImage}) async {
+  Future<void> addProduct(
+    BuildContext context, {
+    required Map<String, TextEditingController> controllers,
+    required String pickedImage,
+  }) async {
     try {
       isLoading = true;
+      final seller = context.read<AuthVM>().user;
+
       final product = ProductModel(
-        name: controllers[ApiStrings.name]!.text,
-        description: controllers[ApiStrings.description]!.text,
-        price: num.tryParse(controllers[ApiStrings.price]!.text),
-      );
+          name: controllers[ApiStrings.name]!.text,
+          description: controllers[ApiStrings.description]!.text,
+          price: num.tryParse(controllers[ApiStrings.price]!.text),
+          seller: seller);
       await _productRepo.addProduct(product: product, pickedImage: pickedImage);
       getProducts();
       if (context.mounted) {

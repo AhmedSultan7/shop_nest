@@ -18,7 +18,7 @@ class BuyerAllProductsScreen extends StatelessWidget {
         isBackButton: true,
         title: context.tr.products,
       ),
-      body: Consumer<SellerProductVM>(
+      body: Consumer<ProductsVM>(
         builder: (context, productVM, child) {
           if (productVM.isLoading) {
             return const LoadingWidget();

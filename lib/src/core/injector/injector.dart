@@ -52,12 +52,11 @@ Future<void> appInjector() async {
   getIt.registerLazySingleton(() => SliderVM(getIt<SlidersRepo>()));
 
   //! Product ----------------------------------------------------------
-  getIt.registerLazySingleton(() => SellerProductRepo(
+  getIt.registerLazySingleton(() => ProductRepo(
       networkApiServices: getIt<NetworkApiService>(),
-      hiveHelper: getIt<HiveHelper>()));
+      authLocalRepo: getIt<AuthLocalRepo>()));
 
-  getIt
-      .registerLazySingleton(() => SellerProductVM(getIt<SellerProductRepo>()));
+  getIt.registerLazySingleton(() => ProductsVM(getIt<ProductRepo>()));
 
   // * Cart Injector ===========================================
 

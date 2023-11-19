@@ -4,22 +4,21 @@ import 'package:cards_app/src/core/data/remote/app_exception.dart';
 import 'package:cards_app/src/core/data/remote/network/base_api_service.dart';
 import 'package:cards_app/src/core/data/remote/response/api_end_points.dart';
 import 'package:cards_app/src/core/data/remote/response/api_strings.dart';
+import 'package:cards_app/src/screens/auth/repository/local_repo/auth_local_repo.dart';
 import 'package:cards_app/src/screens/seller/product/models/product_model.dart';
 
-import '../../../../core/data/local/hive_helper.dart';
 import '../../../auth/model/user_model.dart';
 
-class SellerProductRepo {
+class ProductRepo {
   final BaseApiServices networkApiServices;
-  final HiveHelper hiveHelper;
+  final AuthLocalRepo authLocalRepo;
 
-  SellerProductRepo(
-      {required this.networkApiServices, required this.hiveHelper});
+  ProductRepo({required this.networkApiServices, required this.authLocalRepo});
 
   //! Get Products ===================================
   Future<List<ProductModel>> getProducts() async {
     try {
-      final vendorIdFilter = await UserModel.vendorFilter(hiveHelper);
+      final vendorIdFilter = await UserModel.vendorFilter(authLocalRepo);
 
       final response = await networkApiServices
           .getResponse(ApiEndPoints.products + vendorIdFilter);

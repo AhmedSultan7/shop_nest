@@ -16,7 +16,7 @@ class CartVM extends ChangeNotifier {
   int get total => cartList.fold(
       0,
       (previousValue, element) =>
-          element.quantity * element.product.price!.toInt());
+          previousValue + (element.quantity * element.product.price!.toInt()));
 
   //! Get Cart  ======================================
   Future<void> getCart() async {
@@ -56,12 +56,10 @@ class CartVM extends ChangeNotifier {
 
   //! Update Quantity ======================================
   Future<bool> updateQuantity({
-    required int productId,
+    required CartModel cart,
     required int quantity,
   }) async {
     try {
-      final cart = currentCart(productId);
-
       await cartLocalRepository.updateQuantity(cart: cart, quantity: quantity);
 
       getCart();

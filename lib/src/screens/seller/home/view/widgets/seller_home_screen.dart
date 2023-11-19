@@ -12,7 +12,7 @@ class BuyerHomeScreen extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    final productVM = context.read<SellerProductVM>();
+    final productVM = context.read<ProductsVM>();
     useEffect(() {
       WidgetsBinding.instance.addPostFrameCallback((_) {
         productVM.getProducts();

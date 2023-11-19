@@ -1,12 +1,12 @@
 import '../../../seller/product/models/product_model.dart';
 
 class CartModel {
-  final int id;
+  final int? id;
   final int quantity;
   final ProductModel product;
 
   CartModel({
-    required this.id,
+    this.id,
     required this.quantity,
     required this.product,
   });

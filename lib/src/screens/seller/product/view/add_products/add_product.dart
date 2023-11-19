@@ -26,7 +26,7 @@ class AddProductScreen extends HookWidget {
           useTextEditingController(text: product?.price.toString()),
     };
     final formKey = useState(GlobalKey<FormState>());
-    final productVM = context.read<SellerProductVM>();
+    final productVM = context.read<ProductsVM>();
     final mediaVM = context.read<MediaVM>();
     final isEdit = product != null;
 
@@ -60,7 +60,7 @@ class AddProductScreen extends HookWidget {
 
     return Form(
       key: formKey.value,
-      child: Consumer<SellerProductVM>(
+      child: Consumer<ProductsVM>(
         builder: (context, productVM, child) {
           return Column(
             mainAxisAlignment: MainAxisAlignment.center,

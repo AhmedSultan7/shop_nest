@@ -1,6 +1,5 @@
 import 'package:cards_app/src/core/resources/app_spaces.dart';
 import 'package:cards_app/src/core/shared_widgets/shared_widgets.dart';
-import 'package:cards_app/src/screens/buyer/home/view_model/slider_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:provider/provider.dart';
@@ -13,18 +12,9 @@ class SellerProductsScreen extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    final productVM = context.read<SellerProductVM>();
-    final sliderVM = context.read<SliderVM>();
-    useEffect(() {
-      WidgetsBinding.instance.addPostFrameCallback((_) {
-        productVM.getProducts();
-        sliderVM.getSlider();
-      });
-      return () {};
-    }, []);
     return ListView(
       children: [
-        Consumer<SellerProductVM>(
+        Consumer<ProductsVM>(
           builder: (context, productVM, child) {
             if (productVM.isLoading) {
               return const LoadingWidget();

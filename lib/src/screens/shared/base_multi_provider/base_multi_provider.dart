@@ -26,7 +26,7 @@ class BaseMultiProvider extends StatelessWidget {
           create: (context) => getIt<SliderVM>(),
         ),
         ChangeNotifierProvider(
-          create: (context) => getIt<SellerProductVM>(),
+          create: (context) => getIt<ProductsVM>(),
         ),
         ChangeNotifierProvider(
           create: (context) => getIt<CartVM>(),

@@ -1,3 +1,4 @@
+import 'package:cards_app/src/screens/auth/model/user_model.dart';
 import 'package:cards_app/src/screens/shared/media/model/main_media_model.dart';
 
 import '../../../../core/data/remote/response/api_strings.dart';
@@ -8,8 +9,15 @@ class ProductModel {
   final String? description;
   final num? price;
   final MainMediaModel? image;
+  final UserModel? seller;
 
-  ProductModel({this.price, this.image, this.name, this.id, this.description});
+  ProductModel(
+      {this.seller,
+      this.price,
+      this.image,
+      this.name,
+      this.id,
+      this.description});
 
   //! Remote Constructor---------------------------------------
   factory ProductModel.fromJson(Map<String, dynamic> json) {
@@ -55,6 +63,7 @@ class ProductModel {
       if (name != null) ApiStrings.name: name,
       if (description != null) ApiStrings.description: description,
       if (price != null) ApiStrings.price: price,
+      ApiStrings.seller: seller?.id
     };
   }
 

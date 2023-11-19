@@ -64,5 +64,7 @@
   "deletedSuccessfully": "تم الحذف بنجاح",
   "somethingWentWrong": "حدث خطأ ما",
   "noInternet": "لا يوجد إتصال بالإنترنت",
-  "cantConnectToServer": "تعذر الإتصال بالخادم، حاول مرة أخرى"
+  "cantConnectToServer": "تعذر الإتصال بالخادم، حاول مرة أخرى",
+  "total": "الإجمالي : ",
+  "payment": "الدفع"
 }
