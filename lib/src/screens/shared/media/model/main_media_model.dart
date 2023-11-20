@@ -11,7 +11,7 @@ class MainMediaModel {
   factory MainMediaModel.fromJson(Map<String, dynamic> json) {
     const data = ApiStrings.data;
     const attributes = ApiStrings.attributes;
-    final imageData = json[data][attributes];
+    final imageData = json[data][attributes] ?? '';
     return MainMediaModel(url: imageData[ApiStrings.url] ?? '');
   }
 

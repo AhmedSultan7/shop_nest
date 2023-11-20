@@ -65,6 +65,8 @@
   "somethingWentWrong": "حدث خطأ ما",
   "noInternet": "لا يوجد إتصال بالإنترنت",
   "cantConnectToServer": "تعذر الإتصال بالخادم، حاول مرة أخرى",
+  "totalProduct": "إجمالي المنتجات : ",
   "total": "الإجمالي : ",
-  "payment": "الدفع"
+  "payment": "الدفع",
+  "pay": "أدفع"
 }

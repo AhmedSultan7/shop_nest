@@ -14,4 +14,5 @@ class ApiEndPoints {
   static const String sliders = "/sliders$populate";
   static const String setting = "/setting$populate";
   static const String user = "/users";
+  static const String orders = "/orders$populate";
 }

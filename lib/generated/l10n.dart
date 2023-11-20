@@ -710,6 +710,16 @@ class S {
     );
   }
 
+  /// `إجمالي المنتجات : `
+  String get totalProduct {
+    return Intl.message(
+      'إجمالي المنتجات : ',
+      name: 'totalProduct',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `الإجمالي : `
   String get total {
     return Intl.message(
@@ -725,6 +735,16 @@ class S {
     return Intl.message(
       'الدفع',
       name: 'payment',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `أدفع`
+  String get pay {
+    return Intl.message(
+      'أدفع',
+      name: 'pay',
       desc: '',
       args: [],
     );

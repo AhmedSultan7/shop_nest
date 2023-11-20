@@ -1,16 +1,17 @@
 import 'package:cards_app/src/core/extensions/extensions.dart';
-import 'package:cards_app/src/core/resources/theme/theme.dart';
 import 'package:flutter/material.dart';
 
-class HistoryScreen extends StatelessWidget {
-  const HistoryScreen({super.key});
+import '../../resources/theme/theme.dart';
+
+class EmptyOrderWidget extends StatelessWidget {
+  const EmptyOrderWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Icon(
+        const Icon(
           Icons.history_rounded,
           size: 70,
           color: ColorManager.iconColor,

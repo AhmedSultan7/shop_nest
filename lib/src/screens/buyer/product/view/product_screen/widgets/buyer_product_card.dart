@@ -1,7 +1,9 @@
+import 'package:cards_app/generated/assets.dart';
 import 'package:cards_app/src/core/consts/app_constants.dart';
 import 'package:cards_app/src/core/extensions/extensions.dart';
 import 'package:cards_app/src/core/resources/theme/theme.dart';
 import 'package:cards_app/src/core/shared_widgets/box_shadow.dart';
+import 'package:cards_app/src/core/shared_widgets/icon_widget/icon_widget.dart';
 import 'package:cards_app/src/core/shared_widgets/shared_widgets.dart';
 import 'package:cards_app/src/screens/buyer/cart/model/cart_model.dart';
 import 'package:cards_app/src/screens/buyer/cart/view_model/cart_view_model.dart';
@@ -90,6 +92,8 @@ class BuyerProductCard extends StatelessWidget {
                           product.image?.url ?? '',
                           width: double.infinity,
                           fit: BoxFit.cover,
+                          errorBuilder: (context, error, stackTrace) =>
+                              const IconWidget(icon: Assets.iconsImg),
                         ),
                       ),
                     ),

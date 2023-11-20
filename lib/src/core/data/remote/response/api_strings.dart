@@ -50,4 +50,5 @@ class ApiStrings {
   static const String buyer = "buyer";
   static const String userType = "user_type";
   static const String identifier = "identifier";
+  static const String totalPrice = "total_price";
 }

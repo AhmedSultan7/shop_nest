@@ -91,6 +91,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "password": MessageLookupByLibrary.simpleMessage("كلمة المرور"),
         "passwordMustContain8Characters": MessageLookupByLibrary.simpleMessage(
             "يجب أن تحتوي كلمة المرور على 8 أحرف"),
+        "pay": MessageLookupByLibrary.simpleMessage("أدفع"),
         "payment": MessageLookupByLibrary.simpleMessage("الدفع"),
         "pleaseEnterCorrectEmail": MessageLookupByLibrary.simpleMessage(
             "الرجاء إدخال البريد الإلكتروني الصحيح"),
@@ -116,6 +117,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "termsAndCondition":
             MessageLookupByLibrary.simpleMessage("الشروط و الأحكام"),
         "total": MessageLookupByLibrary.simpleMessage("الإجمالي : "),
+        "totalProduct":
+            MessageLookupByLibrary.simpleMessage("إجمالي المنتجات : "),
         "updatedSuccessfully":
             MessageLookupByLibrary.simpleMessage("تم التعديل بنجاح"),
         "userType": MessageLookupByLibrary.simpleMessage("نوع المستخدم"),

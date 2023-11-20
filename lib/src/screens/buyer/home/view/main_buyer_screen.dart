@@ -1,12 +1,12 @@
 import 'package:cards_app/src/core/extensions/extensions.dart';
 import 'package:cards_app/src/core/shared_widgets/slider_drawer_widget/slider_drawer_widget.dart';
 import 'package:cards_app/src/screens/buyer/home/view/widgets/buyer_bottom_nav_bar.dart';
+import 'package:cards_app/src/screens/buyer/order_history/view/order_history_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../../seller/home/view_model/bottom_nav_provider.dart';
 import '../../cart/view/cart_screen.dart';
-import '../../history/view/history_screen.dart';
 import 'buyer_home_screen.dart';
 
 class MainBuyerScreen extends StatefulWidget {
@@ -50,7 +50,7 @@ class _BuyerSelectedScreen extends StatelessWidget {
       case 1:
         return const CartScreen();
       case 2:
-        return const HistoryScreen();
+        return const OrderHistoryScreen();
     }
     return const SizedBox.shrink();
   }
