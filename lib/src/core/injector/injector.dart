@@ -1,5 +1,7 @@
 import 'package:cards_app/src/core/data/local/hive_helper.dart';
 import 'package:cards_app/src/core/data/remote/network/network_api_service.dart';
+import 'package:cards_app/src/screens/buyer/order_history/repository/order_repo.dart';
+import 'package:cards_app/src/screens/buyer/order_history/view_model/order_view_model.dart';
 import 'package:cards_app/src/screens/seller/home/view_model/bottom_nav_provider.dart';
 import 'package:cards_app/src/screens/seller/product/view_model/product_view_model.dart';
 import 'package:cards_app/src/screens/settings/repository/settings_repo.dart';
@@ -75,4 +77,11 @@ Future<void> appInjector() async {
   // * Media Injector ===========================================
 
   getIt.registerLazySingleton(() => MediaVM());
+
+  // * Order Injector ===========================================
+
+  getIt.registerLazySingleton(() => OrderRepo(
+      networkApiServices: getIt<NetworkApiService>(),
+      authLocalRepo: getIt<AuthLocalRepo>()));
+  getIt.registerLazySingleton(() => OrderVM(orderRepo: getIt<OrderRepo>()));
 }

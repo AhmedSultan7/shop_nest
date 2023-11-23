@@ -19,10 +19,14 @@ class NetworkApiService extends BaseApiServices {
     try {
       final endpoint = ApiEndPoints.baseUrl + url;
 
-      Log.i('apiUrl => $endpoint');
+      final populate = endpoint.contains('?') ? '&' : '?';
+
+      final apiUrl = endpoint + populate + ApiEndPoints.populate;
+
+      Log.i('apiUrl => $apiUrl');
 
       final response = await http.get(
-        Uri.parse(endpoint),
+        Uri.parse(apiUrl),
         headers: {
           'Content-Type': 'application/json',
           'Accept': 'application/json',
@@ -30,8 +34,7 @@ class NetworkApiService extends BaseApiServices {
         },
       );
 
-      Log.i(
-          'URL -> ${ApiEndPoints.baseUrl + url}\n 💾💾💾 GetResponse -> ${response.body} 💾💾💾');
+      Log.i('URL -> $apiUrl\n 💾💾💾 GetResponse -> ${response.body} 💾💾💾');
 
       responseJson = returnResponse(response);
     } on SocketException {

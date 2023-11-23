@@ -12,6 +12,7 @@ import '../../../../../../../generated/assets.dart';
 import '../../../../../../core/resources/app_radius.dart';
 import '../../../../../../core/resources/app_spaces.dart';
 import '../../../../../../core/shared_widgets/dialogs/alert_dialog.dart';
+import '../../../../../../core/shared_widgets/icon_widget/icon_widget.dart';
 import '../../../models/product_model.dart';
 import '../../../view_model/product_view_model.dart';
 import '../../add_products/add_product.dart';
@@ -49,11 +50,13 @@ class SellerProductCard extends StatelessWidget {
                         borderRadius: BorderRadius.circular(
                           AppRadius.imageContainerRadius,
                         ),
-                        child: Image.network(
-                          product.image?.url ?? '',
-                          width: double.infinity,
-                          fit: BoxFit.cover,
-                        ),
+                        child: Image.network(product.image?.url ?? '',
+                            width: double.infinity,
+                            fit: BoxFit.cover,
+                            errorBuilder: (context, error, stackTrace) =>
+                                const Center(
+                                    child:
+                                        IconWidget(icon: Assets.iconsNoImage))),
                       ),
                     ),
 

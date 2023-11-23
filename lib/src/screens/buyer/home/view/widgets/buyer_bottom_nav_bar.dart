@@ -26,7 +26,7 @@ class BuyerBottomNavBar extends StatelessWidget {
                 color: bottomNavbarVM.currentIndex == 0
                     ? ColorManager.primaryColor
                     : ColorManager.black,
-                icon: Assets.iconsHome),
+                icon: Assets.iconsHomeNew),
             label: context.tr.home,
           ),
           BottomNavigationBarItem(
@@ -41,7 +41,7 @@ class BuyerBottomNavBar extends StatelessWidget {
                   color: bottomNavbarVM.currentIndex == 1
                       ? ColorManager.primaryColor
                       : ColorManager.black,
-                  icon: Assets.iconsCart),
+                  icon: Assets.iconsCartNew),
             ),
             label: context.tr.cart,
           ),
@@ -50,7 +50,7 @@ class BuyerBottomNavBar extends StatelessWidget {
                 color: bottomNavbarVM.currentIndex == 2
                     ? ColorManager.primaryColor
                     : ColorManager.black,
-                icon: Assets.iconsHistory),
+                icon: Assets.iconsHistoryy),
             label: context.tr.history,
           ),
         ]);

@@ -4,7 +4,7 @@ class ApiStrings {
   static const String id = 'id';
   static const String data = 'data';
   static const String attributes = 'attributes';
-  static const String createdAt = 'created_at';
+  static const String createdAt = 'createdAt';
   static const String thumbnail = 'thumbnail';
   static const String products = 'products';
   static const String images = 'images';
@@ -47,6 +47,7 @@ class ApiStrings {
   static const String sellerAr = 'بائع';
   static const String buyerAr = 'مشتري';
   static const String seller = "seller";
+  static const String sellers = "sellers";
   static const String buyer = "buyer";
   static const String userType = "user_type";
   static const String identifier = "identifier";

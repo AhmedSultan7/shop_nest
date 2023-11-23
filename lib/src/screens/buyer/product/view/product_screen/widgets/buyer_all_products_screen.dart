@@ -25,7 +25,6 @@ class BuyerAllProductsScreen extends StatelessWidget {
           }
           return GridView.builder(
             padding: const EdgeInsets.only(bottom: AppSpaces.defaultPadding),
-            physics: const NeverScrollableScrollPhysics(),
             itemCount: productVM.products.length,
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisSpacing: 10,

@@ -749,6 +749,26 @@ class S {
       args: [],
     );
   }
+
+  /// `التاريخ : `
+  String get dateTime {
+    return Intl.message(
+      'التاريخ : ',
+      name: 'dateTime',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `تم عمل الطلب بنجاح`
+  String get makeOrderSuccess {
+    return Intl.message(
+      'تم عمل الطلب بنجاح',
+      name: 'makeOrderSuccess',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

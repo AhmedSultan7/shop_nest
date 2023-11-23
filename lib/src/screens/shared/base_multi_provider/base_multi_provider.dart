@@ -1,4 +1,5 @@
 import 'package:cards_app/src/core/injector/injector.dart';
+import 'package:cards_app/src/screens/buyer/order_history/view_model/order_view_model.dart';
 import 'package:cards_app/src/screens/seller/home/view_model/bottom_nav_provider.dart';
 import 'package:cards_app/src/screens/seller/product/view_model/product_view_model.dart';
 import 'package:cards_app/src/screens/settings/view_model/setting_view_model.dart';
@@ -36,6 +37,9 @@ class BaseMultiProvider extends StatelessWidget {
         ),
         ChangeNotifierProvider(
           create: (context) => getIt<MediaVM>(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => getIt<OrderVM>(),
         ),
         ChangeNotifierProvider(
           create: (context) => getIt<AuthVM>()..getUser(),

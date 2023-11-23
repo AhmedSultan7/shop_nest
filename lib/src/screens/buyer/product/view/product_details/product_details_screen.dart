@@ -40,7 +40,7 @@ class ProductsDetailsScreen extends HookWidget {
                     width: double.infinity,
                     child: Image.network(
                       product.image?.url ?? '',
-                      fit: BoxFit.cover,
+                      fit: BoxFit.fill,
                     ),
                   ),
                 ),

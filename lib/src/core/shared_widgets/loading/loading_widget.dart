@@ -14,10 +14,10 @@ class LoadingWidget extends StatelessWidget {
       return const LinearProgressIndicator();
     }
 
-    return Lottie.asset(
-      Assets.animationNoHistory,
-      fit: BoxFit.contain,
-      height: 120.r,
+    return const Center(
+      child: CircularProgressIndicator(
+        color: ColorManager.primaryColor,
+      ),
     );
   }
 }

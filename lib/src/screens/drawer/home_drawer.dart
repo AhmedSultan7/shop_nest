@@ -31,10 +31,10 @@ class HomeDrawer extends HookWidget {
     return Stack(
       children: [
         Blur(
-          blur: 5,
+          blur: 0.2,
           blurColor: Colors.transparent,
           child: Image.asset(
-            Assets.imagesApex,
+            Assets.imagesSpace,
           ),
         ),
         Column(

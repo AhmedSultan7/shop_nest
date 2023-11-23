@@ -91,9 +91,10 @@ class BuyerProductCard extends StatelessWidget {
                         child: Image.network(
                           product.image?.url ?? '',
                           width: double.infinity,
-                          fit: BoxFit.cover,
+                          fit: BoxFit.fill,
                           errorBuilder: (context, error, stackTrace) =>
-                              const IconWidget(icon: Assets.iconsImg),
+                              const Center(
+                                  child: IconWidget(icon: Assets.iconsNoImage)),
                         ),
                       ),
                     ),

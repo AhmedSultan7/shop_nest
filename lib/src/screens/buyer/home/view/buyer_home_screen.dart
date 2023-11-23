@@ -1,4 +1,5 @@
 import 'package:cards_app/src/core/extensions/extensions.dart';
+import 'package:cards_app/src/core/utils/logger.dart';
 import 'package:cards_app/src/screens/buyer/home/view/widgets/top_section/home_slider.dart';
 import 'package:cards_app/src/screens/buyer/home/view/widgets/top_section/main_home_search.dart';
 import 'package:cards_app/src/screens/seller/product/view_model/product_view_model.dart';
@@ -24,6 +25,7 @@ class BuyerHomeScreen extends HookWidget {
         productVM.getProducts();
         sliderVM.getSlider();
         cartVM.getCart();
+        Log.w(cartVM.getCart());
       });
       return () {};
     }, []);

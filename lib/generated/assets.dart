@@ -10,9 +10,13 @@ class Assets {
   static const String animationNoHistory = 'assets/animation/NoHistory.json';
   static const String iconsAboutUs = 'assets/icons/aboutUs.png';
   static const String iconsCart = 'assets/icons/cart.png';
+  static const String iconsCartNew = 'assets/icons/cartNew.png';
   static const String iconsContact = 'assets/icons/contact.png';
   static const String iconsHistory = 'assets/icons/history.png';
+  static const String iconsHistoryNew = 'assets/icons/historyNew.png';
+  static const String iconsHistoryy = 'assets/icons/historyy.png';
   static const String iconsHome = 'assets/icons/home.png';
+  static const String iconsHomeNew = 'assets/icons/homeNew.png';
   static const String iconsImg = 'assets/icons/img.png';
   static const String iconsLogout = 'assets/icons/logout.png';
   static const String iconsNoImage = 'assets/icons/no-image.png';

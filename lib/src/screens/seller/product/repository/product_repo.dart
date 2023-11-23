@@ -56,7 +56,7 @@ class ProductRepo {
       {required ProductModel product,
       required List<String>? fileResult}) async {
     try {
-      await networkApiServices.putResponse(ApiEndPoints.crudProduct,
+      await networkApiServices.putResponse(ApiEndPoints.products,
           fieldName: ApiStrings.image,
           fileResult: fileResult,
           data: product.toJson());
@@ -70,8 +70,7 @@ class ProductRepo {
 //! Delete Products ===================================
   Future<void> deleteProduct({required int id}) async {
     try {
-      await networkApiServices
-          .deleteResponse('${ApiEndPoints.crudProduct}/$id');
+      await networkApiServices.deleteResponse('${ApiEndPoints.products}/$id');
     } on FetchDataException {
       rethrow;
     } on TimeoutException {

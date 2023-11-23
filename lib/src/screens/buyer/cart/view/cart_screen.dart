@@ -4,6 +4,7 @@ import 'package:cards_app/src/core/shared_widgets/shared_widgets.dart';
 import 'package:cards_app/src/screens/buyer/cart/view/widgets/cart_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../core/consts/app_constants.dart';
@@ -37,8 +38,8 @@ class CartScreen extends HookWidget {
 
         return Scaffold(
           body: ListView.separated(
-              padding: const EdgeInsets.only(
-                bottom: 70,
+              padding: EdgeInsets.only(
+                bottom: 85.h,
               ),
               itemBuilder: (context, index) =>
                   BuildCartWidget(cart: cartData[index], index: index),
@@ -46,9 +47,7 @@ class CartScreen extends HookWidget {
               itemCount: cartData.length),
           floatingActionButton: cartData.isNotEmpty
               ? InkWell(
-                  onTap: () => context.to(PaymentScreen(
-                    payment: cartData,
-                  )),
+                  onTap: () => context.to(PaymentScreen()),
                   child: Container(
                     padding: const EdgeInsets.all(AppSpaces.defaultPadding),
                     margin: const EdgeInsets.all(AppSpaces.defaultPadding),

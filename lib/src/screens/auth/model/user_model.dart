@@ -65,6 +65,23 @@ class UserModel {
         usertype: userType);
   }
 
+  factory UserModel.fromOrderJson(Map<String, dynamic> json) {
+    final data = json[ApiStrings.data];
+    final attributes = data[ApiStrings.attributes];
+
+    final userType = attributes[ApiStrings.userType] == ApiStrings.seller
+        ? UserTypeEnum.seller
+        : UserTypeEnum.buyer;
+
+    return UserModel(
+        id: data[ApiStrings.id],
+        userName: attributes[ApiStrings.username] ?? '',
+        email: attributes[ApiStrings.email] ?? '',
+        password: attributes[ApiStrings.password],
+        identifier: attributes[ApiStrings.identifier] ?? '',
+        usertype: userType);
+  }
+
   factory UserModel.empty() => const UserModel();
 
   Map<String, dynamic> toJson({

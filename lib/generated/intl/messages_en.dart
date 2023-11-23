@@ -47,6 +47,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("انقر لإختيار صورة"),
         "confirmation": MessageLookupByLibrary.simpleMessage("تأكيد"),
         "contactUs": MessageLookupByLibrary.simpleMessage("تواصل معنا"),
+        "dateTime": MessageLookupByLibrary.simpleMessage("التاريخ : "),
         "deleteCart": MessageLookupByLibrary.simpleMessage("حذف السلة"),
         "deleteFromCart": MessageLookupByLibrary.simpleMessage("حذف من السلة"),
         "deleteProductConfirmationMessage":
@@ -78,6 +79,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "loginSuccessfully":
             MessageLookupByLibrary.simpleMessage("تم تسجيل الدخول بنجاح"),
         "logout": MessageLookupByLibrary.simpleMessage("تسجيل الخروج"),
+        "makeOrderSuccess":
+            MessageLookupByLibrary.simpleMessage("تم عمل الطلب بنجاح"),
         "maxUploadFileSizeIsOnly5MB": MessageLookupByLibrary.simpleMessage(
             "Max upload image size is only 5 MB"),
         "maxUploadFilesIsOnly4":

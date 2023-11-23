@@ -68,5 +68,7 @@
   "totalProduct": "إجمالي المنتجات : ",
   "total": "الإجمالي : ",
   "payment": "الدفع",
-  "pay": "أدفع"
+  "pay": "أدفع",
+  "dateTime": "التاريخ : ",
+  "makeOrderSuccess": "تم عمل الطلب بنجاح"
 }
