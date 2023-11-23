@@ -27,9 +27,9 @@ class ProductModel {
       name: attributes[ApiStrings.name] ?? '',
       description: attributes[ApiStrings.description] ?? '',
       price: attributes[ApiStrings.price] ?? 0,
-      // image: MainMediaModel.fromJson(
-      //   attributes[ApiStrings.image] ?? '',
-      // ),
+      image: MainMediaModel.fromJson(
+        attributes[ApiStrings.image] ?? '',
+      ),
     );
   }
 
