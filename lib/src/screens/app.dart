@@ -22,8 +22,6 @@ class _MyAppState extends State<MyApp> {
   void didChangeDependencies() {
     super.didChangeDependencies();
     ScreenUtil.init(context);
-
-    print('dfgdfdfdfb');
   }
 
   @override
