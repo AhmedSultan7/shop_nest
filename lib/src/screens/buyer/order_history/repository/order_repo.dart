@@ -17,9 +17,10 @@ class OrderRepo {
   //! Get Order ===================================
   Future<List<OrderModel>> getOrders() async {
     try {
-      final userIdFilter = await OrderModel.orderFilter(authLocalRepo);
-      final response = await networkApiServices
-          .getResponse(ApiEndPoints.orders + userIdFilter);
+      // final userIdFilter = await OrderModel.orderFilter(authLocalRepo);
+
+      final response =
+          await networkApiServices.getResponse(ApiEndPoints.orders);
 
       final orderData = (response[ApiStrings.data] as List)
           .map((order) => OrderModel.fromJson(order))

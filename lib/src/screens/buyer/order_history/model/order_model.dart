@@ -22,11 +22,13 @@ class OrderModel {
     required this.user,
   });
 
+  //! From Json ---------------------------------------
   factory OrderModel.fromJson(Map<String, dynamic> json) {
+    final attributes = json[ApiStrings.attributes];
+
     // * -----------------------------------------------
 
-    final product =
-        json[ApiStrings.attributes][ApiStrings.products][ApiStrings.data] ?? [];
+    final product = attributes[ApiStrings.products][ApiStrings.data] ?? [];
 
     final productList =
         List<ProductModel>.from(product.map((e) => ProductModel.fromJson(e)))
@@ -34,20 +36,20 @@ class OrderModel {
 
     // * -----------------------------------------------
 
-    final sellers =
-        json[ApiStrings.attributes][ApiStrings.sellers][ApiStrings.data];
+    final sellers = attributes[ApiStrings.sellers][ApiStrings.data];
 
     final sellerList = List<UserModel>.from(
         sellers.map((seller) => UserModel.fromJson(seller))).toList();
+
     // * -----------------------------------------------
 
-    final user = json[ApiStrings.attributes][ApiStrings.user] != null
+    final user = attributes[ApiStrings.user] != null
         ? UserModel.fromOrderJson(json[ApiStrings.attributes][ApiStrings.user])
         : null;
 
     // * -----------------------------------------------
 
-    String dateString = json[ApiStrings.attributes][ApiStrings.createdAt];
+    String dateString = attributes[ApiStrings.createdAt];
     DateTime dateTime = DateTime.parse(dateString);
     String formattedDate = DateFormat('yyyy-MM-dd HH:mm').format(dateTime);
 
@@ -55,7 +57,7 @@ class OrderModel {
 
     return OrderModel(
       id: json[ApiStrings.id],
-      totalPrice: json[ApiStrings.attributes][ApiStrings.totalPrice] ?? '',
+      totalPrice: attributes[ApiStrings.totalPrice] ?? '',
       products: productList,
       createdAt: formattedDate,
       sellers: sellerList,
@@ -63,6 +65,7 @@ class OrderModel {
     );
   }
 
+  //! Order Filter ===================================
   static Future<String> orderFilter(AuthLocalRepo authLocalRepo) async {
     final user = await authLocalRepo.getUserData();
 
@@ -72,6 +75,7 @@ class OrderModel {
     return userFilter;
   }
 
+  //! To Json ===================================
   Map<String, dynamic> toJson() {
     return {
       ApiStrings.totalPrice: totalPrice,

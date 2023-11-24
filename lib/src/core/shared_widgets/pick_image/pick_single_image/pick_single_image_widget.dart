@@ -20,7 +20,6 @@ class SinglePickImageWidget extends StatelessWidget {
     }
 
     final pickResultIsNotNull = pickedResult != null;
-    // pickedResult?.files != null && pickedResult!.files.isNotEmpty;
 
     //! View Picked Image ========================================
     if (pickResultIsNotNull) {
