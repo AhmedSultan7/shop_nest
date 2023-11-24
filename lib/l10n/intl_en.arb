@@ -70,5 +70,7 @@
   "payment": "الدفع",
   "pay": "أدفع",
   "dateTime": "التاريخ : ",
-  "makeOrderSuccess": "تم عمل الطلب بنجاح"
+  "makeOrderSuccess": "تم عمل الطلب بنجاح",
+  "noOrders": "لا يوجد طلبات",
+  "orderNumber": "طلب رقم : "
 }

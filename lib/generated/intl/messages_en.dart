@@ -90,6 +90,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("لا يوجد طلبات سابقة"),
         "noInternet":
             MessageLookupByLibrary.simpleMessage("لا يوجد إتصال بالإنترنت"),
+        "noOrders": MessageLookupByLibrary.simpleMessage("لا يوجد طلبات"),
+        "orderNumber": MessageLookupByLibrary.simpleMessage("طلب رقم : "),
         "orders": MessageLookupByLibrary.simpleMessage("الطلبات"),
         "password": MessageLookupByLibrary.simpleMessage("كلمة المرور"),
         "passwordMustContain8Characters": MessageLookupByLibrary.simpleMessage(

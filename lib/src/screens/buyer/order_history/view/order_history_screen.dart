@@ -1,3 +1,4 @@
+import 'package:cards_app/src/core/extensions/extensions.dart';
 import 'package:cards_app/src/core/resources/app_spaces.dart';
 import 'package:cards_app/src/core/shared_widgets/empty_widgets/empty_order.dart';
 import 'package:cards_app/src/core/shared_widgets/shared_widgets.dart';
@@ -28,7 +29,8 @@ class OrderHistoryScreen extends HookWidget {
         if (orderVM.orders.isEmpty) {
           return const EmptyOrderWidget();
         }
-        return ListView.builder(
+        return ListView.separated(
+          shrinkWrap: true,
           padding: const EdgeInsets.only(
             right: AppSpaces.defaultPadding,
             top: AppSpaces.defaultPadding,
@@ -37,6 +39,7 @@ class OrderHistoryScreen extends HookWidget {
           itemBuilder: (context, index) => OrderHistoryWidget(
             order: orderVM.orders[index],
           ),
+          separatorBuilder: (context, index) => context.mediumGap,
           itemCount: orderVM.orders.length,
         );
       },
