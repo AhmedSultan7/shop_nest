@@ -769,6 +769,26 @@ class S {
       args: [],
     );
   }
+
+  /// `لا يوجد طلبات`
+  String get noOrders {
+    return Intl.message(
+      'لا يوجد طلبات',
+      name: 'noOrders',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `طلب رقم : `
+  String get orderNumber {
+    return Intl.message(
+      'طلب رقم : ',
+      name: 'orderNumber',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

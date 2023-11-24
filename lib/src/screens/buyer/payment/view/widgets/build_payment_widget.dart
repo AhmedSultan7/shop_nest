@@ -2,6 +2,7 @@ import 'package:cards_app/src/core/extensions/extensions.dart';
 import 'package:cards_app/src/core/resources/theme/theme.dart';
 import 'package:cards_app/src/screens/buyer/cart/model/cart_model.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../../../generated/assets.dart';
 import '../../../../../core/resources/app_radius.dart';
@@ -27,7 +28,8 @@ class BuildPaymentWidget extends StatelessWidget {
                 child: Image.network(
                   payment.product.image!.url,
                   fit: BoxFit.cover,
-                  height: 100,
+                  height: 90.h,
+                  width: 110.w,
                   errorBuilder: (context, error, stackTrace) {
                     return const IconWidget(icon: Assets.iconsImg);
                   },
