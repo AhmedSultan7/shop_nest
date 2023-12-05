@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:cards_app/src/core/data/remote/response/api_strings.dart';
@@ -46,6 +47,58 @@ class NetworkApiService extends BaseApiServices {
     return responseJson;
   }
 
+  @override
+  Future postOrderResponse(
+    String url, {
+    required Map<String, dynamic> data,
+    List<String?> filePaths = const [],
+    String fieldName = 'images',
+    bool fromAuth = false,
+  }) async {
+    dynamic responseJson;
+    try {
+      http.MultipartRequest request =
+          http.MultipartRequest('POST', Uri.parse(ApiEndPoints.baseUrl + url));
+
+      if (fromAuth) {
+        request.fields.addAll(
+          data.map((key, value) => MapEntry(key, value.toString())),
+        );
+      } else {
+        request.fields.addAll({
+          "data": jsonEncode(data),
+        });
+      }
+
+      log('PostResponseFields -------------------> ${data.map((key, value) => MapEntry(key, value.toString()))}');
+
+      if (filePaths.isNotEmpty) {
+        for (String? filePath in filePaths) {
+          request.files.add(
+              await http.MultipartFile.fromPath('files.$fieldName', filePath!));
+        }
+      }
+
+      request.headers.addAll({
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        // 'Authorization': "Bearer ${GetStorage().read(LocalKeys.token)}"
+      });
+
+      http.StreamedResponse response = await request.send();
+
+      if (response.statusCode == 200 || response.statusCode == 201) {
+        responseJson = await jsonDecode(await response.stream.bytesToString());
+      } else {
+        throw FetchDataException(
+            'Error occurred while communication with server: ${await response.stream.bytesToString()} with status code : ${response.statusCode}');
+      }
+    } on SocketException {
+      throw FetchDataException('No Internet Connection');
+    }
+    return responseJson;
+  }
+
 // ! Post request
   Future postResponseLogin(
     String url, {
@@ -54,32 +107,31 @@ class NetworkApiService extends BaseApiServices {
     String? fieldName,
   }) async {
     dynamic responseJson;
-    try {
-      final apiUrl = Uri.parse(ApiEndPoints.baseUrl + url);
+    // try {
+    final apiUrl = Uri.parse(ApiEndPoints.baseUrl + url);
 
-      Log.w('PostApiUrl => $apiUrl\n 💾💾💾 PostResponse -> $data 💾💾💾');
+    Log.w('PostApiUrl => $apiUrl\n 💾💾💾 PostResponse -> $data 💾💾💾');
 
-      final response = await http.post(apiUrl, body: data);
+    final response = await http.post(apiUrl, body: data);
 
-      Log.w('Res => ${response.body}');
+    Log.w('Res => ${response.body}');
 
-      if (response.statusCode == 200 || response.statusCode == 201) {
-        responseJson = await jsonDecode(response.body);
+    if (response.statusCode == 200 || response.statusCode == 201) {
+      responseJson = await jsonDecode(response.body);
 
-        return responseJson;
-      } else {
-        throw FetchDataException(
-            'Error occurred while communication with server: ${response.body} with status code : ${response.statusCode}');
-      }
-    } on SocketException {
-      rethrow;
-    } on TimeoutException {
-      rethrow;
-    } catch (e) {
+      return responseJson;
+    } else {
       throw FetchDataException(
-          "FetchDataException: getResponse ${e.toString()}");
+          'Error occurred while communication with server: ${response.body} with status code : ${response.statusCode}');
     }
-    return responseJson;
+    // } on SocketException {
+    //   rethrow;
+    // } on TimeoutException {
+    //   rethrow;
+    // } catch (e) {
+    //   throw FetchDataException(
+    //       "FetchDataException: getResponse ${e.toString()}");
+    // }
   }
 
   @override

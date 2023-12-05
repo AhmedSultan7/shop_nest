@@ -80,7 +80,9 @@ class OrderModel {
     return {
       ApiStrings.totalPrice: totalPrice,
       ApiStrings.user: user!.id,
-      ApiStrings.sellers: sellers?.map((seller) => seller.id).toList()
+      ApiStrings.sellers: [30],
+      // sellers?.map((seller) => seller.id).toList(),
+      ApiStrings.products: products?.map((product) => product.id).toList(),
     };
   }
 }

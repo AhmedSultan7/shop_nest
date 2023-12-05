@@ -10,42 +10,57 @@ import '../../../../../seller/product/view_model/product_view_model.dart';
 import 'buyer_product_card.dart';
 
 class HomeProductsGridView extends StatelessWidget {
-  const HomeProductsGridView({super.key});
+  final TextEditingController searchController;
+
+  const HomeProductsGridView({super.key, required this.searchController});
 
   @override
   Widget build(BuildContext context) {
     return Consumer<ProductsVM>(
       builder: (context, productVM, child) {
+        final isSearching = searchController.text.isNotEmpty;
+
         if (productVM.isLoading) {
           return const LoadingWidget();
         }
+
         return Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Row(
               children: [
                 Text(
-                  context.tr.products,
+                  isSearching ? context.tr.searchResults : context.tr.products,
                   style: context.headLine,
                 ),
                 const Spacer(),
-                TextButton(
-                    onPressed: () {
-                      context.to(const BuyerAllProductsScreen());
-                    },
-                    child: Text(
-                      context.tr.seeAll,
-                      style: context.labelLarge
-                          .copyWith(color: ColorManager.primaryColor),
-                    )),
+                if (!isSearching)
+                  TextButton(
+                      onPressed: () {
+                        context.to(const BuyerAllProductsScreen());
+                      },
+                      child: Text(
+                        context.tr.seeAll,
+                        style: context.labelLarge
+                            .copyWith(color: ColorManager.primaryColor),
+                      )),
               ],
             ),
             context.mediumGap,
+            if (isSearching && productVM.searchedProductsList.isEmpty) ...[
+              context.xlLargeGap,
+              Text(
+                context.tr.noResultsFound,
+                style: context.headLine,
+              ),
+            ],
             GridView.builder(
               padding: const EdgeInsets.only(bottom: AppSpaces.defaultPadding),
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
-              itemCount: productVM.products.length,
+              itemCount: isSearching
+                  ? productVM.searchedProductsList.length
+                  : productVM.products.length,
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisSpacing: 10,
                 crossAxisCount: 2,
@@ -53,7 +68,9 @@ class HomeProductsGridView extends StatelessWidget {
                 childAspectRatio: .50,
               ),
               itemBuilder: (_, index) => BuyerProductCard(
-                product: productVM.products[index],
+                product: isSearching
+                    ? productVM.searchedProductsList[index]
+                    : productVM.products[index],
               ),
             ),
           ],

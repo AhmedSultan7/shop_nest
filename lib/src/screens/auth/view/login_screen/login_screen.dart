@@ -69,7 +69,7 @@ class LoginScreen extends HookWidget {
                                   .login(controllers: fieldsController)
                                   .then((value) {
                                 if (value == true) {
-                                  context.to(const MyApp());
+                                  context.toReplacement(const MyApp());
                                   context.showBarMessage(
                                     context.tr.loginSuccessfully,
                                   );

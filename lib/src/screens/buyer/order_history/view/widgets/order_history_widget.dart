@@ -1,6 +1,7 @@
 import 'package:cards_app/src/core/consts/app_constants.dart';
 import 'package:cards_app/src/core/extensions/extensions.dart';
 import 'package:cards_app/src/core/resources/app_radius.dart';
+import 'package:cards_app/src/core/resources/app_spaces.dart';
 import 'package:cards_app/src/core/resources/theme/theme.dart';
 import 'package:cards_app/src/core/shared_widgets/box_shadow.dart';
 import 'package:cards_app/src/screens/buyer/order_history/model/order_model.dart';
@@ -39,7 +40,7 @@ class OrderHistoryWidget extends StatelessWidget {
               borderRadius:
                   BorderRadius.circular(AppRadius.baseContainerRadius),
               child: Image.network(
-                order.products?.first.image?.url ?? '',
+                order.products?.firstOrNull?.image?.url ?? '',
                 fit: BoxFit.cover,
                 width: double.infinity,
                 errorBuilder: (context, error, stackTrace) =>
@@ -49,6 +50,8 @@ class OrderHistoryWidget extends StatelessWidget {
 
             //! Total Price & Created At
             Container(
+              padding: const EdgeInsets.symmetric(
+                  horizontal: AppSpaces.smallPadding),
               width: double.infinity,
               height: 60.h,
               decoration: const BoxDecoration(
@@ -72,6 +75,7 @@ class OrderHistoryWidget extends StatelessWidget {
                             '${order.totalPrice}',
                             style: context.subTitle,
                           ),
+                          context.xSmallGap,
                           Text(
                             AppConsts.currency,
                             style: context.subTitle
@@ -178,14 +182,14 @@ class OrderItemListWidget extends StatelessWidget {
             Row(
               children: [
                 Text(
-                  product.price.toString() ?? '',
+                  product.price.toString(),
                   style: context.title,
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                 ),
                 context.xSmallGap,
                 Text(
-                  AppConsts.currency ?? '',
+                  AppConsts.currency,
                   style:
                       context.title.copyWith(color: ColorManager.primaryColor),
                   maxLines: 2,

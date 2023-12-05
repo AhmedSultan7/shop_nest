@@ -7,7 +7,7 @@ import 'package:cards_app/src/core/extensions/extensions.dart';
 import 'package:cards_app/src/core/utils/logger.dart';
 import 'package:cards_app/src/screens/auth/view_model/auth_view_model.dart';
 import 'package:cards_app/src/screens/seller/product/models/product_model.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../../shared/loading_view_model/loading_view_model.dart';
@@ -19,6 +19,7 @@ class ProductsVM extends LoadingVM {
   ProductsVM(this._productRepo);
 
   List<ProductModel> products = [];
+  List searchedProductsList = [];
 
   //! Get Products ===================================
   Future<void> getProducts() async {
@@ -36,6 +37,23 @@ class ProductsVM extends LoadingVM {
     }
   }
 
+  // * Search For Products =========================================
+  void searchedProductsToSearchedList(String searchedProducts) {
+    searchedProductsList = products
+        .where((element) =>
+            element.name!.toLowerCase().startsWith(searchedProducts))
+        .toList();
+    notifyListeners();
+  }
+
+  void clearSearch({required TextEditingController searchController}) {
+    searchedProductsList.clear();
+    searchController.clear();
+    notifyListeners();
+  }
+
+  // * =============================================================
+
   //! Add Products ===================================
   Future<void> addProduct(
     BuildContext context, {
@@ -51,6 +69,8 @@ class ProductsVM extends LoadingVM {
           description: controllers[ApiStrings.description]!.text,
           price: num.tryParse(controllers[ApiStrings.price]!.text),
           seller: seller);
+
+      // Fixme : ================================================
       await _productRepo.addProduct(product: product, pickedImage: pickedImage);
       getProducts();
       if (context.mounted) {

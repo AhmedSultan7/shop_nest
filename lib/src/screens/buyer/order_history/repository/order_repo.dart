@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:cards_app/src/core/data/remote/app_exception.dart';
-import 'package:cards_app/src/core/data/remote/network/base_api_service.dart';
+import 'package:cards_app/src/core/data/remote/network/network_api_service.dart';
 import 'package:cards_app/src/core/data/remote/response/api_end_points.dart';
 import 'package:cards_app/src/core/data/remote/response/api_strings.dart';
 import 'package:cards_app/src/screens/buyer/order_history/model/order_model.dart';
@@ -9,7 +9,7 @@ import 'package:cards_app/src/screens/buyer/order_history/model/order_model.dart
 import '../../../auth/repository/local_repo/auth_local_repo.dart';
 
 class OrderRepo {
-  final BaseApiServices networkApiServices;
+  final NetworkApiService networkApiServices;
   final AuthLocalRepo authLocalRepo;
 
   OrderRepo({required this.networkApiServices, required this.authLocalRepo});
@@ -36,7 +36,7 @@ class OrderRepo {
   //! Add Order ==================================
   Future<void> addOrder({required OrderModel order}) async {
     try {
-      await networkApiServices.postResponse(ApiEndPoints.orders,
+      await networkApiServices.postOrderResponse(ApiEndPoints.orders,
           data: order.toJson());
     } on FetchDataException {
       rethrow;

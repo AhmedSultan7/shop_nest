@@ -91,6 +91,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "noInternet":
             MessageLookupByLibrary.simpleMessage("لا يوجد إتصال بالإنترنت"),
         "noOrders": MessageLookupByLibrary.simpleMessage("لا يوجد طلبات"),
+        "noResultsFound":
+            MessageLookupByLibrary.simpleMessage("لم يتم العثور على نتائج ..."),
         "orderNumber": MessageLookupByLibrary.simpleMessage("طلب رقم : "),
         "orders": MessageLookupByLibrary.simpleMessage("الطلبات"),
         "password": MessageLookupByLibrary.simpleMessage("كلمة المرور"),
@@ -109,6 +111,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "products": MessageLookupByLibrary.simpleMessage("المنتجات"),
         "requiredField": MessageLookupByLibrary.simpleMessage("حقل مطلوب"),
         "search": MessageLookupByLibrary.simpleMessage("بحث"),
+        "searchResults": MessageLookupByLibrary.simpleMessage("نتائج البحث"),
         "seeAll": MessageLookupByLibrary.simpleMessage("عرض الكل"),
         "seller": MessageLookupByLibrary.simpleMessage("بائع"),
         "settings": MessageLookupByLibrary.simpleMessage("الإعدادات"),

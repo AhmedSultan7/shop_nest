@@ -1,16 +1,15 @@
-import 'package:cards_app/src/core/consts/app_constants.dart';
-import 'package:cards_app/src/core/data/local/hive_helper.dart';
 import 'package:cards_app/src/core/extensions/extensions.dart';
 import 'package:cards_app/src/core/resources/app_spaces.dart';
 import 'package:cards_app/src/core/shared_widgets/shared_widgets.dart';
-import 'package:cards_app/src/screens/buyer/home/view/main_buyer_screen.dart';
+import 'package:cards_app/src/screens/auth/view_model/auth_view_model.dart';
+import 'package:cards_app/src/screens/buyer/order_history/view_model/order_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../../../../../core/consts/app_constants.dart';
 import '../../../../../core/resources/app_radius.dart';
 import '../../../../../core/resources/theme/theme.dart';
 import '../../../../../core/shared_widgets/box_shadow.dart';
-import '../../../../seller/home/view_model/bottom_nav_provider.dart';
 import '../../../cart/view_model/cart_view_model.dart';
 
 class PaymentBottomNavBar extends StatefulWidget {
@@ -39,6 +38,7 @@ class _PaymentBottomNavBarState extends State<PaymentBottomNavBar> {
           boxShadow: ConstantsWidgets.darkBoxShadowFromBottom),
       child: Column(
         children: [
+          //! Total Products
           Row(
             children: [
               Text(
@@ -51,7 +51,11 @@ class _PaymentBottomNavBarState extends State<PaymentBottomNavBar> {
               ),
             ],
           ),
+
           context.mediumGap,
+
+          //! Total Order
+
           Row(
             children: [
               Text(
@@ -73,13 +77,10 @@ class _PaymentBottomNavBarState extends State<PaymentBottomNavBar> {
           Expanded(
             child: Button(
               onPressed: () {
-                //! Set current index to cart screen
-                context.read<BottomNavbarVM>().setCurrentIndex(0);
-                context.toReplacement(const MainBuyerScreen());
-
-                context.showBarMessage(context.tr.makeOrderSuccess);
-                HiveHelper().clear(AppConsts.cart);
-                setState(() {});
+                final authVM = context.read<AuthVM>();
+                context
+                    .read<OrderVM>()
+                    .addOrders(cartVM: cartVM, user: authVM.user);
               },
               label: context.tr.pay,
               radius: AppRadius.tabBarRadius,

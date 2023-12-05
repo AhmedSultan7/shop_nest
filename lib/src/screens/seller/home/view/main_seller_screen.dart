@@ -9,6 +9,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../core/resources/app_spaces.dart';
+import '../../../../core/utils/logger.dart';
 import '../../product/view/add_products/add_product.dart';
 import '../../product/view/product_screen/seller_products_screen.dart';
 import '../../product/view_model/product_view_model.dart';
@@ -23,6 +24,7 @@ class MainSellerScreen extends HookWidget {
     useEffect(() {
       WidgetsBinding.instance.addPostFrameCallback((_) {
         productVM.getProducts();
+        Log.e('dsndjxbn ${productVM.getProducts()}');
       });
       return () {};
     }, []);

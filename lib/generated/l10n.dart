@@ -789,6 +789,26 @@ class S {
       args: [],
     );
   }
+
+  /// `نتائج البحث`
+  String get searchResults {
+    return Intl.message(
+      'نتائج البحث',
+      name: 'searchResults',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `لم يتم العثور على نتائج ...`
+  String get noResultsFound {
+    return Intl.message(
+      'لم يتم العثور على نتائج ...',
+      name: 'noResultsFound',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

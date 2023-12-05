@@ -72,5 +72,7 @@
   "dateTime": "التاريخ : ",
   "makeOrderSuccess": "تم عمل الطلب بنجاح",
   "noOrders": "لا يوجد طلبات",
-  "orderNumber": "طلب رقم : "
+  "orderNumber": "طلب رقم : ",
+  "searchResults": "نتائج البحث",
+  "noResultsFound": "لم يتم العثور على نتائج ..."
 }

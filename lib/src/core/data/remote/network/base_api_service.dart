@@ -8,6 +8,13 @@ abstract class BaseApiServices {
     String? fieldName,
   });
 
+  Future<dynamic> postOrderResponse(
+    String url, {
+    required Map<String, dynamic> data,
+    List<String?> filePaths = const [],
+    bool fromAuth = false,
+  });
+
   Future<dynamic> putResponse(
     String url, {
     required Map<String, dynamic> data,

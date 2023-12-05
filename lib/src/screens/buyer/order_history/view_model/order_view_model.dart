@@ -41,7 +41,8 @@ class OrderVM extends LoadingVM {
     try {
       final orderModel = OrderModel(
           totalPrice: cartVM.total,
-          sellers: cartVM.cartList.map((e) => e.product.seller!).toList(),
+          sellers: [],
+          // cartVM.cartList.map((e) => e.product.seller!).toList(),
           products: cartVM.cartList.map((e) => e.product).toList(),
           user: user);
       isLoading = true;
