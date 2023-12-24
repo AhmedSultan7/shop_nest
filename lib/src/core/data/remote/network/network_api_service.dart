@@ -4,13 +4,13 @@ import 'dart:developer';
 import 'dart:io';
 
 import 'package:cards_app/src/core/data/remote/response/api_strings.dart';
-import 'package:file_picker/file_picker.dart';
-import 'package:http/http.dart' as http;
 
 import '../../../utils/logger.dart';
 import '../app_exception.dart';
 import '../response/api_end_points.dart';
 import 'base_api_service.dart';
+import 'package:http/http.dart' as http;
+
 
 class NetworkApiService extends BaseApiServices {
   //! Get request
