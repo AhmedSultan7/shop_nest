@@ -19,7 +19,7 @@ class MainBuyerScreen extends StatefulWidget {
 class _MainBuyerScreenState extends State<MainBuyerScreen> {
   @override
   Widget build(BuildContext context) {
-    return Consumer<BottomNavbarVM>(
+    return Consumer<SellerBottomNavbarVM>(
       builder: (context, bottomNavbarVM, child) {
         return Scaffold(
           body: SliderDrawerWidget(

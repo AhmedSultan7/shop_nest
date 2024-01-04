@@ -700,6 +700,16 @@ class S {
     );
   }
 
+  /// `لا يوجد منتجات`
+  String get noProducts {
+    return Intl.message(
+      'لا يوجد منتجات',
+      name: 'noProducts',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `تعذر الإتصال بالخادم، حاول مرة أخرى`
   String get cantConnectToServer {
     return Intl.message(
@@ -785,6 +795,26 @@ class S {
     return Intl.message(
       'طلب رقم : ',
       name: 'orderNumber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `نتائج البحث`
+  String get searchResults {
+    return Intl.message(
+      'نتائج البحث',
+      name: 'searchResults',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `لم يتم العثور على نتائج ...`
+  String get noResultsFound {
+    return Intl.message(
+      'لم يتم العثور على نتائج ...',
+      name: 'noResultsFound',
       desc: '',
       args: [],
     );

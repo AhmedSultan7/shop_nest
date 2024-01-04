@@ -1,7 +1,9 @@
+import 'package:cards_app/src/core/extensions/extensions.dart';
 import 'package:cards_app/src/core/resources/app_spaces.dart';
 import 'package:cards_app/src/core/shared_widgets/shared_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
 import '../../view_model/product_view_model.dart';
@@ -18,6 +20,11 @@ class SellerProductsScreen extends HookWidget {
           builder: (context, productVM, child) {
             if (productVM.isLoading) {
               return const LoadingWidget();
+            }
+            if( productVM.products.isEmpty){
+              return Center(
+                  heightFactor: 18.h,
+                  child: Text(context.tr.noProducts,style: context.headLine,));
             }
             return GridView.builder(
               padding: const EdgeInsets.only(

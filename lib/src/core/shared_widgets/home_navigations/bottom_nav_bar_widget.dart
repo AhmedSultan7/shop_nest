@@ -11,7 +11,7 @@ class BottomNavBarWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<BottomNavbarVM>(builder: (context, bottomNavbarVM, child) {
+    return Consumer<SellerBottomNavbarVM>(builder: (context, bottomNavbarVM, child) {
       return BottomNavigationBar(
         selectedLabelStyle: const TextStyle(
             fontSize: 15,

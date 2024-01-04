@@ -20,6 +20,8 @@ class BuyerHomeScreen extends HookWidget {
     final productVM = context.read<ProductsVM>();
     final sliderVM = context.read<SliderVM>();
     final cartVM = context.read<CartVM>();
+    final searchController = useTextEditingController();
+
     useEffect(() {
       WidgetsBinding.instance.addPostFrameCallback((_) {
         productVM.getProducts();
@@ -29,17 +31,21 @@ class BuyerHomeScreen extends HookWidget {
       });
       return () {};
     }, []);
+
     return ListView(
       children: [
-        const HomeSearch().paddingOnly(
+        HomeSearch(
+          searchController: searchController,
+        ).paddingOnly(
             right: AppSpaces.defaultPadding,
             left: AppSpaces.defaultPadding,
             top: AppSpaces.defaultPadding),
         context.largeGap,
         const HomeSlider(),
         context.mediumGap,
-        const HomeProductsGridView()
-            .paddingSymmetric(horizontal: AppSpaces.defaultPadding),
+        HomeProductsGridView(
+          searchController: searchController,
+        ).paddingSymmetric(horizontal: AppSpaces.defaultPadding),
       ],
     );
   }

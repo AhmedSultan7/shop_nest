@@ -2,6 +2,8 @@ import 'package:cards_app/src/core/data/remote/response/api_strings.dart';
 import 'package:cards_app/src/core/extensions/extensions.dart';
 import 'package:cards_app/src/core/resources/app_spaces.dart';
 import 'package:cards_app/src/core/shared_widgets/shared_widgets.dart';
+import 'package:cards_app/src/screens/seller/home/view/main_seller_screen.dart';
+import 'package:cards_app/src/screens/seller/product/view/product_screen/seller_products_screen.dart';
 import 'package:cards_app/src/screens/shared/media/view_models/media_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -30,21 +32,21 @@ class AddProductScreen extends HookWidget {
     final mediaVM = context.read<MediaVM>();
     final isEdit = product != null;
 
-    void addOrEditProduct() {
+    Future<void> addOrEditProduct() async {
       if (isEdit) {
-        productVM.editProduct(context,
+        await productVM.editProduct(context,
             controllers: fieldsControllers,
             id: product!.id!,
             fileResult: mediaVM.filesPaths);
       } else {
-        productVM.addProduct(context,
+        await productVM.addProduct(context,
             controllers: fieldsControllers,
             pickedImage: mediaVM.filesPaths.first);
       }
     }
 
     //! ==============================
-    void validateAndAddEditCategory() async {
+    Future<void> validateAndAddEditCategory() async {
       if (mediaVM.filesPaths.isEmpty && !isEdit) {
         context.showBarMessage(
           context.tr.pleasePickImage,
@@ -55,7 +57,7 @@ class AddProductScreen extends HookWidget {
 
       if (!formKey.value.currentState!.validate()) return;
 
-      addOrEditProduct();
+      await addOrEditProduct();
     }
 
     return Form(
@@ -73,13 +75,15 @@ class AddProductScreen extends HookWidget {
               Button(
                   label: isEdit ? context.tr.edit : context.tr.add,
                   isLoading: productVM.isLoading,
-                  onPressed: () {
-                    validateAndAddEditCategory();
+                  onPressed: () async {
+                    await validateAndAddEditCategory();
+                    if (!context.mounted) return;
+                    context.toReplacement(const MainSellerScreen());
                   })
             ],
           ).scroll();
         },
-      ).paddingSymmetric(horizontal: AppSpaces.defaultPadding),
+      ).paddingAll(AppSpaces.defaultPadding),
     );
   }
 }

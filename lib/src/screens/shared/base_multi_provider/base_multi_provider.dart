@@ -9,6 +9,7 @@ import 'package:provider/provider.dart';
 
 import '../../auth/view_model/auth_view_model.dart';
 import '../../buyer/cart/view_model/cart_view_model.dart';
+import '../../buyer/home/view_model/bottom_nav_provider.dart';
 import '../../buyer/home/view_model/slider_view_model.dart';
 
 class BaseMultiProvider extends StatelessWidget {
@@ -21,7 +22,9 @@ class BaseMultiProvider extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(
-          create: (context) => getIt<BottomNavbarVM>(),
+          create: (context) => getIt<SellerBottomNavbarVM>(),
+        ),  ChangeNotifierProvider(
+          create: (context) => getIt<BuyerBottomNavbarVM>(),
         ),
         ChangeNotifierProvider(
           create: (context) => getIt<SliderVM>(),

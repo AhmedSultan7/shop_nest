@@ -14,17 +14,18 @@ import '../../../shared/loading_view_model/loading_view_model.dart';
 import '../repository/product_repo.dart';
 
 class ProductsVM extends LoadingVM {
-  final ProductRepo _productRepo;
+  final ProductRepo productRepo;
 
-  ProductsVM(this._productRepo);
+  ProductsVM({required this.productRepo});
 
   List<ProductModel> products = [];
+  List searchedProductsList = [];
 
   //! Get Products ===================================
   Future<void> getProducts() async {
     try {
       isLoading = true;
-      products = await _productRepo.getProducts();
+      products = await productRepo.getProducts();
       isLoading = false;
     } on FetchDataException catch (e) {
       Log.e('Fetch Data Exception ${e.toString()}');
@@ -35,6 +36,23 @@ class ProductsVM extends LoadingVM {
       isLoading = false;
     }
   }
+
+  // * Search For Products =========================================
+  void searchedProductsToSearchedList(String searchedProducts) {
+    searchedProductsList = products
+        .where((element) =>
+            element.name!.toLowerCase().startsWith(searchedProducts))
+        .toList();
+    notifyListeners();
+  }
+
+  void clearSearch({required TextEditingController searchController}) {
+    searchedProductsList.clear();
+    searchController.clear();
+    notifyListeners();
+  }
+
+  // * =============================================================
 
   //! Add Products ===================================
   Future<void> addProduct(
@@ -51,7 +69,9 @@ class ProductsVM extends LoadingVM {
           description: controllers[ApiStrings.description]!.text,
           price: num.tryParse(controllers[ApiStrings.price]!.text),
           seller: seller);
-      await _productRepo.addProduct(product: product, pickedImage: pickedImage);
+
+
+      await productRepo.addProduct(product: product, pickedImage: pickedImage);
       getProducts();
       if (context.mounted) {
         context.back();
@@ -74,16 +94,16 @@ class ProductsVM extends LoadingVM {
       required int id,
       List<String>? fileResult}) async {
     try {
-      isLoading = true;
       final seller = context.read<AuthVM>().user;
 
+      isLoading = true;
       final product = ProductModel(
-          id: id,
-          name: controllers[ApiStrings.name]!.text,
-          description: controllers[ApiStrings.description]!.text,
-          price: num.tryParse(controllers[ApiStrings.price]!.text),
-          seller: seller);
-
+        id: id,
+        name: controllers[ApiStrings.name]!.text,
+        description: controllers[ApiStrings.description]!.text,
+        price: num.tryParse(controllers[ApiStrings.price]!.text),
+          seller: seller
+      );
       await _productRepo.editProduct(
         product: product,
         fileResult: fileResult,
@@ -110,7 +130,7 @@ class ProductsVM extends LoadingVM {
   Future<void> deleteProduct(BuildContext context, {required int id}) async {
     try {
       isLoading = true;
-      await _productRepo.deleteProduct(id: id);
+      await productRepo.deleteProduct(id: id);
       getProducts();
       if (context.mounted) {
         context.back();

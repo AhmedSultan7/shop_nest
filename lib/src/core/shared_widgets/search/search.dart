@@ -1,13 +1,15 @@
 part of shared_widgets;
 
 class SearchWidget extends StatelessWidget {
-  final String initialValue;
-  final Function(String) onSubmitted;
+  final Function(String) onChanged;
+  final Widget? suffixIcon;
+  final TextEditingController? searchController;
 
   const SearchWidget({
     super.key,
-    required this.initialValue,
-    required this.onSubmitted,
+    this.searchController,
+    required this.onChanged,
+    this.suffixIcon,
   });
 
   @override
@@ -17,10 +19,10 @@ class SearchWidget extends StatelessWidget {
         color: ColorManager.white,
         borderRadius: BorderRadius.circular(AppRadius.baseRadius),
         child: BaseTextField(
-          initialValue: initialValue,
+          controller: searchController,
+          onChanged: onChanged,
           hint: context.tr.search,
-          suffixIcon: const IconWidget(icon: Assets.iconsSearch)
-              .paddingAll(AppSpaces.defaultPadding),
+          suffixIcon: suffixIcon!.paddingAll(AppSpaces.defaultPadding),
         ));
   }
 }

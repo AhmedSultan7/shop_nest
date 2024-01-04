@@ -2,6 +2,7 @@ import 'package:cards_app/src/core/extensions/extensions.dart';
 import 'package:cards_app/src/core/resources/app_spaces.dart';
 import 'package:cards_app/src/core/shared_widgets/empty_widgets/empty_order.dart';
 import 'package:cards_app/src/core/shared_widgets/shared_widgets.dart';
+import 'package:cards_app/src/core/utils/logger.dart';
 import 'package:cards_app/src/screens/buyer/order_history/view_model/order_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -23,6 +24,7 @@ class OrderHistoryScreen extends HookWidget {
     }, []);
     return Consumer<OrderVM>(
       builder: (context, orderVM, child) {
+        Log.w(orderVM.orders.length);
         if (orderVM.isLoading) {
           return const LoadingWidget();
         }

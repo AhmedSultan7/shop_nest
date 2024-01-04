@@ -57,6 +57,7 @@ class BuildCartWidget extends HookWidget {
                     product.image!.url,
                     fit: BoxFit.cover,
                     height: 100,
+                    width: 300.w,
                     errorBuilder: (context, error, stackTrace) {
                       return const IconWidget(icon: Assets.iconsImg);
                     },
@@ -79,11 +80,10 @@ class BuildCartWidget extends HookWidget {
               ],
             ),
           ),
-          context.smallGap,
-
+          context.mediumGap,
           //! product name & price
           Expanded(
-            flex: 2,
+            flex: 3,
             child: Align(
               alignment: Alignment.centerRight,
               child: Column(
@@ -106,7 +106,6 @@ class BuildCartWidget extends HookWidget {
               ),
             ),
           ),
-          context.smallGap,
           Flexible(
             child: Align(
               alignment: Alignment.centerLeft,

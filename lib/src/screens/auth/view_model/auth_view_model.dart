@@ -131,7 +131,10 @@ class AuthVM extends ChangeNotifier {
   bool get isSeller => user.usertype == UserTypeEnum.seller;
 
   void getUser() async {
+    isLoading =true;
     _userModel = await authLocalRepo.getUserData();
+    isLoading =false;
+
 
     notifyListeners();
   }

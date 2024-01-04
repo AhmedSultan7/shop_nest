@@ -130,6 +130,16 @@ class UserModel {
 
     return sellerFilter;
   }
+
+  static Future<UserModel?> userData(AuthLocalRepo authLocalRepo) async {
+    final mainUser = await authLocalRepo.getUserData();
+
+    final user = mainUser.user;
+
+
+
+    return user;
+  }
 }
 
 userTypeToString(UserTypeEnum type) {
