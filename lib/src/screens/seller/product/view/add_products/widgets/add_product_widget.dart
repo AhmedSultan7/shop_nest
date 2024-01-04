@@ -22,7 +22,7 @@ class AddProductWidget extends StatelessWidget {
         return HookBuilder(builder: (context) {
           useEffect(() {
             WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-              context.read<MediaVM>().clearFiles();
+              mediaVM.clearFiles();
             });
 
             return () {};

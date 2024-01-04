@@ -19,7 +19,7 @@ class SellerOrderScreen extends HookWidget {
         top: AppSpaces.defaultPadding,
         left: AppSpaces.defaultPadding,
       ),
-      itemBuilder: (context, index) => _SellerOrderItemWidget(),
+      itemBuilder: (context, index) => const _SellerOrderItemWidget(),
       separatorBuilder: (context, index) => context.mediumGap,
       itemCount: 1,
     );

@@ -75,17 +75,22 @@ class ProductsVM extends LoadingVM {
       List<String>? fileResult}) async {
     try {
       isLoading = true;
+      final seller = context.read<AuthVM>().user;
+
       final product = ProductModel(
-        id: id,
-        name: controllers[ApiStrings.name]!.text,
-        description: controllers[ApiStrings.description]!.text,
-        price: num.tryParse(controllers[ApiStrings.price]!.text),
-      );
+          id: id,
+          name: controllers[ApiStrings.name]!.text,
+          description: controllers[ApiStrings.description]!.text,
+          price: num.tryParse(controllers[ApiStrings.price]!.text),
+          seller: seller);
+
       await _productRepo.editProduct(
         product: product,
         fileResult: fileResult,
       );
+
       getProducts();
+
       if (context.mounted) {
         context.back();
         context.showFlushBar(type: FlushBarType.update);
