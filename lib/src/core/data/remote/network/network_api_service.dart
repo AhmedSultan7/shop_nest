@@ -4,6 +4,7 @@ import 'dart:developer';
 import 'dart:io';
 
 import 'package:cards_app/src/core/data/remote/response/api_strings.dart';
+import 'package:file_picker/file_picker.dart';
 
 import '../../../utils/logger.dart';
 import '../app_exception.dart';

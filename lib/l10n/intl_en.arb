@@ -64,6 +64,7 @@
   "deletedSuccessfully": "تم الحذف بنجاح",
   "somethingWentWrong": "حدث خطأ ما",
   "noInternet": "لا يوجد إتصال بالإنترنت",
+  "noProducts": "لا يوجد منتجات",
   "cantConnectToServer": "تعذر الإتصال بالخادم، حاول مرة أخرى",
   "totalProduct": "إجمالي المنتجات : ",
   "total": "الإجمالي : ",

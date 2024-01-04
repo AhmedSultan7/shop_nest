@@ -51,7 +51,7 @@ class ProductsDetailsScreen extends HookWidget {
                     isWhite: false,
                   ),
                 ).paddingSymmetric(
-                    vertical: AppSpaces.defaultPadding,
+                    vertical: AppSpaces.xlLargePadding,
                     horizontal: AppSpaces.smallPadding),
               ],
             ),

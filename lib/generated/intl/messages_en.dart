@@ -91,6 +91,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "noInternet":
             MessageLookupByLibrary.simpleMessage("لا يوجد إتصال بالإنترنت"),
         "noOrders": MessageLookupByLibrary.simpleMessage("لا يوجد طلبات"),
+        "noProducts": MessageLookupByLibrary.simpleMessage("لا يوجد منتجات"),
         "noResultsFound":
             MessageLookupByLibrary.simpleMessage("لم يتم العثور على نتائج ..."),
         "orderNumber": MessageLookupByLibrary.simpleMessage("طلب رقم : "),

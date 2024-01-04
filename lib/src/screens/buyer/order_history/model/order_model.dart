@@ -11,13 +11,13 @@ class OrderModel {
   final String? createdAt;
   final List<ProductModel>? products;
   final UserModel? user;
-  final List<UserModel>? sellers;
+  final List<UserModel?> sellers;
 
   OrderModel({
     this.id,
     required this.totalPrice,
     required this.products,
-    required this.sellers,
+    this.sellers = const [],
     this.createdAt,
     required this.user,
   });
@@ -68,10 +68,10 @@ class OrderModel {
   //! Order Filter ===================================
   static Future<String> orderFilter(AuthLocalRepo authLocalRepo) async {
     final user = await authLocalRepo.getUserData();
-
+    final type = user.user?.isSeller  == true ? "sellers" : "user";
     final userId = user.user!.id;
 
-    final userFilter = '?filters[user][id][\$eq]=$userId';
+    final userFilter = '?filters[$type][id][\$eq]=$userId';
     return userFilter;
   }
 
@@ -80,8 +80,7 @@ class OrderModel {
     return {
       ApiStrings.totalPrice: totalPrice,
       ApiStrings.user: user!.id,
-      ApiStrings.sellers: [30],
-      // sellers?.map((seller) => seller.id).toList(),
+      ApiStrings.sellers: sellers.map((seller) => seller?.id).toList(),
       ApiStrings.products: products?.map((product) => product.id).toList(),
     };
   }

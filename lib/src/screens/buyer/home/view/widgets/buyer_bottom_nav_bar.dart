@@ -17,7 +17,7 @@ class BuyerBottomNavBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer3<BottomNavbarVM, CartVM, AuthVM>(
+    return Consumer3<SellerBottomNavbarVM, CartVM, AuthVM>(
       builder: (context, bottomNavbarVM, cartVM, authVM, child) {
         final counter = cartVM.counter;
         return BottomNavBarWidget(items: [

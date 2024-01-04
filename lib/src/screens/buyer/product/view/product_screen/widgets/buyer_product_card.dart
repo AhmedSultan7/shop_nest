@@ -145,7 +145,7 @@ class BuyerProductCard extends StatelessWidget {
 
                                   //! Set current index to cart screen
                                   context
-                                      .read<BottomNavbarVM>()
+                                      .read<SellerBottomNavbarVM>()
                                       .setCurrentIndex(1);
 
                                   context

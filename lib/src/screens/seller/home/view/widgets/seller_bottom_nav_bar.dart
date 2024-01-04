@@ -13,7 +13,7 @@ class SellerBottomNavBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<BottomNavbarVM>(
+    return Consumer<SellerBottomNavbarVM>(
       builder: (context, bottomNavbarVM, child) {
         return BottomNavBarWidget(items: [
           BottomNavigationBarItem(

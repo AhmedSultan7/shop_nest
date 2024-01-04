@@ -21,14 +21,29 @@ class MainSellerScreen extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final productVM = context.read<ProductsVM>();
+    final isBottomSheetOpened = useState(false);
+
+    Widget addProductWithCloseButton(){
+      return WillPopScope(
+          onWillPop: () async{
+            isBottomSheetOpened.value =false;
+            return false;
+          },
+          child: Stack(
+            children: [
+              const AddProductScreen(),
+              IconButton(onPressed: (){
+                isBottomSheetOpened.value =false;
+              }, icon: const Icon(Icons.close)),
+
+            ],
+          ));
+    }
     useEffect(() {
-      WidgetsBinding.instance.addPostFrameCallback((_) {
         productVM.getProducts();
-        Log.e('dsndjxbn ${productVM.getProducts()}');
-      });
       return () {};
     }, []);
-    return Consumer<BottomNavbarVM>(
+    return Consumer<SellerBottomNavbarVM>(
       builder: (context, bottomNavbarVM, child) {
         return Scaffold(
           body: SliderDrawerWidget(
@@ -41,39 +56,41 @@ class MainSellerScreen extends HookWidget {
           floatingActionButtonLocation:
               FloatingActionButtonLocation.miniCenterDocked,
           floatingActionButton: bottomNavbarVM.currentIndex == 0
-              ? SizedBox(
-                  width: 100.w,
-                  child: FloatingActionButton(
-                    backgroundColor: ColorManager.primaryColor,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(context.tr.addProduct,
-                            style: context.whiteLabelLarge),
-                        const Icon(Icons.add, color: Colors.white),
-                      ],
-                    ),
-                    onPressed: () {
-                      showModalBottomSheet(
-                          isScrollControlled: true,
-                          context: context,
-                          builder: (context) => Container(
-                                margin: const EdgeInsets.all(
-                                    AppSpaces.defaultPadding),
-                                height:
-                                    MediaQuery.of(context).size.height * 0.75,
-                                child: const AddProductScreen(),
-                              ));
-                    },
-                  ),
-                )
+              ? !isBottomSheetOpened.value
+                  ? SizedBox(
+                      width: 100.w,
+                      child: FloatingActionButton(
+                        backgroundColor: ColorManager.primaryColor,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(context.tr.addProduct,
+                                style: context.whiteLabelLarge),
+                            const Icon(Icons.add, color: Colors.white),
+                          ],
+                        ),
+                        onPressed: () {
+                          isBottomSheetOpened.value =
+                              !isBottomSheetOpened.value;
+                        },
+                      ),
+                    )
+                  : null
               : null,
           floatingActionButtonAnimator: FloatingActionButtonAnimator.scaling,
+          bottomSheet: isBottomSheetOpened.value ? addProductWithCloseButton() : null,
         );
       },
     );
+
+
   }
+
+
 }
+
+
+
 
 // * Seller ==================================================
 class _SellerSelectedScreen extends StatelessWidget {

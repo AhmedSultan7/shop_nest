@@ -3,6 +3,8 @@ import 'package:cards_app/generated/assets.dart';
 import 'package:cards_app/src/core/extensions/extensions.dart';
 import 'package:cards_app/src/core/shared_widgets/row_icon_and_title.dart';
 import 'package:cards_app/src/screens/auth/view_model/auth_view_model.dart';
+import 'package:cards_app/src/screens/buyer/home/view_model/bottom_nav_provider.dart';
+import 'package:cards_app/src/screens/seller/home/view/widgets/seller_bottom_nav_bar.dart';
 import 'package:cards_app/src/screens/settings/model/settings_model.dart';
 import 'package:cards_app/src/screens/settings/view/edit_profile/profile_screen.dart';
 import 'package:cards_app/src/screens/settings/view/policy_screen.dart';
@@ -12,6 +14,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:provider/provider.dart';
 
 import '../../core/resources/app_spaces.dart';
+import '../seller/home/view_model/bottom_nav_provider.dart';
 import '../settings/view/about_us_screen.dart';
 import '../settings/view/contact_us_screen.dart';
 import '../settings/view_model/setting_view_model.dart';
@@ -119,12 +122,17 @@ class _DrawerList extends StatelessWidget {
             context.largeGap,
 
             //! Logout
-            Consumer<AuthVM>(
-              builder: (context, authVM, child) {
+            Consumer3<AuthVM,BuyerBottomNavbarVM,SellerBottomNavbarVM>(
+              builder: (context, authVM,buyerBottomNavbarVM,sellerBottomNavbarVM, child) {
                 return RowIconAndTitle(
                   iconPath: Assets.iconsLogout,
                   title: context.tr.logout,
-                  onTap: () => authVM.logout(context),
+                  onTap: ()
+                  {
+                    authVM.logout(context);
+                    // buyerBottomNavbarVM.setCurrentIndex(0);
+                    // sellerBottomNavbarVM.setCurrentIndex(0);
+                  }
                 );
               },
             ),

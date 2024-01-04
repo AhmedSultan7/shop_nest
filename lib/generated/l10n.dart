@@ -700,6 +700,16 @@ class S {
     );
   }
 
+  /// `لا يوجد منتجات`
+  String get noProducts {
+    return Intl.message(
+      'لا يوجد منتجات',
+      name: 'noProducts',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `تعذر الإتصال بالخادم، حاول مرة أخرى`
   String get cantConnectToServer {
     return Intl.message(

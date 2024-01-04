@@ -5,6 +5,9 @@ import 'package:cards_app/src/core/data/remote/app_exception.dart';
 import 'package:cards_app/src/core/data/remote/response/api_strings.dart';
 import 'package:cards_app/src/core/extensions/extensions.dart';
 import 'package:cards_app/src/core/utils/logger.dart';
+import 'package:cards_app/src/screens/auth/model/user_model.dart';
+import 'package:cards_app/src/screens/auth/repository/local_repo/auth_local_repo.dart';
+import 'package:cards_app/src/screens/auth/repository/remote_repo/auth_remote_repo.dart';
 import 'package:cards_app/src/screens/auth/view_model/auth_view_model.dart';
 import 'package:cards_app/src/screens/seller/product/models/product_model.dart';
 import 'package:flutter/material.dart';
@@ -14,9 +17,10 @@ import '../../../shared/loading_view_model/loading_view_model.dart';
 import '../repository/product_repo.dart';
 
 class ProductsVM extends LoadingVM {
-  final ProductRepo _productRepo;
+  final ProductRepo productRepo;
+  final AuthLocalRepo authLocalRepo;
 
-  ProductsVM(this._productRepo);
+  ProductsVM({required this.productRepo,required this.authLocalRepo});
 
   List<ProductModel> products = [];
   List searchedProductsList = [];
@@ -25,7 +29,7 @@ class ProductsVM extends LoadingVM {
   Future<void> getProducts() async {
     try {
       isLoading = true;
-      products = await _productRepo.getProducts();
+      products = await productRepo.getProducts();
       isLoading = false;
     } on FetchDataException catch (e) {
       Log.e('Fetch Data Exception ${e.toString()}');
@@ -70,8 +74,8 @@ class ProductsVM extends LoadingVM {
           price: num.tryParse(controllers[ApiStrings.price]!.text),
           seller: seller);
 
-      // Fixme : ================================================
-      await _productRepo.addProduct(product: product, pickedImage: pickedImage);
+      
+      await productRepo.addProduct(product: product, pickedImage: pickedImage);
       getProducts();
       if (context.mounted) {
         context.back();
@@ -95,13 +99,16 @@ class ProductsVM extends LoadingVM {
       List<String>? fileResult}) async {
     try {
       isLoading = true;
+
+      final seller = await  UserModel.userData(authLocalRepo);
       final product = ProductModel(
         id: id,
         name: controllers[ApiStrings.name]!.text,
         description: controllers[ApiStrings.description]!.text,
         price: num.tryParse(controllers[ApiStrings.price]!.text),
+          seller: seller
       );
-      await _productRepo.editProduct(
+      await productRepo.editProduct(
         product: product,
         fileResult: fileResult,
       );
@@ -125,7 +132,7 @@ class ProductsVM extends LoadingVM {
   Future<void> deleteProduct(BuildContext context, {required int id}) async {
     try {
       isLoading = true;
-      await _productRepo.deleteProduct(id: id);
+      await productRepo.deleteProduct(id: id);
       getProducts();
       if (context.mounted) {
         context.back();

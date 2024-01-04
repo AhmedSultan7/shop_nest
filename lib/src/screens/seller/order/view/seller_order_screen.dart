@@ -24,9 +24,9 @@ class SellerOrderScreen extends HookWidget {
   Widget build(BuildContext context) {
     final orderVM = context.read<OrderVM>();
     useEffect(() {
-      WidgetsBinding.instance.addPostFrameCallback((_) {
+
         orderVM.getOrders();
-      });
+
       return () {};
     }, []);
     return Consumer<OrderVM>(

@@ -1,3 +1,4 @@
+import 'package:cards_app/src/core/utils/logger.dart';
 import 'package:cards_app/src/screens/auth/model/user_model.dart';
 import 'package:cards_app/src/screens/shared/media/model/main_media_model.dart';
 
@@ -11,38 +12,41 @@ class ProductModel {
   final MainMediaModel? image;
   final UserModel? seller;
 
-  ProductModel(
-      {this.seller,
-      this.price,
-      this.image,
-      this.name,
-      this.id,
-      this.description});
+  ProductModel({this.seller,
+    this.price,
+    this.image,
+    this.name,
+    this.id,
+    this.description});
 
   //! Remote Constructor---------------------------------------
   factory ProductModel.fromJson(Map<String, dynamic> json) {
     final attributes = json[ApiStrings.attributes];
     return ProductModel(
-      id: json[ApiStrings.id],
-      name: attributes[ApiStrings.name] ?? '',
-      description: attributes[ApiStrings.description] ?? '',
-      price: attributes[ApiStrings.price] ?? 0,
-      image: MainMediaModel.fromJson(
-        attributes[ApiStrings.image] ?? '',
-      ),
+        id: json[ApiStrings.id],
+        name: attributes[ApiStrings.name] ?? '',
+        description: attributes[ApiStrings.description] ?? '',
+        price: attributes[ApiStrings.price] ?? 0,
+        image: MainMediaModel.fromJson(
+          attributes[ApiStrings.image] ?? '',
+        ),
+        seller: UserModel.fromOrderJson(attributes[ApiStrings.seller])
     );
   }
 
   //! Local Constructor---------------------------------------
   factory ProductModel.fromLocalJson(Map<dynamic, dynamic> json) {
+    Log.i(' ================cscwscww${json[ApiStrings.seller]}');
+
     return ProductModel(
-      id: json[ApiStrings.id],
-      name: json[ApiStrings.name] ?? '',
-      description: json[ApiStrings.description] ?? '',
-      price: json[ApiStrings.price] ?? 0,
-      image: MainMediaModel.fromLocalJson(
-        json[ApiStrings.image],
-      ),
+        id: json[ApiStrings.id],
+        name: json[ApiStrings.name] ?? '',
+        description: json[ApiStrings.description] ?? '',
+        price: json[ApiStrings.price] ?? 0,
+        image: MainMediaModel.fromLocalJson(
+          json[ApiStrings.image],
+        ),
+        seller : UserModel.fromJson(json[ApiStrings.seller] ?? {})
     );
   }
 
@@ -67,11 +71,13 @@ class ProductModel {
     };
   }
 
-  Map toLocalJson() => {
+  Map toLocalJson() =>
+      {
         'id': id,
         ApiStrings.name: name,
         ApiStrings.description: description,
         'image': image!.toMap(),
         'price': price,
+        ApiStrings.seller: seller?.toJson(sendId: true)
       };
 }

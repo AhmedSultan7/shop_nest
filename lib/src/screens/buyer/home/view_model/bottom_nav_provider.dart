@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 
-class BottomNavbarVM extends ChangeNotifier {
+class BuyerBottomNavbarVM extends ChangeNotifier {
   int _currentIndex = 0;
 
   int get currentIndex => _currentIndex;

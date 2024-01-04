@@ -32,6 +32,20 @@ class OrderVM extends LoadingVM {
       isLoading = false;
     }
   }
+  Future<void> getOrdersBySellerId() async {
+    try {
+      isLoading = true;
+      orders = await orderRepo.getOrdersBySellerId();
+      isLoading = false;
+    } on FetchDataException catch (e) {
+      Log.e('Fetch Data Exception ${e.toString()}');
+      isLoading = false;
+    } on SocketException {
+      isLoading = false;
+    } on TimeoutException {
+      isLoading = false;
+    }
+  }
 
   //! Add Order ==================================
   Future<void> addOrders({
@@ -41,8 +55,7 @@ class OrderVM extends LoadingVM {
     try {
       final orderModel = OrderModel(
           totalPrice: cartVM.total,
-          sellers: [],
-          // cartVM.cartList.map((e) => e.product.seller!).toList(),
+          sellers: cartVM.cartList.map((e) => e.product.seller).toList(),
           products: cartVM.cartList.map((e) => e.product).toList(),
           user: user);
       isLoading = true;

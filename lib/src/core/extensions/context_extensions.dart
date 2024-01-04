@@ -111,7 +111,7 @@ extension ShowBars on BuildContext {
   String _getMsg(FlushBarType type) {
     String msg = '';
 
-    order. (type) {
+    switch (type) {
       case FlushBarType.add:
         msg = tr.addedSuccessfully;
         break;

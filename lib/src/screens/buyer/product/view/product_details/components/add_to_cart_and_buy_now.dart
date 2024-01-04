@@ -123,7 +123,7 @@ class AddToCartAndBuyNow extends StatelessWidget {
                 addOrUpdateCart();
 
                 //! Set current index to cart screen
-                context.read<BottomNavbarVM>().setCurrentIndex(1);
+                context.read<SellerBottomNavbarVM>().setCurrentIndex(1);
 
                 context.toReplacement(const MainBuyerScreen());
               },
