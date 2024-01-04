@@ -61,8 +61,8 @@ Future<void> appInjector() async {
       authLocalRepo: getIt<AuthLocalRepo>()));
 
   getIt.registerLazySingleton(() => ProductsVM(
-      productRepo: getIt<ProductRepo>(),
-      authLocalRepo: getIt<AuthLocalRepo>()));
+        productRepo: getIt<ProductRepo>(),
+      ));
 
   // * Cart Injector ===========================================
 

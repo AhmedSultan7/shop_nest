@@ -70,7 +70,6 @@ class ProductsVM extends LoadingVM {
           price: num.tryParse(controllers[ApiStrings.price]!.text),
           seller: seller);
 
-
       await productRepo.addProduct(product: product, pickedImage: pickedImage);
       getProducts();
       if (context.mounted) {
@@ -98,13 +97,13 @@ class ProductsVM extends LoadingVM {
 
       isLoading = true;
       final product = ProductModel(
-        id: id,
-        name: controllers[ApiStrings.name]!.text,
-        description: controllers[ApiStrings.description]!.text,
-        price: num.tryParse(controllers[ApiStrings.price]!.text),
-          seller: seller
-      );
-      await _productRepo.editProduct(
+          id: id,
+          name: controllers[ApiStrings.name]!.text,
+          description: controllers[ApiStrings.description]!.text,
+          price: num.tryParse(controllers[ApiStrings.price]!.text),
+          seller: seller);
+
+      await productRepo.editProduct(
         product: product,
         fileResult: fileResult,
       );
