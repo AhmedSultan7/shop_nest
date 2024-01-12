@@ -101,6 +101,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "يجب أن تحتوي كلمة المرور على 8 أحرف"),
         "pay": MessageLookupByLibrary.simpleMessage("أدفع"),
         "payment": MessageLookupByLibrary.simpleMessage("الدفع"),
+        "paymentSuccessfully":
+            MessageLookupByLibrary.simpleMessage("تم الدفع بنجاح"),
         "pleaseEnterCorrectEmail": MessageLookupByLibrary.simpleMessage(
             "الرجاء إدخال البريد الإلكتروني الصحيح"),
         "pleaseEnterYourUserName":

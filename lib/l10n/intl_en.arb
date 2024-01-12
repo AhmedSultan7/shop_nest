@@ -75,5 +75,6 @@
   "noOrders": "لا يوجد طلبات",
   "orderNumber": "طلب رقم : ",
   "searchResults": "نتائج البحث",
-  "noResultsFound": "لم يتم العثور على نتائج ..."
+  "noResultsFound": "لم يتم العثور على نتائج ...",
+  "paymentSuccessfully": "تم الدفع بنجاح"
 }

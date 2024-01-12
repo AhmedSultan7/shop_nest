@@ -25,9 +25,6 @@ class LoginFields extends StatelessWidget {
             if (value!.isEmpty) {
               return context.tr.requiredField;
             }
-            if (!value.contains('@gmail.com')) {
-              return context.tr.pleaseEnterCorrectEmail;
-            }
             return null;
           },
           controller: controllers[ApiStrings.identifier],
@@ -47,7 +44,7 @@ class LoginFields extends StatelessWidget {
           },
           controller: controllers[ApiStrings.password],
           textInputType: TextInputType.visiblePassword,
-          isObscure: authVM.isObscure ? true : false,
+          isObscure: authVM.isObscure,
           suffixIcon: IconButton(
               onPressed: authVM.isObscurePassword,
               icon: Icon(

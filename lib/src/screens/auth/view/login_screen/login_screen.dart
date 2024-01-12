@@ -22,8 +22,10 @@ class LoginScreen extends HookWidget {
   Widget build(BuildContext context) {
     final formKey = useState(GlobalKey<FormState>());
     final fieldsController = {
-      ApiStrings.identifier: useTextEditingController(text: 'issa@gmail.com'),
+      ApiStrings.identifier: useTextEditingController(text: 'sultan@gmail.com'),
       ApiStrings.password: useTextEditingController(text: '123456789'),
+      // ApiStrings.identifier: useTextEditingController(text: 'issa@gmail.com'),
+      // ApiStrings.password: useTextEditingController(text: '123456789'),
     };
 
     return SafeArea(
@@ -47,18 +49,18 @@ class LoginScreen extends HookWidget {
                       //! Login formField
                       LoginFields(controllers: fieldsController),
                       // //! forget password
-                      Align(
-                        alignment: Alignment.centerRight,
-                        child: TextButton(
-                            onPressed: () {},
-                            child: Text(
-                              context.tr.forgetPassword,
-                              style: context.hint.copyWith(
-                                color: ColorManager.primaryColor,
-                              ),
-                            )),
-                      ),
-                      context.mediumGap,
+                      // Align(
+                      //   alignment: Alignment.centerRight,
+                      //   child: TextButton(
+                      //       onPressed: () {},
+                      //       child: Text(
+                      //         context.tr.forgetPassword,
+                      //         style: context.hint.copyWith(
+                      //           color: ColorManager.primaryColor,
+                      //         ),
+                      //       )),
+                      // ),
+                      context.largeGap,
                       //! Login Button
                       Button(
                           isLoading: authVM.isLoading,

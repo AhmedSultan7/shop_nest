@@ -18,6 +18,7 @@ abstract class BaseApiServices {
   Future<dynamic> putResponse(
     String url, {
     required Map<String, dynamic> data,
+    bool fromAuth = false,
     List<String>? fileResult,
     String? fieldName,
     int? id,

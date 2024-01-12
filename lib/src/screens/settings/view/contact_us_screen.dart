@@ -61,7 +61,7 @@ class ContactUsScreen extends StatelessWidget {
             children: [
               Text(
                 textAlign: TextAlign.center,
-                '+962 79 000 0000',
+                '+966 54 670 9502',
                 style: context.headLine.copyWith(fontWeight: FontWeight.bold),
                 textDirection: TextDirection.ltr,
               ),

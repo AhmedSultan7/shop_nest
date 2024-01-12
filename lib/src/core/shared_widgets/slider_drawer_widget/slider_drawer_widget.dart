@@ -1,6 +1,7 @@
 import 'package:cards_app/src/core/extensions/extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_slider_drawer/flutter_slider_drawer.dart';
 import 'package:provider/provider.dart';
 
@@ -24,6 +25,7 @@ class SliderDrawerWidget extends HookWidget {
           slideDirection: SlideDirection.TOP_TO_BOTTOM,
           key: drawerKey,
           appBar: SliderAppBar(
+            appBarHeight: 80.h,
             title: Text(
               title,
               style: context.title,

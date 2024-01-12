@@ -13,6 +13,6 @@ class ApiEndPoints {
   static const String products = "/products";
   static const String sliders = "/sliders";
   static const String setting = "/setting";
-  static const String user = "/users";
+  static const String users = "/users";
   static const String orders = "/orders";
 }

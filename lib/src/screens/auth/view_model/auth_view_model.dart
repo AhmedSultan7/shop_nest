@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:cards_app/src/core/data/remote/response/api_strings.dart';
 import 'package:cards_app/src/core/extensions/extensions.dart';
+import 'package:cards_app/src/screens/app.dart';
 import 'package:cards_app/src/screens/auth/repository/local_repo/auth_local_repo.dart';
 import 'package:cards_app/src/screens/auth/repository/remote_repo/auth_remote_repo.dart';
 import 'package:flutter/cupertino.dart';
@@ -10,8 +11,6 @@ import 'package:flutter/cupertino.dart';
 import '../../../core/data/local/hive_helper.dart';
 import '../../../core/data/remote/app_exception.dart';
 import '../../../core/utils/logger.dart';
-import '../../buyer/home/view/main_buyer_screen.dart';
-import '../../seller/home/view/main_seller_screen.dart';
 import '../model/user_model.dart';
 import '../view/login_screen/login_screen.dart';
 
@@ -22,7 +21,7 @@ class AuthVM extends ChangeNotifier {
   AuthVM({required this.authRemoteRepo, required this.authLocalRepo});
 
   bool _isLoading = false;
-  bool isObscure = false;
+  bool isObscure = true;
 
   bool get isLoading => _isLoading;
 
@@ -109,8 +108,7 @@ class AuthVM extends ChangeNotifier {
       isLoading = false;
 
       if (context.mounted) {
-        context
-            .to(isSeller ? const MainBuyerScreen() : const MainSellerScreen());
+        context.to(const MyApp());
       }
     } on FetchDataException catch (e) {
       Log.e('Fetch Data Exception ${e.toString()}');
@@ -131,10 +129,9 @@ class AuthVM extends ChangeNotifier {
   bool get isSeller => user.usertype == UserTypeEnum.seller;
 
   void getUser() async {
-    isLoading =true;
+    isLoading = true;
     _userModel = await authLocalRepo.getUserData();
-    isLoading =false;
-
+    isLoading = false;
 
     notifyListeners();
   }

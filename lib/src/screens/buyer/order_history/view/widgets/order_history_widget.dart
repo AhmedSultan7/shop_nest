@@ -12,10 +12,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../../../generated/assets.dart';
 import '../../../../../core/shared_widgets/icon_widget/icon_widget.dart';
 
-class OrderHistoryWidget extends StatelessWidget {
+class OrderHistoryCard extends StatelessWidget {
   final OrderModel order;
 
-  const OrderHistoryWidget({super.key, required this.order});
+  const OrderHistoryCard({super.key, required this.order});
 
   @override
   Widget build(BuildContext context) {
@@ -51,7 +51,8 @@ class OrderHistoryWidget extends StatelessWidget {
             //! Total Price & Created At
             Container(
               padding: const EdgeInsets.symmetric(
-                  horizontal: AppSpaces.smallPadding),
+                  horizontal: AppSpaces.smallPadding,
+                  vertical: AppSpaces.xSmallPadding),
               width: double.infinity,
               height: 60.h,
               decoration: const BoxDecoration(
@@ -94,7 +95,7 @@ class OrderHistoryWidget extends StatelessWidget {
                             style: context.subTitle,
                           ),
                           Text(
-                            '${3} ',
+                            '${order.products?.length ?? 0}',
                             style: context.subTitle,
                           ),
                         ],

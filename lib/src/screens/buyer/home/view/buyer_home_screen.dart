@@ -33,13 +33,12 @@ class BuyerHomeScreen extends HookWidget {
     }, []);
 
     return ListView(
+      padding: EdgeInsets.zero,
       children: [
         HomeSearch(
           searchController: searchController,
         ).paddingOnly(
-            right: AppSpaces.defaultPadding,
-            left: AppSpaces.defaultPadding,
-            top: AppSpaces.defaultPadding),
+            right: AppSpaces.defaultPadding, left: AppSpaces.defaultPadding),
         context.largeGap,
         const HomeSlider(),
         context.mediumGap,

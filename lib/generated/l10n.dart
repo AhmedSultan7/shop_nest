@@ -819,6 +819,16 @@ class S {
       args: [],
     );
   }
+
+  /// `تم الدفع بنجاح`
+  String get paymentSuccessfully {
+    return Intl.message(
+      'تم الدفع بنجاح',
+      name: 'paymentSuccessfully',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

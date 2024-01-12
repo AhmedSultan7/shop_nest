@@ -3,6 +3,7 @@ import 'package:cards_app/src/core/data/remote/response/api_strings.dart';
 import 'package:cards_app/src/core/extensions/extensions.dart';
 import 'package:cards_app/src/core/resources/app_spaces.dart';
 import 'package:cards_app/src/core/utils/logger.dart';
+import 'package:cards_app/src/screens/app.dart';
 import 'package:cards_app/src/screens/auth/model/user_model.dart';
 import 'package:cards_app/src/screens/auth/view/signup_screen/view/components/signup_fields.dart';
 import 'package:cards_app/src/screens/auth/view_model/auth_view_model.dart';
@@ -14,8 +15,6 @@ import 'package:provider/provider.dart';
 
 import '../../../../core/resources/theme/theme.dart';
 import '../../../../core/shared_widgets/shared_widgets.dart';
-import '../../../buyer/home/view/main_buyer_screen.dart';
-import '../../../seller/home/view/main_seller_screen.dart';
 import '../login_screen/login_screen.dart';
 
 class SignupScreen extends HookWidget {
@@ -26,8 +25,8 @@ class SignupScreen extends HookWidget {
     final formKey = useState(GlobalKey<FormState>());
     final fieldsController = {
       ApiStrings.username: useTextEditingController(),
-      ApiStrings.email: useTextEditingController(text: '@gmail.com'),
-      ApiStrings.password: useTextEditingController(text: '123456789'),
+      ApiStrings.email: useTextEditingController(),
+      ApiStrings.password: useTextEditingController(),
     };
     final userTypeValueNotifier = useState<UserTypeEnum?>(null);
 
@@ -64,9 +63,7 @@ class SignupScreen extends HookWidget {
                                       valueNotifier: userTypeValueNotifier)
                                   .then((value) {
                                 if (value == true) {
-                                  context.toReplacement(authVM.isSeller
-                                      ? const MainBuyerScreen()
-                                      : const MainSellerScreen());
+                                  context.toReplacement(const MyApp());
                                   context.showBarMessage(
                                       context.tr.signupSuccessfully);
                                 }

@@ -47,7 +47,7 @@ class CartScreen extends HookWidget {
               itemCount: cartData.length),
           floatingActionButton: cartData.isNotEmpty
               ? InkWell(
-                  onTap: () => context.to(PaymentScreen()),
+                  onTap: () => context.to(const PaymentScreen()),
                   child: Container(
                     padding: const EdgeInsets.all(AppSpaces.defaultPadding),
                     margin: const EdgeInsets.all(AppSpaces.defaultPadding),

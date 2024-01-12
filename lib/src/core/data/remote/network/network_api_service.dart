@@ -5,13 +5,12 @@ import 'dart:io';
 
 import 'package:cards_app/src/core/data/remote/response/api_strings.dart';
 import 'package:file_picker/file_picker.dart';
+import 'package:http/http.dart' as http;
 
 import '../../../utils/logger.dart';
 import '../app_exception.dart';
 import '../response/api_end_points.dart';
 import 'base_api_service.dart';
-import 'package:http/http.dart' as http;
-
 
 class NetworkApiService extends BaseApiServices {
   //! Get request
@@ -208,6 +207,7 @@ class NetworkApiService extends BaseApiServices {
     String url, {
     required Map<String, dynamic> data,
     List<String>? fileResult,
+    bool fromAuth = false,
     String? fieldName,
     int? id,
   }) async {
@@ -236,11 +236,20 @@ class NetworkApiService extends BaseApiServices {
         }
       }
 
-      final Map<String, String> fieldsData = data.map((key, value) {
-        return MapEntry(key, value.toString());
-      });
+      // final Map<String, String> fieldsData = data.map((key, value) {
+      //   return MapEntry(key, value.toString());
+      // });
 
-      request.fields.addAll({ApiStrings.data: jsonEncode(fieldsData)});
+      // request.fields.addAll({ApiStrings.data: jsonEncode(fieldsData)});
+      if (fromAuth) {
+        request.fields.addAll(
+          data.map((key, value) => MapEntry(key, value.toString())),
+        );
+      } else {
+        request.fields.addAll({
+          ApiStrings.data: jsonEncode(data),
+        });
+      }
 
       final response = await http.Response.fromStream(await request.send())
           .timeout(const Duration(seconds: ApiStrings.timeOutDuration));
@@ -255,7 +264,7 @@ class NetworkApiService extends BaseApiServices {
       //
       // Log.w('PutUrl => $apiUrl\nPutData => $data');
 
-      Log.w('Res => ${response.body}');
+      Log.w('PutRes => ${response.body}');
 
       if (response.statusCode == 200 || response.statusCode == 201) {
         responseJson = await jsonDecode(response.body);

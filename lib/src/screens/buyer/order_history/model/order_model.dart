@@ -51,7 +51,8 @@ class OrderModel {
 
     String dateString = attributes[ApiStrings.createdAt];
     DateTime dateTime = DateTime.parse(dateString);
-    String formattedDate = DateFormat('yyyy-MM-dd HH:mm').format(dateTime);
+    String formattedDate =
+        DateFormat('yyyy-MM-dd HH:mm', 'en').format(dateTime);
 
     // * ------------------------------------------------------------------
 
@@ -68,7 +69,7 @@ class OrderModel {
   //! Order Filter ===================================
   static Future<String> orderFilter(AuthLocalRepo authLocalRepo) async {
     final user = await authLocalRepo.getUserData();
-    final type = user.user?.isSeller  == true ? "sellers" : "user";
+    final type = user.user?.isSeller == true ? "sellers" : "user";
     final userId = user.user!.id;
 
     final userFilter = '?filters[$type][id][\$eq]=$userId';

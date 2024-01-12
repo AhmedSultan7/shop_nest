@@ -54,64 +54,6 @@ class SellerOrderScreen extends HookWidget {
   }
 }
 
-class _SellerOrderItemWidget extends StatelessWidget {
-  const _SellerOrderItemWidget();
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.end,
-      children: [
-        Container(
-          decoration: BoxDecoration(
-              borderRadius:
-                  BorderRadius.circular(AppRadius.baseContainerRadius),
-              color: ColorManager.white,
-              boxShadow: ConstantsWidgets.boxShadow),
-          child: ExpansionTile(
-            expandedAlignment: Alignment.centerRight,
-            controlAffinity: ListTileControlAffinity.leading,
-            collapsedIconColor: ColorManager.primaryColor,
-            shape: InputBorder.none,
-            iconColor: ColorManager.primaryColor,
-            initiallyExpanded: true,
-            title: Row(
-              children: [
-                Text(
-                  context.tr.orderNumber,
-                  style: context.title,
-                ),
-                Text(
-                  '# ${1}',
-                  style:
-                      context.title.copyWith(color: ColorManager.primaryColor),
-                ),
-              ],
-            ),
-            children: [
-              //! Delivery fee
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    '${context.tr.totalProduct}3',
-                    style: context.labelMedium,
-                  ),
-                  context.smallGap,
-                  Text('${context.tr.dateTime} ${DateTime.now()}',
-                      style: context.labelMedium),
-                  context.smallGap,
-                  Text('${context.tr.total} 315', style: context.labelMedium),
-                ],
-              ).paddingAll(AppSpaces.smallPadding),
-            ],
-          ),
-        ),
-      ],
-    );
-  }
-}
-
 class _OrderHistoryWidget extends StatelessWidget {
   final OrderModel order;
 
@@ -125,102 +67,162 @@ class _OrderHistoryWidget extends StatelessWidget {
       collapsedBackgroundColor: Colors.transparent,
       childrenPadding: EdgeInsets.zero,
       tilePadding: EdgeInsets.zero,
-      title: Container(
-        width: double.infinity,
-        height: 170.h,
-        decoration: BoxDecoration(
-            color: ColorManager.white,
-            borderRadius: BorderRadius.circular(AppRadius.baseContainerRadius),
-            boxShadow: ConstantsWidgets.boxShadow),
-        child: Stack(
-          alignment: Alignment.bottomCenter,
-          children: [
-            //! Order Images
-            ClipRRect(
-              borderRadius:
-                  BorderRadius.circular(AppRadius.baseContainerRadius),
-              child: Image.network(
-                order.products?.first.image?.url ?? '',
-                fit: BoxFit.cover,
-                width: double.infinity,
-                errorBuilder: (context, error, stackTrace) =>
-                    const IconWidget(icon: Assets.iconsNoImage),
-              ),
-            ),
+      title: Stack(
+        children: [
+          Container(
+            width: double.infinity,
+            height: 170.h,
+            decoration: BoxDecoration(
+                color: ColorManager.white,
+                borderRadius:
+                    BorderRadius.circular(AppRadius.baseContainerRadius),
+                boxShadow: ConstantsWidgets.boxShadow),
+            child: Stack(
+              alignment: Alignment.bottomCenter,
+              children: [
+                //! Order Images
+                ClipRRect(
+                  borderRadius:
+                      BorderRadius.circular(AppRadius.baseContainerRadius),
+                  child: Image.network(
+                    order.products?.firstOrNull?.image?.url ?? '',
+                    fit: BoxFit.cover,
+                    width: double.infinity,
+                    errorBuilder: (context, error, stackTrace) =>
+                        const IconWidget(icon: Assets.iconsNoImage),
+                  ),
+                ),
 
-            //! Total Price & Created At
-            Container(
-              width: double.infinity,
-              height: 60.h,
-              decoration: const BoxDecoration(
-                  color: ColorManager.white,
-                  borderRadius: BorderRadius.only(
-                    bottomRight: Radius.circular(AppRadius.baseContainerRadius),
-                    bottomLeft: Radius.circular(AppRadius.baseContainerRadius),
-                  )),
-              child: Column(
-                children: [
-                  Row(
+                //! Total Price & Created At
+                Container(
+                  width: double.infinity,
+                  height: 60.h,
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: AppSpaces.smallPadding,
+                      vertical: AppSpaces.xSmallPadding),
+                  decoration: const BoxDecoration(
+                      color: ColorManager.white,
+                      borderRadius: BorderRadius.only(
+                        bottomRight:
+                            Radius.circular(AppRadius.baseContainerRadius),
+                        bottomLeft:
+                            Radius.circular(AppRadius.baseContainerRadius),
+                      )),
+                  child: Column(
                     children: [
-                      //! Total Price
                       Row(
                         children: [
-                          Text(
-                            context.tr.total,
-                            style: context.subTitle,
+                          //! Total Price
+                          Row(
+                            children: [
+                              Text(
+                                context.tr.total,
+                                style: context.subTitle,
+                              ),
+                              Text(
+                                '${order.totalPrice}',
+                                style: context.subTitle,
+                              ),
+                              Text(
+                                AppConsts.currency,
+                                style: context.subTitle
+                                    .copyWith(color: ColorManager.primaryColor),
+                              ),
+                            ],
                           ),
-                          Text(
-                            '${order.totalPrice}',
-                            style: context.subTitle,
-                          ),
-                          Text(
-                            AppConsts.currency,
-                            style: context.subTitle
-                                .copyWith(color: ColorManager.primaryColor),
+
+                          const Spacer(),
+
+                          //! Total Products
+                          Row(
+                            children: [
+                              Text(
+                                context.tr.totalProduct,
+                                style: context.subTitle,
+                              ),
+                              Text(
+                                '${order.products?.length ?? 0}',
+                                style: context.subTitle,
+                              ),
+                            ],
                           ),
                         ],
                       ),
 
-                      const Spacer(),
+                      context.smallGap,
 
-                      //! Total Products
+                      //! User Details
                       Row(
                         children: [
-                          Text(
-                            context.tr.totalProduct,
-                            style: context.subTitle,
+                          //! User Name
+                          Row(
+                            children: [
+                              Text(
+                                '${context.tr.name}: ',
+                                style: context.subTitle,
+                              ),
+                              Text(
+                                order.user?.userName ?? '',
+                                style: context.subTitle,
+                              ),
+                            ],
                           ),
+                          const Spacer(),
+
+                          //! User Email
                           Text(
-                            '${3} ',
-                            style: context.subTitle,
+                            order.user?.email ?? '',
+                            style: context.subTitle.copyWith(
+                              color: ColorManager.primaryColor,
+                            ),
                           ),
                         ],
                       ),
                     ],
                   ),
-
-                  context.smallGap,
-
-                  //! Date Time
-                  Row(
-                    children: [
-                      Text(
-                        context.tr.dateTime,
-                        style: context.labelLarge.copyWith(
-                            color: ColorManager.darkGrey.withOpacity(0.5)),
-                      ),
-                      Text(
-                        ' ${order.createdAt}',
-                        style: context.labelLarge.copyWith(
-                            color: ColorManager.darkGrey.withOpacity(0.5)),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
+                ),
+              ],
             ),
-          ],
-        ),
+          ),
+
+          //? order date in the top of the image with container
+          Container(
+            width: double.infinity,
+            padding: const EdgeInsets.all(AppSpaces.smallPadding),
+            decoration: const BoxDecoration(
+                color: ColorManager.white,
+                borderRadius: BorderRadius.only(
+                  topRight: Radius.circular(AppRadius.baseContainerRadius),
+                  topLeft: Radius.circular(AppRadius.baseContainerRadius),
+                )),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Row(
+                  children: [
+                    Text(
+                      context.tr.orderNumber,
+                      style: context.subTitle.copyWith(
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    Text(
+                      '# ${order.id}',
+                      style: context.subTitle.copyWith(
+                          color: ColorManager.primaryColor,
+                          fontWeight: FontWeight.bold),
+                    ),
+                  ],
+                ),
+                Text(
+                  '${order.createdAt}',
+                  style: context.labelLarge
+                      .copyWith(color: ColorManager.darkGrey.withOpacity(0.5)),
+                ),
+              ],
+            ),
+          ),
+        ],
       ),
       children: [
         Container(

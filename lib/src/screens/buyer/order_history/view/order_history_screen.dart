@@ -38,7 +38,7 @@ class OrderHistoryScreen extends HookWidget {
             top: AppSpaces.defaultPadding,
             left: AppSpaces.defaultPadding,
           ),
-          itemBuilder: (context, index) => OrderHistoryWidget(
+          itemBuilder: (context, index) => OrderHistoryCard(
             order: orderVM.orders[index],
           ),
           separatorBuilder: (context, index) => context.mediumGap,

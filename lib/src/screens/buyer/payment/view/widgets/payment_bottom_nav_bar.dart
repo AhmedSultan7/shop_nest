@@ -1,5 +1,6 @@
 import 'package:cards_app/src/core/extensions/extensions.dart';
 import 'package:cards_app/src/core/resources/app_spaces.dart';
+import 'package:cards_app/src/screens/app.dart';
 import 'package:cards_app/src/screens/auth/view_model/auth_view_model.dart';
 import 'package:cards_app/src/screens/buyer/order_history/view_model/order_view_model.dart';
 import 'package:flutter/material.dart';
@@ -139,6 +140,10 @@ class _PaymentBottomNavBarState extends State<PaymentBottomNavBar> {
                 context
                     .read<OrderVM>()
                     .addOrders(cartVM: cartVM, user: authVM.user);
+
+                context.toReplacement(const MyApp());
+
+                context.showBarMessage(context.tr.paymentSuccessfully);
               }
             },
             loadingIndicator: const Center(
