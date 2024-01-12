@@ -34,7 +34,7 @@ dependencies:
   permission_handler: ^11.0.0
   fast_cached_network_image: ^1.2.0
   badges: ^3.1.2
-#  intl: ^0.17.0
+  #  intl: ^0.17.0
 
   #? Injector
   get_it: ^7.6.4
@@ -66,25 +66,31 @@ dev_dependencies:
   flutter_lints: ^3.0.1
 #  flutter_app_name: ^0.1.1
 #  flutter_launcher_icons: ^0.13.1
+#  flutter_native_splash: ^2.3.2
 
+
+#? dart run flutter_app_name
+#flutter_app_name:
+#  name: "Sim App"
+
+#? dart run flutter_launcher_icons:main
+#flutter_launcher_icons:
+#  android: true
+#  ios: true
+#  remove_alpha_ios: true
+#  color: "#000000"
+#  image_path: "assets/images/logo.jpeg"
+#
+#? dart run flutter_native_splash:create
+#flutter_native_splash:
+#  image: assets/images/logo.jpeg
+#  color: "#FFFFFF"
 
 flutter:
 
   uses-material-design: true
   generate: true
 
-#? dart run flutter_app_name
-flutter_app_name:
-  name: "Sim App"
-
-#? dart run flutter_launcher_icons:main
-
-flutter_launcher_icons:
-  android: true
-  ios: true
-  remove_alpha_ios: true
-  color: "#000000"
-  image_path: "assets/images/logo.jpeg"
 
   assets:
     - assets/images/
