@@ -1,8 +1,6 @@
 import 'package:blur/blur.dart';
 import 'package:cards_app/generated/assets.dart';
 import 'package:cards_app/src/core/extensions/extensions.dart';
-import 'package:cards_app/src/core/shared_widgets/dialogs/alert_dialog.dart';
-import 'package:cards_app/src/core/shared_widgets/dialogs/base_dialog.dart';
 import 'package:cards_app/src/core/shared_widgets/row_icon_and_title.dart';
 import 'package:cards_app/src/screens/auth/view_model/auth_view_model.dart';
 import 'package:cards_app/src/screens/buyer/home/view_model/bottom_nav_provider.dart';
