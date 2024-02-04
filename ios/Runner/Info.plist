@@ -17,7 +17,7 @@
 		<key>CFBundleName</key>
 		<string>cards_app</string>
 		<key>CFBundlePackageType</key>
-		<string>Sim App</string>
+		<string>APPL</string>
 		<key>CFBundleShortVersionString</key>
 		<string>$(FLUTTER_BUILD_NAME)</string>
 		<key>CFBundleSignature</key>
@@ -45,6 +45,8 @@
 			<string>UIInterfaceOrientationLandscapeLeft</string>
 			<string>UIInterfaceOrientationLandscapeRight</string>
 		</array>
+		<key>NSPhotoLibraryUsageDescription</key>
+		<string>Sim App would like access to your photo gallery, So you can add your products with their images.</string>
 		<key>UIStatusBarHidden</key>
 		<false/>
 	</dict>

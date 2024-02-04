@@ -24,7 +24,7 @@ class LoginScreen extends HookWidget {
     final fieldsController = {
       ApiStrings.identifier: useTextEditingController(text: 'sultan@gmail.com'),
       ApiStrings.password: useTextEditingController(text: '123456789'),
-      // ApiStrings.identifier: useTextEditingController(text: 'issa@gmail.com'),
+      // ApiStrings.identifier: useTextEditingController(text: 'amr@gmail.com'),
       // ApiStrings.password: useTextEditingController(text: '123456789'),
     };
 

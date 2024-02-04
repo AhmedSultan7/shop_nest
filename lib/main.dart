@@ -8,7 +8,7 @@ import 'package:hive_flutter/adapters.dart';
 import 'src/screens/app.dart';
 
 void main() async {
-  SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+  SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
       systemNavigationBarColor: Colors.black, // navigation bar color
       statusBarColor: ColorManager.white,
       statusBarIconBrightness: Brightness.dark

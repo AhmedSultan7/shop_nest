@@ -30,7 +30,7 @@ class BuyerAllProductsScreen extends StatelessWidget {
               crossAxisSpacing: 10,
               crossAxisCount: 2,
               mainAxisSpacing: 20,
-              childAspectRatio: .50,
+              childAspectRatio: 0.75,
             ),
             itemBuilder: (_, index) => BuyerProductCard(
               product: productVM.products[index],

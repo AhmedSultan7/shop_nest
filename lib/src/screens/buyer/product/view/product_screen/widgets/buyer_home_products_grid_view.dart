@@ -72,7 +72,7 @@ class HomeProductsGridView extends StatelessWidget {
                     ? productVM.searchedProductsList[index]
                     : productVM.products[index],
               ),
-            ),
+            )
           ],
         );
       },
