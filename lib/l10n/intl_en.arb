@@ -76,5 +76,10 @@
   "orderNumber": "طلب رقم : ",
   "searchResults": "نتائج البحث",
   "noResultsFound": "لم يتم العثور على نتائج ...",
-  "paymentSuccessfully": "تم الدفع بنجاح"
+  "paymentSuccessfully": "تم الدفع بنجاح",
+  "cancel": "إلغاء",
+  "confirm": "تأكبد",
+  "areYouSureToDeleteYourAccount": "هل أنت متأكد من حذف حسابك",
+  "DeleteYourAccount": "حذف الحساب",
+  "yourAccountHasBeenDeleted": "لقد تم حذف حسابك بنجاح"
 }

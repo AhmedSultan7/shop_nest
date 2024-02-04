@@ -22,6 +22,7 @@ class ProductModel {
   //! Remote Constructor---------------------------------------
   factory ProductModel.fromJson(Map<String, dynamic> json) {
     final attributes = json[ApiStrings.attributes];
+
     return ProductModel(
         id: json[ApiStrings.id],
         name: attributes[ApiStrings.name] ?? '',
@@ -36,7 +37,6 @@ class ProductModel {
 
   //! Local Constructor---------------------------------------
   factory ProductModel.fromLocalJson(Map<dynamic, dynamic> json) {
-    Log.i(' ================cscwscww${json[ApiStrings.seller]}');
 
     return ProductModel(
         id: json[ApiStrings.id],

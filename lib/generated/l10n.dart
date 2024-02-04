@@ -829,6 +829,56 @@ class S {
       args: [],
     );
   }
+
+  /// `إلغاء`
+  String get cancel {
+    return Intl.message(
+      'إلغاء',
+      name: 'cancel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `تأكبد`
+  String get confirm {
+    return Intl.message(
+      'تأكبد',
+      name: 'confirm',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `هل أنت متأكد من حذف حسابك`
+  String get areYouSureToDeleteYourAccount {
+    return Intl.message(
+      'هل أنت متأكد من حذف حسابك',
+      name: 'areYouSureToDeleteYourAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `حذف الحساب`
+  String get DeleteYourAccount {
+    return Intl.message(
+      'حذف الحساب',
+      name: 'DeleteYourAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `لقد تم حذف حسابك بنجاح`
+  String get yourAccountHasBeenDeleted {
+    return Intl.message(
+      'لقد تم حذف حسابك بنجاح',
+      name: 'yourAccountHasBeenDeleted',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

@@ -170,10 +170,12 @@ class _OrderHistoryWidget extends StatelessWidget {
                           const Spacer(),
 
                           //! User Email
-                          Text(
-                            order.user?.email ?? '',
-                            style: context.subTitle.copyWith(
-                              color: ColorManager.primaryColor,
+                          FittedBox(
+                            child: Text(
+                              order.user?.email ?? '',
+                              style: context.hint.copyWith(
+                                color: ColorManager.primaryColor,
+                              ),
                             ),
                           ),
                         ],

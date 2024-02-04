@@ -18,7 +18,7 @@ import '../../../../core/shared_widgets/shared_widgets.dart';
 import '../login_screen/login_screen.dart';
 
 class SignupScreen extends HookWidget {
-  const SignupScreen({Key? key}) : super(key: key);
+  const SignupScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

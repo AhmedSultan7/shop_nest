@@ -6,9 +6,11 @@ import 'package:cards_app/src/core/extensions/extensions.dart';
 import 'package:cards_app/src/screens/app.dart';
 import 'package:cards_app/src/screens/auth/repository/local_repo/auth_local_repo.dart';
 import 'package:cards_app/src/screens/auth/repository/remote_repo/auth_remote_repo.dart';
+import 'package:cards_app/src/screens/auth/view/signup_screen/signup_screen.dart';
 import 'package:flutter/cupertino.dart';
 
 import '../../../core/data/local/hive_helper.dart';
+import '../../../core/data/local/local_keys.dart';
 import '../../../core/data/remote/app_exception.dart';
 import '../../../core/utils/logger.dart';
 import '../model/user_model.dart';
@@ -110,6 +112,27 @@ class AuthVM extends ChangeNotifier {
       if (context.mounted) {
         context.to(const MyApp());
       }
+    } on FetchDataException catch (e) {
+      Log.e('Fetch Data Exception ${e.toString()}');
+      isLoading = false;
+    } on SocketException {
+      isLoading = false;
+    } on TimeoutException {
+      isLoading = false;
+    }
+  }
+
+  //! Delete User ===============================
+  Future<void> deleteUser(BuildContext context, {required int id}) async {
+    try {
+      // isLoading = true;
+
+      await authRemoteRepo.deleteUser(id: id);
+      await HiveHelper().clearAllData();
+
+        context.to(const SignupScreen());
+      context.showBarMessage(context.tr.yourAccountHasBeenDeleted);
+
     } on FetchDataException catch (e) {
       Log.e('Fetch Data Exception ${e.toString()}');
       isLoading = false;

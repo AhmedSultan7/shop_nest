@@ -53,4 +53,17 @@ class AuthRemoteRepo {
       rethrow;
     }
   }
+
+  //! Delete User ===============================
+  Future<void> deleteUser({required int id}) async {
+    try {
+      await networkApiServices.deleteResponse(
+        '${ApiEndPoints.users}/$id',
+      );
+    } on FetchDataException {
+      rethrow;
+    } on TimeoutException {
+      rethrow;
+    }
+  }
 }

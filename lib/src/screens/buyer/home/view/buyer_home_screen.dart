@@ -27,7 +27,7 @@ class BuyerHomeScreen extends HookWidget {
         productVM.getProducts();
         sliderVM.getSlider();
         cartVM.getCart();
-        Log.w(cartVM.getCart());
+        // Log.w(cartVM.getCart());
       });
       return () {};
     }, []);

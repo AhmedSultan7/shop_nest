@@ -22,6 +22,7 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "DeleteYourAccount": MessageLookupByLibrary.simpleMessage("حذف الحساب"),
         "HaveAnAccount": MessageLookupByLibrary.simpleMessage("لديك حساب ؟"),
         "PleaseCheckYourEmailAndPassword": MessageLookupByLibrary.simpleMessage(
             "يرجى التحقق من البريد الإلكتروني وكلمة المرور الخاصة بك"),
@@ -32,11 +33,14 @@ class MessageLookup extends MessageLookupByLibrary {
         "addToCart": MessageLookupByLibrary.simpleMessage("إضافة إلي السلة"),
         "addedSuccessfully":
             MessageLookupByLibrary.simpleMessage("تمت الإضافة بنجاح"),
+        "areYouSureToDeleteYourAccount":
+            MessageLookupByLibrary.simpleMessage("هل أنت متأكد من حذف حسابك"),
         "areYouSureYouWantToCancelThisOrderOf":
             MessageLookupByLibrary.simpleMessage(
                 "هل أنت متأكد أنك تريد إلغاء هذا الطلب من العميل ؟"),
         "buyNow": MessageLookupByLibrary.simpleMessage("اشتري الآن"),
         "buyer": MessageLookupByLibrary.simpleMessage("مشتري"),
+        "cancel": MessageLookupByLibrary.simpleMessage("إلغاء"),
         "cantConnectToServer": MessageLookupByLibrary.simpleMessage(
             "تعذر الإتصال بالخادم، حاول مرة أخرى"),
         "cart": MessageLookupByLibrary.simpleMessage("سلة المنتجات"),
@@ -45,6 +49,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("برجاء إختيار نوع المستخدم"),
         "clickToBrowse":
             MessageLookupByLibrary.simpleMessage("انقر لإختيار صورة"),
+        "confirm": MessageLookupByLibrary.simpleMessage("تأكبد"),
         "confirmation": MessageLookupByLibrary.simpleMessage("تأكيد"),
         "contactUs": MessageLookupByLibrary.simpleMessage("تواصل معنا"),
         "dateTime": MessageLookupByLibrary.simpleMessage("التاريخ : "),
@@ -133,6 +138,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "updatedSuccessfully":
             MessageLookupByLibrary.simpleMessage("تم التعديل بنجاح"),
         "userType": MessageLookupByLibrary.simpleMessage("نوع المستخدم"),
+        "yourAccountHasBeenDeleted":
+            MessageLookupByLibrary.simpleMessage("لقد تم حذف حسابك بنجاح"),
         "yourProducts": MessageLookupByLibrary.simpleMessage("منتجاتك")
       };
 }
