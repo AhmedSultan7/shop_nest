@@ -879,6 +879,26 @@ class S {
       args: [],
     );
   }
+
+  /// `يجب تسجيل الدخول اولا`
+  String get youMustLoginFirst {
+    return Intl.message(
+      'يجب تسجيل الدخول اولا',
+      name: 'youMustLoginFirst',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `الدخول كزائر`
+  String get loginAsGuest {
+    return Intl.message(
+      'الدخول كزائر',
+      name: 'loginAsGuest',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

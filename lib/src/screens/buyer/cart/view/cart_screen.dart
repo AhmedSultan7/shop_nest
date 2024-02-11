@@ -1,6 +1,7 @@
 import 'package:cards_app/src/core/extensions/extensions.dart';
 import 'package:cards_app/src/core/resources/app_spaces.dart';
 import 'package:cards_app/src/core/shared_widgets/shared_widgets.dart';
+import 'package:cards_app/src/screens/auth/view_model/auth_view_model.dart';
 import 'package:cards_app/src/screens/buyer/cart/view/widgets/cart_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -47,7 +48,14 @@ class CartScreen extends HookWidget {
               itemCount: cartData.length),
           floatingActionButton: cartData.isNotEmpty
               ? InkWell(
-                  onTap: () => context.to(const PaymentScreen()),
+                  onTap: () {
+                    final authVM = context.read<AuthVM>();
+                    if(authVM.isLoggedIn) {
+                      context.to(const PaymentScreen());
+                    }else{
+                      context.showBarMessage(context.tr.youMustLoginFirst,isError: true);
+                    }
+                  },
                   child: Container(
                     padding: const EdgeInsets.all(AppSpaces.defaultPadding),
                     margin: const EdgeInsets.all(AppSpaces.defaultPadding),

@@ -18,10 +18,29 @@ class ProductRepo {
   //! Get Products ===================================
   Future<List<ProductModel>> getProducts() async {
     try {
+
       final vendorIdFilter = await UserModel.vendorFilter(authLocalRepo);
 
       final response = await networkApiServices
           .getResponse(ApiEndPoints.products + vendorIdFilter);
+
+      final productsData = (response[ApiStrings.data] as List)
+          .map((e) => ProductModel.fromJson(e))
+          .toList();
+      return productsData;
+    } on FetchDataException {
+      rethrow;
+    } on TimeoutException {
+      rethrow;
+    }
+  }
+
+  Future<List<ProductModel>> getGuestProducts() async {
+    try {
+
+
+      final response = await networkApiServices
+          .getResponse(ApiEndPoints.products);
 
       final productsData = (response[ApiStrings.data] as List)
           .map((e) => ProductModel.fromJson(e))

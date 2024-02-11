@@ -125,7 +125,7 @@ class UserModel {
   static Future<String> vendorFilter(AuthLocalRepo authLocalRepo) async {
     final mainUser = await authLocalRepo.getUserData();
 
-    final isSeller = mainUser.user!.isSeller;
+    final isSeller = mainUser.user?.isSeller ?? false ;
 
     final sellerId = mainUser.user!.id;
 

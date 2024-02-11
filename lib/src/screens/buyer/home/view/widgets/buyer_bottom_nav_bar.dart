@@ -45,6 +45,7 @@ class BuyerBottomNavBar extends StatelessWidget {
             ),
             label: context.tr.cart,
           ),
+          if(authVM.isLoggedIn)
           BottomNavigationBarItem(
             icon: IconWidget(
                 color: bottomNavbarVM.currentIndex == 2

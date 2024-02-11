@@ -2,6 +2,7 @@ import 'package:blur/blur.dart';
 import 'package:cards_app/generated/assets.dart';
 import 'package:cards_app/src/core/extensions/extensions.dart';
 import 'package:cards_app/src/core/shared_widgets/row_icon_and_title.dart';
+import 'package:cards_app/src/screens/auth/view/login_screen/login_screen.dart';
 import 'package:cards_app/src/screens/auth/view_model/auth_view_model.dart';
 import 'package:cards_app/src/screens/buyer/home/view_model/bottom_nav_provider.dart';
 import 'package:cards_app/src/screens/settings/model/settings_model.dart';
@@ -72,6 +73,7 @@ class _HeaderDrawer extends StatelessWidget {
           decoration: const BoxDecoration(),
           child: Row(
             children: [
+              if(authVM.isLoggedIn)
               IconButton(
                 onPressed: () => showDialog(context: context, builder: (context) => BaseDeleteDialog(
             isLoading: false,
@@ -98,15 +100,23 @@ class _HeaderDrawer extends StatelessWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
-                  Text(
-                    authVM.user.userName,
-                    style: context.whiteTitle,
-                  ),
-                  Text(
-                    authVM.user.email,
-                    style: context.whiteLabelLarge
-                        .copyWith(fontWeight: FontWeight.w100),
-                  ),
+                  if(authVM.isLoggedIn)...[
+                    Text(
+                      authVM.user.userName,
+                      style: context.whiteTitle,
+                    ),
+                    Text(
+                      authVM.user.email,
+                      style: context.whiteLabelLarge
+                          .copyWith(fontWeight: FontWeight.w100),
+                    ),
+                  ]else...[
+                    Text(
+                      'Guest',
+                      style: context.whiteTitle,
+                    ),
+                  ]
+
                 ],
               ),
 
@@ -126,80 +136,92 @@ class _DrawerList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.start,
-      children: [
-        //! Home & Terms & Contact Us
-        Column(
+    return Consumer3<AuthVM, BuyerBottomNavbarVM, SellerBottomNavbarVM>(
+      builder: (context, authVM, buyerBottomNavbarVM,
+          sellerBottomNavbarVM, child) {
+        return Row(
+          mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            //! Policy
-            RowIconAndTitle(
-              iconPath: Assets.iconsTerms,
-              title: context.tr.policy,
-              onTap: () => context.to(const PolicyScreen()),
-            ),
-            context.largeGap,
+            //! Home & Terms & Contact Us
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                //! Policy
+                RowIconAndTitle(
+                  iconPath: Assets.iconsTerms,
+                  title: context.tr.policy,
+                  onTap: () => context.to(const PolicyScreen()),
+                ),
+                context.largeGap,
 
-            //! Terms
-            RowIconAndTitle(
-              iconPath: Assets.iconsTerms,
-              title: context.tr.terms,
-              onTap: () {
-                context.to(const TermsScreen());
-              },
-            ),
-            context.largeGap,
+                //! Terms
+                RowIconAndTitle(
+                  iconPath: Assets.iconsTerms,
+                  title: context.tr.terms,
+                  onTap: () {
+                    context.to(const TermsScreen());
+                  },
+                ),
+                context.largeGap,
 
-            //! Logout
-            Consumer3<AuthVM, BuyerBottomNavbarVM, SellerBottomNavbarVM>(
-              builder: (context, authVM, buyerBottomNavbarVM,
-                  sellerBottomNavbarVM, child) {
-                return RowIconAndTitle(
-                    iconPath: Assets.iconsLogout,
-                    title: context.tr.logout,
-                    onTap: () {
-                      authVM.logout(context);
-                      // buyerBottomNavbarVM.setCurrentIndex(0);
-                      // sellerBottomNavbarVM.setCurrentIndex(0);
-                    });
-              },
+                //! Logout
+                if(authVM.isLoggedIn)...
+                [
+                  RowIconAndTitle(
+                      iconPath: Assets.iconsLogout,
+                      title: context.tr.logout,
+                      onTap: () {
+                        authVM.logout(context);
+                        // buyerBottomNavbarVM.setCurrentIndex(0);
+                        // sellerBottomNavbarVM.setCurrentIndex(0);
+                      }),
+
+                ]else...[
+                  RowIconAndTitle(
+                      iconPath: Assets.iconsLogout,
+                      title: context.tr.login,
+                      onTap: () => context.to(const LoginScreen()))
+                ]
+              ],
+            ),
+
+            context.largeGap,
+            //! Terms & About Us & Settings
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                //! About Us
+                RowIconAndTitle(
+                  iconPath: Assets.iconsAboutUs,
+                  title: context.tr.aboutUs,
+                  onTap: () {
+                    context.to(const AboutUsScreen());
+                  },
+                ),
+                context.largeGap,
+
+                //! Contact Us
+                RowIconAndTitle(
+                  iconPath: Assets.iconsContact,
+                  title: context.tr.contactUs,
+                  onTap: () => context.to(const ContactUsScreen()),
+                ),
+                context.largeGap,
+
+                //! Settings
+                if(authVM.isLoggedIn)
+                RowIconAndTitle(
+                  iconPath: Assets.iconsSettings,
+                  title: context.tr.settings,
+                  onTap: () => context.to(const ProfileScreen()),
+                ),
+              ],
             ),
           ],
-        ),
-
-        context.largeGap,
-        //! Terms & About Us & Settings
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            //! About Us
-            RowIconAndTitle(
-              iconPath: Assets.iconsAboutUs,
-              title: context.tr.aboutUs,
-              onTap: () {
-                context.to(const AboutUsScreen());
-              },
-            ),
-            context.largeGap,
-
-            //! Contact Us
-            RowIconAndTitle(
-              iconPath: Assets.iconsContact,
-              title: context.tr.contactUs,
-              onTap: () => context.to(const ContactUsScreen()),
-            ),
-            context.largeGap,
-
-            //! Settings
-            RowIconAndTitle(
-              iconPath: Assets.iconsSettings,
-              title: context.tr.settings,
-              onTap: () => context.to(const ProfileScreen()),
-            ),
-          ],
-        ),
-      ],
+        );
+      },
     );
+
   }
 }

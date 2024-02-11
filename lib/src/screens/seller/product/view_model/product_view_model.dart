@@ -36,6 +36,20 @@ class ProductsVM extends LoadingVM {
       isLoading = false;
     }
   }
+  Future<void> getGuestProducts() async {
+    try {
+      isLoading = true;
+      products = await productRepo.getGuestProducts();
+      isLoading = false;
+    } on FetchDataException catch (e) {
+      Log.e('Fetch Data Exception ${e.toString()}');
+      isLoading = false;
+    } on SocketException {
+      isLoading = false;
+    } on TimeoutException {
+      isLoading = false;
+    }
+  }
 
   // * Search For Products =========================================
   void searchedProductsToSearchedList(String searchedProducts) {

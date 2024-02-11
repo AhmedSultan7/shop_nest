@@ -55,7 +55,7 @@ dependencies:
   #? slider
   carousel_slider: ^4.2.1
 
-  pay: ^1.1.2
+#  pay: ^1.1.2
 
   restart_app:
 

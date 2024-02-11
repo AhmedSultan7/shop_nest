@@ -1,5 +1,6 @@
 import 'package:cards_app/src/core/extensions/extensions.dart';
 import 'package:cards_app/src/core/utils/logger.dart';
+import 'package:cards_app/src/screens/auth/view_model/auth_view_model.dart';
 import 'package:cards_app/src/screens/buyer/home/view/widgets/top_section/home_slider.dart';
 import 'package:cards_app/src/screens/buyer/home/view/widgets/top_section/main_home_search.dart';
 import 'package:cards_app/src/screens/seller/product/view_model/product_view_model.dart';
@@ -20,11 +21,16 @@ class BuyerHomeScreen extends HookWidget {
     final productVM = context.read<ProductsVM>();
     final sliderVM = context.read<SliderVM>();
     final cartVM = context.read<CartVM>();
+    final authVM = context.read<AuthVM>();
     final searchController = useTextEditingController();
 
     useEffect(() {
       WidgetsBinding.instance.addPostFrameCallback((_) {
-        productVM.getProducts();
+        if(authVM.isLoggedIn) {
+          productVM.getProducts();
+        }else{
+          productVM.getGuestProducts();
+        }
         sliderVM.getSlider();
         cartVM.getCart();
         // Log.w(cartVM.getCart());

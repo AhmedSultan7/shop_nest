@@ -83,7 +83,7 @@ class BuyerProductCard extends StatelessWidget {
                   children: [
                     //! Product image
                     SizedBox(
-                      height: context.height * 0.26,
+                      height: context.height * 0.19,
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(
                           AppRadius.imageContainerRadius,

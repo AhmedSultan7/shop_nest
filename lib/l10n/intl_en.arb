@@ -81,5 +81,7 @@
   "confirm": "تأكبد",
   "areYouSureToDeleteYourAccount": "هل أنت متأكد من حذف حسابك",
   "DeleteYourAccount": "حذف الحساب",
-  "yourAccountHasBeenDeleted": "لقد تم حذف حسابك بنجاح"
+  "yourAccountHasBeenDeleted": "لقد تم حذف حسابك بنجاح",
+  "youMustLoginFirst": "يجب تسجيل الدخول اولا",
+  "loginAsGuest": "الدخول كزائر"
 }

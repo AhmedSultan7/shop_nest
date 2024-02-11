@@ -1,8 +1,10 @@
 import 'package:cards_app/generated/assets.dart';
 import 'package:cards_app/src/core/extensions/extensions.dart';
 import 'package:cards_app/src/core/resources/app_spaces.dart';
+import 'package:cards_app/src/core/utils/logger.dart';
 import 'package:cards_app/src/screens/app.dart';
 import 'package:cards_app/src/screens/auth/view_model/auth_view_model.dart';
+import 'package:cards_app/src/screens/buyer/home/view/main_buyer_screen.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -87,6 +89,19 @@ class LoginScreen extends HookWidget {
                               });
                             }
                           }),
+                      context.mediumGap,
+                      TextButton(
+                          onPressed: () {
+                            context.to(const MainBuyerScreen());
+                            Log.w('message ${authVM.isLoggedIn} ');
+                          },
+                          child: Text(
+                            context.tr.loginAsGuest,
+                            style: context.labelMedium.copyWith(
+                                color: ColorManager.primaryColor,
+                                decoration: TextDecoration.underline,
+                                decorationColor: ColorManager.primaryColor,decorationThickness: 2),
+                          )),
                       context.mediumGap,
                       //! Don't have an account
                       Row(

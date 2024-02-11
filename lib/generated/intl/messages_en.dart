@@ -81,6 +81,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "history": MessageLookupByLibrary.simpleMessage("الطلبات السابقة"),
         "home": MessageLookupByLibrary.simpleMessage("الصفحة الرئيسية"),
         "login": MessageLookupByLibrary.simpleMessage("تسجيل الدخول"),
+        "loginAsGuest": MessageLookupByLibrary.simpleMessage("الدخول كزائر"),
         "loginSuccessfully":
             MessageLookupByLibrary.simpleMessage("تم تسجيل الدخول بنجاح"),
         "logout": MessageLookupByLibrary.simpleMessage("تسجيل الخروج"),
@@ -138,6 +139,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "updatedSuccessfully":
             MessageLookupByLibrary.simpleMessage("تم التعديل بنجاح"),
         "userType": MessageLookupByLibrary.simpleMessage("نوع المستخدم"),
+        "youMustLoginFirst":
+            MessageLookupByLibrary.simpleMessage("يجب تسجيل الدخول اولا"),
         "yourAccountHasBeenDeleted":
             MessageLookupByLibrary.simpleMessage("لقد تم حذف حسابك بنجاح"),
         "yourProducts": MessageLookupByLibrary.simpleMessage("منتجاتك")
