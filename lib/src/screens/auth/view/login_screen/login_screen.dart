@@ -3,6 +3,7 @@ import 'package:cards_app/src/core/extensions/extensions.dart';
 import 'package:cards_app/src/core/resources/app_spaces.dart';
 import 'package:cards_app/src/screens/app.dart';
 import 'package:cards_app/src/screens/auth/view_model/auth_view_model.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -22,8 +23,10 @@ class LoginScreen extends HookWidget {
   Widget build(BuildContext context) {
     final formKey = useState(GlobalKey<FormState>());
     final fieldsController = {
-      ApiStrings.identifier: useTextEditingController(text: 'sultan@gmail.com'),
-      ApiStrings.password: useTextEditingController(text: '123456789'),
+      ApiStrings.identifier: useTextEditingController(
+          text: kDebugMode ? 'issadeeb000@gmail.com' : ''),
+      ApiStrings.password:
+          useTextEditingController(text: kDebugMode ? '123456789' : ''),
       // ApiStrings.identifier: useTextEditingController(text: 'amr@gmail.com'),
       // ApiStrings.password: useTextEditingController(text: '123456789'),
     };

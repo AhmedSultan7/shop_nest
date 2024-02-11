@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:cards_app/src/core/data/remote/response/api_strings.dart';
 import 'package:cards_app/src/core/utils/logger.dart';
 import 'package:cards_app/src/screens/auth/repository/local_repo/auth_local_repo.dart';
@@ -69,6 +71,7 @@ class UserModel {
   factory UserModel.fromOrderJson(Map<String, dynamic> json) {
     final data = json[ApiStrings.data];
     final attributes = data[ApiStrings.attributes];
+    log('asfasfsaf $json');
     Log.i(' ================verrthtrh${attributes}');
 
     final userType = attributes[ApiStrings.userType] == ApiStrings.seller
@@ -137,8 +140,6 @@ class UserModel {
     final mainUser = await authLocalRepo.getUserData();
 
     final user = mainUser.user;
-
-
 
     return user;
   }
