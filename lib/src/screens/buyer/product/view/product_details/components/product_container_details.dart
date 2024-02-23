@@ -42,7 +42,8 @@ class ProductDetails extends StatelessWidget {
             ],
           ),
           context.mediumGap,
-          Text(product.description ?? '', style: context.labelLarge),
+          Text('جهاز PS5 بمميزات رائعة', style: context.labelLarge),
+          // Text(product.description ?? '', style: context.labelLarge),
         ],
       )
     ]);
